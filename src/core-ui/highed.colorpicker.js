@@ -94,8 +94,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       //There's 14 hues per. color, 19 colors in total.
       var x,
         y,
-        tx = Math.floor(pickerSize.w / 14),
-        ty = Math.floor(pickerSize.h / 19),
+        tx = Math.floor(pickerSize.w / highed.meta.colors.length),
+        ty = Math.floor(pickerSize.h),
         col = -1;
 
       canvas.width = pickerSize.w;
@@ -179,7 +179,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       if (y > windowSize.h - containerSize.h) {
         y = windowSize.h - containerSize.h - 10;
       }
-
       highed.dom.style(container, {
         left: x + 'px',
         top: y + 'px',
