@@ -58,7 +58,6 @@ highed.templates = {};
         thumbnail: '',
         icon: '',
         sampleSets: [],
-        externData: [],
         validator: false,
         config: {}
       },

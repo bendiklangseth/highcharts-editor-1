@@ -1,16 +1,20 @@
 highed.templates.add('Column', {
     title: 'Waterfall columns',
-    description: '',
+    description: 'This is a waterfall column chart',
     dataValidator: false,
     sampleSets: [],
-    externData: [],
     config: {
       chart: {
         type: 'waterfall',
       },
      xAxis: {
          type: 'category'
-     }
+     },
+     plotOptions: {
+      series: {
+        additionalMetaDataTest: 'test'
+      }
+    }
     }
   });
   
