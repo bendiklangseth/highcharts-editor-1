@@ -99,11 +99,11 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
     dataImportBtn = highed.dom.cr(
       'button',
       'highed-import-button highed-ok-button highed-sm-button',
-      'Import');
+      'Import'),
     dataExportBtn = highed.dom.cr(
       'button',
       'highed-import-button highed-ok-button highed-hide-sm',
-      'Export Data');
+      'Export Data'),
     dataClearBtn = highed.dom.cr(
       'button',
       'highed-import-button highed-ok-button highed-sm-button',

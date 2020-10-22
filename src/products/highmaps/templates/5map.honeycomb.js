@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-highed.templates.add('Map', {
+highed.templates.add('Maps', {
   title: 'Honeycomb',
   description: [
     'Tilemaps are maps where each area is represented by tiles of equal shape. You can choose from circle or honeycomb which uses hexagonal tiles.',

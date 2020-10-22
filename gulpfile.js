@@ -83,20 +83,20 @@ products.forEach(function (product) {
   });
 });
 
-gulp.task('modules', function () {
-  gulp.start(products.map(function (p) { return p + '-module'}));
-});
+function modules() {
+  products.map(function (p) { return p + '-module'});
+}
 
-gulp.task('bundled-modules', ['modules'], function () {
+gulp.task('bundled-modules', () => gulp.series(modules, function () {
   return gulp.src([dest + '/' + name + '.min.js'].concat(productFilenames))
          .pipe(concat(name + '.with.modules.min.js'))
          .pipe(uglify())
          .pipe(header(license, packageJson))
          .pipe(gulp.dest(dest))
   ;
-});
+}));
 
-gulp.task('build-config', function(){
+function buildConfig(){
   return gulp.src(
     __dirname + '/highed.config.js'
   )
@@ -109,9 +109,9 @@ gulp.task('build-config', function(){
     })
   )
   .pipe(gulp.dest(configDest))
-});
+}
 
-gulp.task('complete', ['default', 'cache-thumbnails', 'bundled-modules', 'with-advanced'], function () {
+gulp.task('complete', () => gulp.series('default', 'cache-thumbnails', 'bundled-modules', withAdvanced, function () {
   return gulp.src([
     dest + '/' + name + '.with.modules.min.js',
     dest + '/' + name + '.advanced.js'
@@ -125,38 +125,39 @@ gulp.task('complete', ['default', 'cache-thumbnails', 'bundled-modules', 'with-a
   .pipe(zip(name + '.complete.min.zip'))
   .pipe(gulp.dest(buildDest))
   ;
-});
+}));
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task('update-deps', function () {
+function updateDeps(){
   return run('node tools/update.deps.js').exec();
-});
+}
 
-gulp.task('bake-advanced', function () {
+
+function bakeAdvanced(){
   return run('node tools/dump2advanced.js').exec();
-});
+}
 
-gulp.task('localization', function () {
+function localization(){
   return run('node tools/gen.localization.js').exec();
-});
+}
 
-gulp.task('bake-thumbnails', function () {
+function bakeThumbnails() {
   return run('node tools/bake.previews.js').exec();
-});
+}
 
-gulp.task('cache-thumbnails', ['bake-thumbnails'], function () {
+gulp.task('cache-thumbnails', () => gulp.series(bakeThumbnails, function () {
   return gulp.src('generated_src/highed.meta.images.js')
              // .pipe(gulp.dest(dest))
              .pipe(rename(name + '.thumbnails.min.js'))
              .pipe(uglify())
              .pipe(header(license, packageJson))
              .pipe(gulp.dest(dest))
-});
+}));
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task('zip-tinymce', ['less', 'minify', 'tinymce'], function () {
+gulp.task('zip-tinymce', () => gulp.series(Less, minify, tinymce, function () {
     return gulp.src([
                //   'dist/' + name + '.min.css',
                   'dist/' + name + '.tinymce.js',
@@ -166,9 +167,9 @@ gulp.task('zip-tinymce', ['less', 'minify', 'tinymce'], function () {
                 ]).pipe(zip(name + '.tinymce.' + packageJson.version + '.zip'))
                   .pipe(gulp.dest(buildDest))
     ;
-});
+}));
 
-gulp.task('zip-ckeditor', ['less', 'minify', 'ckeditor'], function () {
+gulp.task('zip-ckeditor', () => gulp.series(Less, minify, ckeditor, function () {
     return gulp.src([
                  // 'dist/' + name + '.min.css',
                   'dist/' + name + '.ckeditor.js',
@@ -178,9 +179,9 @@ gulp.task('zip-ckeditor', ['less', 'minify', 'ckeditor'], function () {
                 ]).pipe(zip(name + '.ckeditor.' + packageJson.version + '.zip'))
                   .pipe(gulp.dest(buildDest))
     ;
-});
+}));
 
-gulp.task('zip-standalone', ['less', 'minify'], function () {
+gulp.task('zip-standalone', () => gulp.series(Less, minify, function () {
   return gulp.src([
             'res/standalone.html',
             'dist/' + name + '.min.css',
@@ -188,45 +189,45 @@ gulp.task('zip-standalone', ['less', 'minify'], function () {
          ]).pipe(zip(name + '.standalone.' + packageJson.version + '.zip'))
            .pipe(gulp.dest(buildDest))
   ;
-});
+}));
 
-gulp.task('zip-standalone-nominify', ['less', 'minify'], function () {
+gulp.task('zip-standalone-nominify', () => gulp.series(Less, minify, function () {
   return gulp.src([
             'dist/' + name + '.min.css',
             'dist/' + name + '.js'
          ]).pipe(zip(name + '.dist.' + packageJson.version + '.zip'))
            .pipe(gulp.dest(buildDest))
   ;
-});
+}));
 
-gulp.task('zip-dist', ['less', 'minify'], function () {
+gulp.task('zip-dist', () => gulp.series(Less, minify, function () {
   return gulp.src([
             'dist/' + name + '.min.css',
             'dist/' + name + '.min.js'
          ]).pipe(zip(name + '.dist.min.' + packageJson.version + '.zip'))
            .pipe(gulp.dest(buildDest));
-});
+}));
 
-gulp.task('zip-dist-advanced', ['less', 'minify', 'minify-advanced'], function () {
+gulp.task('zip-dist-advanced', () =>  gulp.series(Less, minify, 'minify-advanced', function () {
   return gulp.src([
             'dist/' + name + '.min.css',
             'dist/' + name + '.advanced.min.js',
             'dist/' + name + '.min.js'
          ]).pipe(zip(name + '.dist.advanced.min.' + packageJson.version + '.zip'))
            .pipe(gulp.dest(buildDest));
-});
+}));
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task('wordpress', ['less', 'minify', 'update-deps'], function () {
+gulp.task('wordpress', () => gulp.series(Less, minify, updateDeps, function () {
     return gulp.src([wpPluginDest + '*', wpPluginDest + 'dependencies/*'])
                .pipe(zip(name + '.wordpress.' + packageJson.version + '.zip'))
                .pipe(gulp.dest(buildDest))
     ;
-});
+}));
 
-gulp.task('tinymce',  function () {
-    return gulp.src('integrations/tinymce.js')
+function tinymce(){
+  return gulp.src('integrations/tinymce.js')
                .pipe(concat(name + '.tinymce.js'))
                .pipe(gulp.dest(dest))
                .pipe(rename(name + '.tinymce.min.js'))
@@ -234,10 +235,10 @@ gulp.task('tinymce',  function () {
                .pipe(header(license, packageJson))
                .pipe(gulp.dest(dest))
     ;
-});
+}
 
-gulp.task('ckeditor', function () {
-    return gulp.src('integrations/ckeditor.js')
+function ckeditor(){
+  return gulp.src('integrations/ckeditor.js')
                .pipe(concat(name + '.ckeditor.js'))
                .pipe(gulp.dest(dest))
                .pipe(rename(name + '.ckeditor.min.js'))
@@ -245,12 +246,12 @@ gulp.task('ckeditor', function () {
                .pipe(header(license, packageJson))
                .pipe(gulp.dest(dest))
     ;
-});
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task('less', function () {
-    return gulp.src('less/theme.default.less')
+function Less(){
+  return gulp.src('less/theme.default.less')
                .pipe(less({
                     paths: ['less/'],
                     compress: true
@@ -260,34 +261,33 @@ gulp.task('less', function () {
                .pipe(gulp.dest(electronDest))
                .pipe(gulp.dest(wpPluginDest))
     ;
-});
+}
 
-gulp.task('lint', function () {
+function lint(){ //Not in use
   return gulp.src(sources)
-         .pipe(jslint({
-        //  global: ['XMLHttpRequest']
-         }))
-         .pipe(jslint.reporter('default', {}))
-  ;
-});
+            .pipe(jslint({
+           //  global: ['XMLHttpRequest']
+            }))
+            .pipe(jslint.reporter('default', {}))
+}
 
-gulp.task('lint-advanced', function () {
+function lintAdvanced(){ //Not in use
   return gulp.src(sources.concat(['./generated_src/highed.meta.options.advanced.js']))
          .pipe(jslint({
         //  global: ['XMLHttpRequest']
          }))
          .pipe(jslint.reporter('default', {}))
   ;
-});
+}
 
-gulp.task('move-standalone', function () {
+function moveStandalone(){
   return gulp.src([__dirname + '/res/standalone.html'])
          .pipe(gulp.dest(dest))
   ;
-});
+}
 
-gulp.task('minify', function () {
-    return gulp.src(sources)
+function minify(){
+  return gulp.src(sources)
                .pipe(concat(name + '.js'))
                .pipe(gulp.dest(dest))
                .pipe(rename(name + '.min.js'))
@@ -297,9 +297,10 @@ gulp.task('minify', function () {
                .pipe(gulp.dest(electronDest))
                .pipe(gulp.dest(wpPluginDest))
     ;
-});
+}
 
-gulp.task('minify-advanced', ['bake-advanced', 'less'], function () {
+
+gulp.task('minify-advanced', () => gulp.series(bakeAdvanced, Less, function () {
     return gulp.src('./generated_src/highed.meta.options.advanced.js')
                .pipe(concat(name + '.advanced.js'))
                .pipe(gulp.dest(dest))
@@ -310,10 +311,10 @@ gulp.task('minify-advanced', ['bake-advanced', 'less'], function () {
                .pipe(gulp.dest(electronDest))
                .pipe(gulp.dest(wpPluginDest))
     ;
-});
+}));
 
-gulp.task('plugins', function () {
-    return gulp.src('plugins/*.js')
+function plugins(){
+  return gulp.src('plugins/*.js')
                .pipe(uglify())
                .pipe(header(license, packageJson))
                .pipe(gulp.dest(dest + 'plugins'))
@@ -321,11 +322,11 @@ gulp.task('plugins', function () {
                .pipe(zip(name + '.plugins.' + packageJson.version + '.zip'))
                .pipe(gulp.dest(buildDest))
     ;
-});
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task('build-electron', ['less', 'minify', 'update-deps'], function () {
+gulp.task('build-electron', () => gulp.series(Less, minify, updateDeps, function () {
     return gulp.src('')
                .pipe(electron({
                     src: './app',
@@ -357,31 +358,33 @@ gulp.task('build-electron', ['less', 'minify', 'update-deps'], function () {
                .pipe(gulp.dest(''))
 
     ;
-});
+}));
 
-gulp.task('move-electron', ['build-electron'], function () {
+gulp.task('move-electron', () => gulp.series('build-electron', function () {
   return gulp.src([
             'dist/electron/v1.3.4/' + packageJson.name + '-' + packageJson.version + '-darwin-x64.zip',
             'dist/electron/v1.3.4/' + packageJson.name + '-' + packageJson.version + '-linux-x64.zip',
             'dist/electron/v1.3.4/' + packageJson.name + '-' + packageJson.version + '-win32-ia32.zip'
           ])
           .pipe(gulp.dest(buildDest))
-});
+}));
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task('electron', function () {
-  gulp.start('update-deps', 'build-electron', 'move-electron');
+function Electron() {
+  gulp.series(updateDeps, 'build-electron', 'move-electron');
+}
+
+gulp.task('default', function (done) {
+    gulp.series(buildConfig, minify, tinymce, ckeditor, Less, moveStandalone, updateDeps, plugins, 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor', modules);
+    done();
 });
 
-gulp.task('default', function () {
-    gulp.start('build-config', 'minify', 'tinymce', 'ckeditor', 'less', 'move-standalone', 'update-deps', 'plugins', 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor', 'modules');
-});
+function withAdvanced() {
+  gulp.series('minify-advanced', 'zip-dist-advanced', ckeditor, tinymce, Less, plugins, 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor');
+  done();
+}
 
-gulp.task('with-advanced', function () {
-    gulp.start('minify-advanced', 'zip-dist-advanced', 'ckeditor', 'tinymce', 'less', 'plugins', 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor');
-});
-
-gulp.task('all', function () {
-  gulp.start('default', 'electron', 'with-advanced', 'localization', 'complete');
-});
+function all(){
+  gulp.series('default', Electron, withAdvanced, localization, 'complete');
+}

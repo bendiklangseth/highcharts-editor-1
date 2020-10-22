@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-highed.templates.add('Map', {
+highed.templates.add('Maps', {
   title: 'Pattern Fill',
   description: [
     'Pattern Fill Maps display divided geographical areas or regions that are patterned in relation to an image source. This provides a way to visualise values over a geographical area.',

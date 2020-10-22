@@ -329,12 +329,13 @@ highed.ChartCustomizer = function(parent, attributes, chartPreview, planCode, da
         );
 
         const series = chartPreview.options.all().series;
+        console.log(series);
         allOptions = highed.merge({}, chartPreview.options.full);//highed.merge({}, chartPreview.options.getCustomized());
         if (series && series.length > 0) {
           series.forEach(function(serie, i) {
             if (allOptions.series && allOptions.series[i]){
               highed.merge(allOptions.series[i], {
-                type: serie.type || 'line'
+                type: serie.type // || 'line'
               });
             }
           });

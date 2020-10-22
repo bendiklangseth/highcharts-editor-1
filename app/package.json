@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/highcharts/highcharts-editor#readme",
   "devDependencies": {
-    "electron-prebuilt": "^1.2.0"
+    "electron-prebuilt": "^1.4.13"
   }
 }

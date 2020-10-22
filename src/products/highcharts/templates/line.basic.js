@@ -30,7 +30,7 @@ highed.templates.add('Line', {
   description: '',
   thumbnail: 'abywon.svg',
   popular: true,
-  dataValidator: false,
+  validator: 'line', //Datavalidator?
   sampleSets: [],
   config: {
     chart: {

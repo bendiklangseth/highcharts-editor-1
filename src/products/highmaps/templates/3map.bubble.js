@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-highed.templates.add('Map', {
+highed.templates.add('Maps', {
   title: 'Bubble',
   description: [
     'The bubble map uses circles of different size to represent a numeric value on a territory. It displays one bubble per region. The bubble is displayed in the baricentre of the region).',
@@ -33,6 +33,7 @@ highed.templates.add('Map', {
   thumbnail: 'mapbubble.svg',
   dataValidator: false,
   loadForEachSeries: false,
+  sampleSets: ['population-density'],
   constructor: 'Map',
   load: function(chart, event) {
     //Create serie if chart only has one

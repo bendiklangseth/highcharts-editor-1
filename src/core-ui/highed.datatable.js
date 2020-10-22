@@ -216,7 +216,7 @@ highed.DataTable = function(parent, attributes) {
     selectedHeaders = [],
     columnsToHighlight = [],
     dataFieldsUsed = [],
-    inCopyOverCellMode = false;
+    inCopyOverCellMode = false,
     moveToColumn = null,
     dragHeaderMode = false,
     mapImporter = highed.MapImporter(),
@@ -1024,6 +1024,7 @@ highed.DataTable = function(parent, attributes) {
 
     function delCol(which) {
       if (which >= 0 && which < columns.length) {
+        console.log(columns[0]);
         columns[which].destroy();
         columns.splice(which, 1);
       }

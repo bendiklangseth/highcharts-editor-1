@@ -148,7 +148,7 @@ highed.CustomizePage = function(parent, options, chartPreview, chartFrame, props
     isVisible = false,
     searchAdvancedOptions = highed.SearchAdvancedOptions(parent),
     resolutionSettings = highed.dom.cr('span', 'highed-resolution-settings'),
-    phoneIcon = highed.dom.cr('span', '', '<i class="fa fa-mobile" aria-hidden="true"></i>');
+    phoneIcon = highed.dom.cr('span', '', '<i class="fa fa-mobile" aria-hidden="true"></i>'),
     tabletIcon = highed.dom.cr('span', '', '<i class="fa fa-tablet" aria-hidden="true"></i>'),
     tabletIcon = highed.dom.cr('span', '', '<i class="fa fa-tablet" aria-hidden="true"></i>'),
     stretchToFitIcon = highed.dom.cr('span', '', '<i class="fa fa-laptop" aria-hidden="true"></i>'),
@@ -436,9 +436,9 @@ highed.CustomizePage = function(parent, options, chartPreview, chartFrame, props
     setTimeout(chartPreview.resize, 300);
 
     if (highed.chartType === 'Map') resize();
-  }),
+  });
   
-  backIcon = highed.dom.cr('div','highed-back-icon', '<i class="fa fa-chevron-circle-left" aria-hidden="true"></i>');
+  var backIcon = highed.dom.cr('div','highed-back-icon', '<i class="fa fa-chevron-circle-left" aria-hidden="true"></i>');
 
 
   highed.dom.style(backIcon, {

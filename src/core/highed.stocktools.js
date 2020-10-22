@@ -743,11 +743,10 @@ highed.StockTools = function(planCode) {
 
       this.removeDocEvents();
     }
-
     // Comunication with bindings:
-    H.addEvent(H.NavigationBindings, 'selectButton', function (event) {
+    H.addEvent(H.KeyboardNavigationHandler, 'selectButton', function (event) {
       if (timeout) {
-
+        console.log("Hei");
         clearTimeout(timeout);
         timeout = null;
       }
@@ -760,7 +759,7 @@ highed.StockTools = function(planCode) {
     });
 
 
-    H.addEvent(H.NavigationBindings, 'deselectButton', function (event) {
+    H.addEvent(H.KeyboardNavigationHandler, 'deselectButton', function (event) {
       var chart = this.chart;
       timeout = setTimeout(function(){
         chart.update({
@@ -772,7 +771,7 @@ highed.StockTools = function(planCode) {
     });
 
 
-    H.NavigationBindings.prototype.bindingsButtonClick = function (button, events, clickEvent) {
+    H.KeyboardNavigationHandler.prototype.bindingsButtonClick = function (button, events, clickEvent) {
       var navigation = this,
           chart = navigation.chart,
           PREFIX = 'highcharts-';

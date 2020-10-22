@@ -99,11 +99,11 @@ highed.SimpleDataPage = function(parent,assignDataParent, options, chartPreview,
     dataImportBtn = highed.dom.cr(
       'button',
       'highed-import-button highed-ok-button highed-sm-button',
-      'Import');
+      'Import'),
     dataExportBtn = highed.dom.cr(
       'button',
       'highed-import-button highed-ok-button highed-hide-sm',
-      'Export Data');
+      'Export Data'),
     dataClearBtn = highed.dom.cr(
       'button',
       'highed-import-button highed-ok-button highed-sm-button',
@@ -587,6 +587,7 @@ highed.SimpleDataPage = function(parent,assignDataParent, options, chartPreview,
     rowsLength -= 2;
 
     var chartOptions = chartPreview.options.getCustomized();
+    console.log("Options: ", chartOptions.options)
     var type = chartOptions.series[chartOptions.series.length - 1].type;
 
     if (!blacklist.includes(type)) {

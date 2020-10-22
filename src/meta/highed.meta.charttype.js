@@ -470,5 +470,7 @@ highed.meta.charttype = {
             'rawValue': [1]
         }
 
-    }
+    },
+    // combinations: {
+    // }
 };
