@@ -38,12 +38,7 @@ require('colors');
 
 console.log('Highcharts Editor Image Baker'.green);
 
-mkdir(outputFolder, () => {
-  let ofile = [
-    license,
-    ''
-  ];
-
+mkdir(outputFolder).then(() => {
   let fileMap = {};
 
   fs.readdir(inputFolder, (err, files) => {
@@ -56,7 +51,7 @@ mkdir(outputFolder, () => {
     });
 
     // Write the result
-    fs.writeFile(output, ofile.concat(['highed.meta.images = ' + JSON.stringify(fileMap, false, '  ')]).join('\n'), (err) => {
+    fs.writeFile(output, files.concat(['highed.meta.images = ' + JSON.stringify(fileMap, false, '  ')]).join('\n'), (err) => {
 
     });
 

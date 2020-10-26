@@ -29,8 +29,8 @@ const fs = require('fs');
 const mkdir = require('mkdirp');
 
 const output =  [
-    'app/dependencies/',
-    'integrations/wordpress/highcharts-editor/dependencies/'
+    '/app/dependencies/',
+    '/integrations/wordpress/highcharts-editor/dependencies/'
 ];
 
 const cdnScripts = [
@@ -53,12 +53,7 @@ cdnScripts.forEach(function (script) {
         if (error) return console.log('[error fetching script]', error);
 
         output.forEach(function (out) {
-            mkdir(out, function (error) {
-                if (error) return console.log('[error creating output folder]'.red, error);
-                fs.writeFile(out + script.substr(script.lastIndexOf('/')), body, function (err) {
-                    if (error) return console.log('[error writing script]'.red, error);
-                });
-            });
+            mkdir(out);
         });
     });
 });
