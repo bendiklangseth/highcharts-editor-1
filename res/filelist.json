@@ -65,7 +65,7 @@
     "./src/meta/highed.meta.fonts.js",
     "./src/meta/errors.js",
 
-    "./gen_src/highed.meta.options.advanced.js",
+    "./generated_src/highed.meta.options.advanced.js",
         
     "./src/ui/highed.chart.template.selector.js",
     "./src/ui/highed.defctx.js",
