@@ -51,6 +51,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
     "express-less": "0.1.0",
+    "gulp-terser": "^1.4.0",
     "hoek": "^4.2.1",
     "mkdirp": "1.0.4",
     "yarn": "^1.22.10"
