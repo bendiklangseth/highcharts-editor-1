@@ -24,6 +24,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ******************************************************************************/
 
 // @format
+highed.meta.FINcolors = [
+  '#4156A6', // 1 Mørk blå
+  '#F15D61', // 2 Coral rød
+  '#A6A6A6', // 3 Grå
+  '#5B91CC', // 4 Blå
+  '#97499C', // 5 Lilla
+  '#60C3AD', // 6 Grønn
+  '#181C62', // 7 Mørkest blå
+  '#C8D5ED', // 8 Lysest blå
+  '#C09AC8', // 9 Lys lilla
+  '#008286', // 10 Mørk grønn
+  '#B1DED3', // 11 Lys grønn
+  '#FFDF4F', // 12 Gul
+  '#FBCEC7'  // 13 Rosa
+];
 
 highed.meta.colors = [
   //Red

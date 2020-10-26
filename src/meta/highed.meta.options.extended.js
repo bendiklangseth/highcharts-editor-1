@@ -236,7 +236,7 @@ highed.meta.optionsExtended = {
             context: 'General',
             mapDisabled: true,
             defaults:
-              '[ "#7cb5ec" , "#434348" , "#90ed7d" , "#f7a35c" , "#8085e9" , "#f15c80" , "#e4d354" , "#2b908f" , "#f45b5b" , "#91e8e1"]'
+              '[ "#4156a6" , "#f15d61" , "#a6a6a6" , "#5b91cc" , "#97499c" , "#60c3ad" , "#181c62"]'
           },
           {
             id: 'plotOptions--series--dashStyle',
