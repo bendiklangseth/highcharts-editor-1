@@ -31,6 +31,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       'highed-colorpicker highed-colorpicker-responsive'
     ),
     canvas = highed.dom.cr('canvas', 'picker'),
+    colorPallet01btn = highed.dom.cr('div', 'highed-ok-button', 'FIN pallett'),
+    colorPallet02btn = highed.dom.cr('div', 'highed-ok-button', 'Other colors'),
     closeBtn = highed.dom.cr('div', 'highed-ok-button', 'Close'),
     ctx = canvas.getContext('2d'),
     manualInput = highed.dom.cr('input', 'manual');
@@ -77,26 +79,53 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       cbinder = false,
       dbinder = false;
 
+      highed.dom.style(canvas, {
+        display: 'none'
+      });
+
+      highed.dom.style(manualInput, {
+        display: 'none'
+      });
+      
+
     if (props.hideCloseBtn) {
       highed.dom.style(closeBtn, {
+        display: 'none'
+      });
+      highed.dom.style(colorPallet01btn, {
+        display: 'none'
+      });
+      highed.dom.style(colorPallet02btn, {
         display: 'none'
       });
     } else {
       highed.dom.style(closeBtn, {
         display: 'block'
       });
+      highed.dom.style(colorPallet01btn, {
+        display: 'block'
+      });
+      highed.dom.style(colorPallet02btn, {
+        display: 'block'
+      });
     }
+
 
     ///////////////////////////////////////////////////////////////////////
 
     /* Draws the color picker itself */
-    function drawPicker() {
+    function drawPicker(colors, typecolor) {
       //There's 14 hues per. color, 19 colors in total.
       var x,
         y,
-        tx = Math.floor(pickerSize.w / highed.meta.colors.length),
-        ty = Math.floor(pickerSize.h),
         col = -1;
+        if(typecolor === true) {
+          var tx = Math.floor(pickerSize.w / colors.length),
+          ty = Math.floor(pickerSize.h);
+        } else {
+          var tx = Math.floor(pickerSize.w / 14),
+          ty = Math.floor(pickerSize.h / 19);
+        }
 
       canvas.width = pickerSize.w;
       canvas.height = pickerSize.h;
@@ -107,7 +136,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       for (y = 0; y < 19; y++) {
         for (x = 0; x < 15; x++) {
-          ctx.fillStyle = highed.meta.colors[++col]; //highed.meta.colors[x + y * tx];
+          ctx.fillStyle = colors[++col]; //highed.meta.colors[x + y * tx];
           ctx.fillRect(x * tx, y * ty, tx, ty);
         }
       }
@@ -215,7 +244,37 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     manualInput.value = current;
     updatePickerBackground(current);
 
-    drawPicker();
+    colorFIN = false
+
+    function showCanvas() {
+      highed.dom.style(canvas, {
+        display: 'block'
+      });
+
+      highed.dom.style(manualInput, {
+        display: 'block'
+      });
+
+      highed.dom.style(colorPallet01btn, {
+        display: 'none'
+      });
+
+      highed.dom.style(colorPallet02btn, {
+        display: 'none'
+      });
+    }
+
+    colorPallet01btn.addEventListener('click', () =>{ 
+      colorFIN = true; 
+      showCanvas();
+      drawPicker(highed.meta.FINcolors, colorFIN);
+    });
+
+    colorPallet02btn.addEventListener('click', () =>{ 
+      colorFIN = false; 
+      showCanvas();
+      drawPicker(highed.meta.colors, colorFIN);
+    });
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -224,5 +283,5 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     };
   };
 
-  highed.dom.ap(container, canvas, manualInput, closeBtn);
+  highed.dom.ap(container, canvas, manualInput, colorPallet01btn, colorPallet02btn, closeBtn);
 })();
