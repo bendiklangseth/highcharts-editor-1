@@ -52,7 +52,7 @@ if (args.length >= 2) {
     console.log('injecting google analytics', settings.analyticsToken);
 }
 
-mkdirp(__dirname + '/../demos', function () {
+mkdirp(__dirname + '/../demos').then(() => {
     fs.readdir(__dirname + '/../views', function (err, files) {
         if (err) return console.log(err);
 

@@ -355,24 +355,22 @@ function filter(dumpProperties, input, name, pname) {
     return node;
 }
 
-mkdir(__dirname + '/../generated_src/', function () {
-  fs.writeFile(
-      __dirname + '/../generated_src/highed.meta.options.advanced.js',
-      [
-          license,
-          '\n',
-          'highed.meta.optionsAdvanced = ',
-          JSON.stringify(
-              filter(
-                  dump.children._meta,
-                  processSeries(dump)
-              ),
-              undefined, '  '
-          ),
-          ';\n'
-      ].join(''),
-      (err) => {
-
-      }
-  );
-});
+ mkdir(__dirname + '/../generated_src/').then( () =>{
+    fs.writeFile(
+        __dirname + '/../generated_src/highed.meta.options.advanced.js',
+        [
+            license,
+            '\n',
+            'highed.meta.optionsAdvanced = ',
+            JSON.stringify(
+                filter(
+                    dump.children._meta,
+                    processSeries(dump)
+                ),
+                undefined, '  '
+            ),
+            ';\n'
+        ].join(''),
+        (err) => {
+        })
+ });

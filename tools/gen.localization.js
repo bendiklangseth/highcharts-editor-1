@@ -38,7 +38,7 @@ const template = hb.compile(
 
 require('colors');
 
-mkdir(outPath, function () {
+mkdir(outPath).then( () => {
     fs.readdir(__dirname + '/../localization/', function (err, files) {
         if (err) {
 
