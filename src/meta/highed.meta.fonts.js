@@ -41,7 +41,8 @@ highed.meta.fonts = [
   'Lucida Console',
   'Courier New',
   'Monaco',
-  'Monospace'
+  'Monospace',
+  'Open sans'
 ];
 
 highed.meta.customFonts = [/*
