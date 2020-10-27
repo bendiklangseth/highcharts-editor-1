@@ -472,27 +472,6 @@ module.exports = {
 				{id: 'lang--resetZoomTitle', text: 'Reset zoom button title'}
 			]
 		}
-		],
-
-		'option.cat.credits': [{
-			text: 'option.cat.credits',			
-			options: [
-				{
-					id: 'credits--enabled',
-					text: 'Enable credits',
-					tooltipText: 'Whether to show the credits text'
-				},
-				{
-					id: 'credits--text',
-					text: 'Credits text',
-					tooltipText: 'The text for the credits label'
-				},
-				{
-					id: 'credits--href',
-					text: 'Link',
-					tooltipText: 'The URL for the credits label'
-				}
-			]
-		}]
+		]
 	}
 };

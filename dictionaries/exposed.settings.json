@@ -99,9 +99,5 @@
     "lang--downloadSVG",
 
     "lang--resetZoom",
-    "lang-resetZoomTitle",
-
-    "credits--enabled",
-    "credits--text",
-    "credits--href"
+    "lang-resetZoomTitle"
 ]

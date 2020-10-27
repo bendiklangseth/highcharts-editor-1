@@ -59,7 +59,11 @@ highed.templates = {};
         icon: '',
         sampleSets: [],
         validator: false,
-        config: {}
+        config: {
+          credits: {
+            enabled: false
+          }
+        }
       },
       def
     );
