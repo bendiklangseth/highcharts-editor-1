@@ -211,7 +211,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
       'highed-box-size highed-chart-frame-body'
     ),
     chartPreview = highed.ChartPreview(chartContainer, {
-      defaultChartOptions: properties.defaultChartOptions
+      defaultChartOptions: highed.templates.getCatChildTempOptions("Line", "Line").config
     }, planCode),
     suppressWarning = false,
     dataTableContainer = highed.dom.cr('div', 'highed-box-size highed-fill'),
@@ -371,7 +371,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
     titleContainer = highed.dom.ap(highed.dom.cr('div', 'highed-page-title'), titleHeader, helpIcon, iconContainer),
     helpModal = highed.HelpModal(builtInOptions.data.help || [])
     mapModal = highed.MapModal(highedChartContainer, dataPage);
-
+    
   betaContainer.title = "Maps functionality is currently in Beta";
 
   highed.chartType = chartType;
@@ -399,7 +399,6 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
       highedChartContainer.classList += ' active';
     }
   });
-
   // Alias import to data
   builtInOptions.import = builtInOptions.data;
   panel.setDefault(dataPage);
