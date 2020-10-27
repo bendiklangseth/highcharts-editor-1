@@ -63,7 +63,7 @@ function help(cat) {
   var c = options[cat] || options;
 
   Object.keys(c).forEach(function (key) {
-    console.log(key.bold, c[key].help.join('\n');
+    console.log(key.bold, c[key].help.join('\n'));
   });
 }
 

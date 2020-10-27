@@ -452,40 +452,6 @@ highed.meta.optionsExtended = {
             parent: 'chart'
           }
         ]
-      },
-      {
-        text: 'option.subcat.credit',
-        dropdown: true,
-        warning: [1],
-        options: [
-          {
-            id: 'credits--enabled',
-            pid: 'credits.enabled',
-            dataType: 'boolean',
-            context: 'General',
-            defaults: 'true',
-            parent: 'credits',
-            warning: [1]
-          },
-          {
-            id: 'credits--text',
-            pid: 'credits.text',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'cloud.highcharts.com',
-            parent: 'credits',
-            warning: [1]
-          },
-          {
-            id: 'credits--href',
-            pid: 'credits.href',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'https://cloud.highcharts.com',
-            parent: 'credits',
-            warning: [1]
-          }
-        ]
       }
     ],
     'option.cat.axes': [

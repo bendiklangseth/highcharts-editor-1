@@ -59,7 +59,11 @@ highed.templates = {};
         icon: '',
         sampleSets: [],
         validator: false,
-        config: {}
+        config: {
+          credits: {
+            enabled: false
+          }
+        }
       },
       def
     );
@@ -154,6 +158,9 @@ highed.templates = {};
     });
   };
 
+  highed.templates.getCatChildTempOptions = function(cat, type){
+    return templates[cat].templates[type];
+  }
 
 
   /**
