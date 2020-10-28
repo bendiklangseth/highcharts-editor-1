@@ -204,7 +204,7 @@ gulp.task('move-standalone', function () {
 });
 
 gulp.task('minify', () => {
-    return gulp.src(sources)
+    return gulp.src(sources, {allowEmpty: true})
                .pipe(concat(name + '.js'))
                .pipe(gulp.dest(dest))
                .pipe(rename(name + '.min.js'))
