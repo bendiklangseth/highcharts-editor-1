@@ -62,7 +62,8 @@ highed.templates = {};
         config: {
           credits: {
             enabled: false
-          }
+          },
+          colors: highed.meta.FINcolors
         }
       },
       def

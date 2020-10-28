@@ -38,7 +38,9 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
           },
           credits: {
             enabled: false
-          }},
+          },
+          colors: highed.meta.FINcolors
+        },
         useHeader: true,
         features: [
           'data',
