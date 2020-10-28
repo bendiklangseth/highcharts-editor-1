@@ -334,14 +334,23 @@ highed.ChartPreview = function(parent, attributes, planCode) {
   /* Init the chart */
   function init(options, pnode, noAnimation) {
     var i;
-
     //We want to work on a copy..
     options = options || aggregatedOptions;
 
     if (highed.isArr(constr)) constr = constr;
     else constr = ['Chart'];
 
-    stockTools.init(Highcharts);
+    try {
+      const chartConstr = (highed.chartType === 'Map' ? isTileMap(options) ? 'Chart' : 'Map' : (constr.some(function(a) {
+        return a === 'StockChart';
+      }) ? 'StockChart' : 'Chart'));
+
+      options = highed.merge(options, stockTools.getStockToolsToolbarConfig());
+      chart = new Highcharts[chartConstr](pnode || parent, options);
+
+      
+      Highcharts.Toolbar = highed.Toolbar;
+      stockTools.init(Highcharts);
 
     // options = highed.merge({}, options || aggregatedOptions);
 
@@ -368,14 +377,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     //   delete options.chart.width;
     //   delete options.chart.height;
     // }
-
-    try {
-      const chartConstr = (highed.chartType === 'Map' ? isTileMap(options) ? 'Chart' : 'Map' : (constr.some(function(a) {
-        return a === 'StockChart';
-      }) ? 'StockChart' : 'Chart'));
-
-      options = highed.merge(options, stockTools.getStockToolsToolbarConfig());
-      chart = new Highcharts[chartConstr](pnode || parent, options);
 
       //This is super ugly.
       // customizedOptions.series = customizedOptions.series || [];

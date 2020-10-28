@@ -159,8 +159,8 @@ highed.templates = {};
   };
 
   highed.templates.getCatChildTempOptions = function(cat, type){
-    return templates[cat].templates[type];
-  }
+    return templates[cat].templates[type].config;
+  };
 
 
   /**

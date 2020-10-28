@@ -83,6 +83,7 @@ products.forEach(function (product) {
   });
 });
 
+
 gulp.task('modules', gulp.series(products.map(function (p) { return p + '-module'})));
 
 gulp.task('bundled-modules', gulp.series('modules'), function () {
@@ -94,7 +95,7 @@ gulp.task('bundled-modules', gulp.series('modules'), function () {
   ;
 });
 
-gulp.task('build-config', function(){
+function build_Config () {
   return gulp.src(
     __dirname + '/highed.config.js'
   )
@@ -106,8 +107,8 @@ gulp.task('build-config', function(){
       usePrefix: false
     })
   )
-  .pipe(gulp.dest(configDest))
-});
+  .pipe(gulp.dest(configDest));
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -126,6 +127,8 @@ gulp.task('localization', function () {
 gulp.task('bake-thumbnails', function () {
   return run('node tools/bake.previews.js').exec();
 });
+
+////////////////////////////////////////////////////////////////////////////////
 
 gulp.task('cache-thumbnails', gulp.series('bake-thumbnails'), function () {
   return gulp.src('generated_src/highed.meta.images.js')
@@ -208,8 +211,8 @@ gulp.task('minify', () => {
                .pipe(uglify())
                .pipe(header(license, packageJson))
                .pipe(gulp.dest(dest))
-               .pipe(gulp.dest(electronDest))
-               .pipe(gulp.dest(wpPluginDest))
+               //.pipe(gulp.dest(electronDest))
+               //.pipe(gulp.dest(wpPluginDest))
     ;
 });
 
@@ -218,8 +221,8 @@ gulp.task('minify-advanced', gulp.series('bake-advanced', 'less'), function () {
                .pipe(concat(name + '.advanced.js'))
                .pipe(gulp.dest(dest))
                .pipe(rename(name + '.advanced.min.js'))
-               .pipe(uglify())
-               .pipe(header(license, packageJson))
+               //.pipe(uglify())
+               //.pipe(header(license, packageJson))
                .pipe(gulp.dest(dest));
 });
 
@@ -305,25 +308,22 @@ gulp.task('wordpress', function () { //, gulp.series('less', 'minify', 'update-d
 ////////////////////////////////////////////////////////////////////////////////
 
 gulp.task('build-electron', function () {
-    return gulp.src('')
+    return gulp.src('.', { allowEmpty: true })
                .pipe(electron({
-                    src: './app',
-                    packageJson: {
-                        name: packageJson.name,
-                        version: packageJson.version
-                    },
-                    release: './dist/electron',
+                    src: './dist',
+                    packageJson: packageJson,
+                    release: './dist',
                     cache: './cache',
                     version: 'v1.3.4',
                     packaging: true,
-                    platforms: ['win32-ia32', 'darwin-x64', 'linux-x64'],
+                    platforms: ['win32-x64', 'darwin-x64', 'linux-x64'],
                     platformResources: {
                         darwin: {
                             CFBundleDisplayName: packageJson.name,
                             CFBundleIdentifier: packageJson.name,
                             CFBundleName: packageJson.name,
                             CFBundleVersion: packageJson.version,
-                            "icon": 'res/logo.png'
+                            icon: 'res/logo.png'
                         },
                         win: {
                             "version-string": packageJson.version,
@@ -333,7 +333,7 @@ gulp.task('build-electron', function () {
                         }
                     }
                }))
-               .pipe(gulp.dest(''))
+               .pipe(gulp.dest('.'))
 
     ;
 });
@@ -353,7 +353,7 @@ gulp.task('electron', gulp.series('update-deps', 'build-electron', 'move-electro
   done();
 });
 
- gulp.task('default', gulp.series('build-config', 'minify', 'tinymce', 'ckeditor', 'less', 'move-standalone', 'update-deps', 'plugins', 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor', 'modules'), (done) => {
+ gulp.task('default', gulp.series(build_Config, 'minify', 'tinymce', 'ckeditor', 'less', 'move-standalone', 'update-deps', 'plugins', 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor', 'modules'), (done) => {
      done();
  });
 

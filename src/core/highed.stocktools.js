@@ -300,7 +300,6 @@ highed.StockTools = function(planCode) {
         selectableAnnotation(annotationType);
       });
     }
-
     H.Toolbar.prototype.showHideToolbar = function () {
 
       var stockToolbar = this,

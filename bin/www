@@ -57,7 +57,7 @@ function appendFilesFromProduct(prodName) {
           if (f) {
               f.forEach(function (f) {
                   if (f.indexOf('.js') >= 0) {
-                      files.push('src/products/' + prodName + '/' + folder + '/' + f);       
+                      files.push('/src/products/' + prodName + '/' + folder + '/' + f);       
                       console.log('  added', f);
                   }
               });

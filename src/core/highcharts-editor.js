@@ -888,8 +888,8 @@ var highed = {
 
   /** Set/get an option
    *  Skip `value` to get the value
-   *  @param option {string} - the option to set
-   *  @param value {anything} - the value to set
+   *  @param {string} option - the option to set
+   *  @param {anything} value  - the value to set
    *  @returns {anything} - the option value
    */
   highed.option = function(option, value) {
@@ -921,7 +921,7 @@ var highed = {
   };
 
   /** Add a function to call when the document is ready
-   * @param {function} fn - the function to call
+   * @param {function()} fn - the function to call
    */
   highed.ready = function(fn) {
     if (highed.isFn(fn)) {
@@ -958,9 +958,9 @@ var highed = {
 
   /** Include something
    *  @namespace highed
-   *  @param what {string} - URL to a css or javascript file
-   *  @param fn {function} - function to call when done including the script
-   *  @param asCSS {boolean} - force including as css
+   *  @param {string} what - URL to a css or javascript file
+   *  @param {function()} fn - function to call when done including the script
+   *  @param {boolean} asCSS - force including as css
    */
   highed.include = function(what, fn, asCSS) {
     var n;
@@ -982,9 +982,11 @@ var highed = {
       return next();
     }
 
-    if (includedScripts[what]) {
-      highed.log(3, 'script already included, skipping:', what);
-      return fn();
+    if(fn != null && typeof(fn) === "function"){
+      if (includedScripts[what]) {
+        highed.log(3, 'script already included, skipping:', what);
+        return fn();
+      }
     }
 
     highed.log(3, 'including script', what);

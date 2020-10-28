@@ -32,7 +32,13 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
     // Main properties
     properties = highed.merge(
       {
-        defaultChartOptions: {},
+        defaultChartOptions: {
+          chart: {
+            type: "line"
+          },
+          credits: {
+            enabled: false
+          }},
         useHeader: true,
         features: [
           'data',
@@ -211,7 +217,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
       'highed-box-size highed-chart-frame-body'
     ),
     chartPreview = highed.ChartPreview(chartContainer, {
-      defaultChartOptions: highed.templates.getCatChildTempOptions("Line", "Line").config
+      defaultChartOptions: properties.defaultChartOptions
     }, planCode),
     suppressWarning = false,
     dataTableContainer = highed.dom.cr('div', 'highed-box-size highed-fill'),
