@@ -290,6 +290,7 @@ highed.ChartTemplateSelector = function(parent, chartPreview) {
   }
 
   function selectSeriesTemplate(index, projectData) {
+    console.log("HEI")
     const settings = projectData; //projectData.settings && projectData.settings.template;
     var templateHeader, templateTitle;
     if (settings && !settings[index]) {
@@ -303,13 +304,14 @@ highed.ChartTemplateSelector = function(parent, chartPreview) {
     } 
     else return ;
 
+
     templateTypeSelect.selectById(templateHeader);
     
     var templates = highed.templates.getAllInCat(templateHeader);
     selected = {
       id:  templateHeader + templateTitle + templateTitle
     };
-    
+ 
     if (templates) {
       showTemplates(templates, templateHeader, highed.templates.getCatInfo(templateHeader));
     }
@@ -322,7 +324,6 @@ highed.ChartTemplateSelector = function(parent, chartPreview) {
     detailValue = selected.id();
 
     var templates = highed.templates.getAllInCat(detailValue);
-
     highed.emit('UIAction', 'TemplateCatChoose', detailValue);
 
     if (templates) {

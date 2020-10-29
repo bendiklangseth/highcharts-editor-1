@@ -204,16 +204,16 @@ gulp.task('move-standalone', function () {
 });
 
 gulp.task('minify', () => {
-	return gulp.src(sources, { allowEmpty: true })
-		.pipe(concat(name + '.js'))
-		.pipe(gulp.dest(dest))
-		.pipe(rename(name + '.min.js'))
-		.pipe(uglify())
-		.pipe(header(license, packageJson))
-		.pipe(gulp.dest(dest))
-		//.pipe(gulp.dest(electronDest))
-		//.pipe(gulp.dest(wpPluginDest))
-		;
+    return gulp.src(sources, {allowEmpty: true})
+               .pipe(concat(name + '.js'))
+               .pipe(gulp.dest(dest))
+               .pipe(rename(name + '.min.js'))
+               .pipe(uglify())
+               .pipe(header(license, packageJson))
+               .pipe(gulp.dest(dest))
+               //.pipe(gulp.dest(electronDest))
+               //.pipe(gulp.dest(wpPluginDest))
+    ;
 });
 
 gulp.task('minify-advanced', gulp.series('bake-advanced', 'less'), function () {

@@ -62,7 +62,8 @@ highed.templates = {};
         config: {
           credits: {
             enabled: false
-          }
+          },
+          colors: highed.meta.FINcolors
         }
       },
       def
@@ -169,7 +170,7 @@ highed.templates = {};
   highed.templates.getCatObj = function(cat) {
     return [{
       id: cat,
-      title: cat,
+        title: cat,
       icon: templates[cat].icon
     }]
   };
