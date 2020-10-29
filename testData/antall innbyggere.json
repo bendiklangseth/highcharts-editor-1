@@ -1,0 +1,48 @@
+{
+	"entries": [
+		{
+			"Fylke": "Oslo",
+			"Antall-innbyggere": 694100
+		},
+		{
+			"Fylke": "Viken",
+			"Antall-innbyggere": 1245828
+		},
+		{
+			"Fylke": "Innlandet",
+			"Antall-innbyggere": 370488
+		},
+		{
+			"Fylke": "Vestfold og Telemark",
+			"Antall-innbyggere": 420741
+		},
+		{
+			"Fylke": "Agder",
+			"Antall-innbyggere": 307580
+		},
+		{
+			"Fylke": "Rogaland",
+			"Antall-innbyggere": 481362
+		},
+		{
+			"Fylke": "Vestland",
+			"Antall-innbyggere": 637049
+		},
+		{
+			"Fylke": "Møre og Romsdal",
+			"Antall-innbyggere": 265219
+		},
+		{
+			"Fylke": "Trøndelag",
+			"Antall-innbyggere": 468986
+		},
+		{
+			"Fylke": "Nordland",
+			"Antall-innbyggere": 240902
+		},
+		{
+			"Fylke": "Troms og Finnmark",
+			"Antall-innbyggere": 242740
+		}
+	]
+}

@@ -1,0 +1,48 @@
+{
+    "entries": [
+        {
+            "Fylke": "Oslo",
+            "Anslag skatteinntekter": 4678262
+        },
+        {
+            "Fylke": "Viken",
+            "Anslag skatteinntekter": 8210130
+        },
+        {
+            "Fylke": "Innlandet",
+            "Anslag skatteinntekter": 2416732
+        },
+        {
+            "Fylke": "Vestfold og Telemark",
+            "Anslag skatteinntekter": 2741771
+        },
+        {
+            "Fylke": "Agder",
+            "Anslag skatteinntekter": 1993976
+        },
+        {
+            "Fylke": "Rogaland",
+            "Anslag skatteinntekter": 3179574
+        },
+        {
+            "Fylke": "Vestland",
+            "Anslag skatteinntekter": 4194057
+        },
+        {
+            "Fylke": "Møre og Romsdal",
+            "Anslag skatteinntekter": 1741956
+        },
+        {
+            "Fylke": "Trøndelag",
+            "Anslag skatteinntekter": 3059375
+        },
+        {
+            "Fylke": "Nordland",
+            "Anslag skatteinntekter": 1589074
+        },
+        {
+            "Fylke": "Troms og Finnmark",
+            "Anslag skatteinntekter": 1605092
+        }
+    ]
+}
