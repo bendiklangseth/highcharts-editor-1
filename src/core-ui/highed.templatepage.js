@@ -96,11 +96,7 @@ highed.TemplatePage = function(parent, options, chartPreview, chartFrame, props)
     helpModal = highed.HelpModal(props.help || []);
 
     templates.on('Select', function(template) {
-      //chartPreview.loadTemplate(template);
-      if (template.load && highed.isFn(template.load)) {
-        template.load(chartPreview.options.full, events); 
-      }
- 
+      chartPreview.loadTemplateForSerie(template, chartPreview.options.full);
       events.emit('TemplateChanged', template);
     });
 

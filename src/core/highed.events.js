@@ -80,7 +80,7 @@ highed.events = function() {
     emit: function(event) {
       var args = Array.prototype.slice.call(arguments);
       args.splice(0, 1);
-
+      
       if (typeof callbacks[event] !== 'undefined') {
         callbacks[event].forEach(function(event) {
           if (highed.isFn(event.fn)) {

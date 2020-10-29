@@ -766,20 +766,23 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
   function loadTemplateForSerie(template, seriesIndex) {
     var type = template.config.chart.type;
-    delete template.config.chart.type;
+    
+
+    if(seriesIndex.series != null || seriesIndex.series != undefined) {
+       template.config.colors = template.config.colors.slice(0, seriesIndex.series.length)
+    }
 
     constr[seriesIndex] = template.constructor || 'Chart';
-
     if (template.config.series && template.config.series[0]) {
       type = template.config.series[0].type
     }
 
-    seriesIndex.forEach(function(index) {
+    function loadSerieConfig(index) {
       if (!templateSettings[index]) templateSettings[index] = {};
 
       templateSettings[index].templateTitle = template.title;
       templateSettings[index].templateHeader = template.header;
-      
+    
       if (customizedOptions.series && customizedOptions.series[index]) {
         if (template.config.series && template.config.series[0]) {
           highed.merge(customizedOptions.series[index], template.config.series[0]);
@@ -798,8 +801,11 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           compare: undefined
         };
       }
-    
-    });
+    }
+    Array.prototype.forEach.call(seriesIndex, index => loadSerieConfig(index))
+    //seriesIndex.forEach(index => loadSerieConfig(index));
+      
+      
     
     //templateOptions = highed.merge({}, template.config || {});
     templateOptions[seriesIndex] = highed.merge({}, template.config || {});
