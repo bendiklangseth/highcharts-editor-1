@@ -777,42 +777,10 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       type = template.config.series[0].type
     }
 
-    function loadSerieConfig(index) {
-      if (!templateSettings[index]) templateSettings[index] = {};
-
-      templateSettings[index].templateTitle = template.title;
-      templateSettings[index].templateHeader = template.header;
-    
-      if (customizedOptions.series && customizedOptions.series[index]) {
-        if (template.config.series && template.config.series[0]) {
-          highed.merge(customizedOptions.series[index], template.config.series[0]);
-        } else {
-          customizedOptions.series[index].type = type; //template.config.chart.type;
-        }
-      } else {
-        if (!customizedOptions.series) {
-          customizedOptions.series = [];
-        }
-        customizedOptions.series[index] = {
-          type: type, //template.config.chart.type,
-          turboThreshold: 0,
-          _colorIndex: (customizedOptions.series || []).length,
-          _symbolIndex: 0,
-          compare: undefined
-        };
-      }
-    }
-    Array.prototype.forEach.call(seriesIndex, index => loadSerieConfig(index))
-    //seriesIndex.forEach(index => loadSerieConfig(index));
-      
-      
-    
-    //templateOptions = highed.merge({}, template.config || {});
     templateOptions[seriesIndex] = highed.merge({}, template.config || {});
-    
+    console.log(aggregatedOptions)
     updateAggregated();
     init(aggregatedOptions);
-    //loadSeries();
     emitChange();
   }
 
