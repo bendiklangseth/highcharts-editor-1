@@ -47,7 +47,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         );
 
         if (exportPlugins[name].dependencies) {
-          highed.include(exportPlugins[name].dependencies);
+          exportPlugins[name].dependencies.forEach(el => highed.include(el));
         }
       } else {
         highed.log(
