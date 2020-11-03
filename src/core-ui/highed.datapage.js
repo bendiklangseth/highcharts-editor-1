@@ -284,23 +284,22 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
     
     function changeAssignDataTemplate(newTemplate, loadTemplateForEachSeries, cb) {
       if (dataTable.isInCSVMode()) {
-        
         clearSeriesMapping();        
-        
+
         var seriesIndex = [];
         assignDataPanel.setAssignDataFields(newTemplate, dataTable.getColumnLength(), null, null, true);
         if (loadTemplateForEachSeries) {
           const length = assignDataPanel.getAllOptions().length;
-          
+
           for(var i=0;i<length;i++) {
             seriesIndex.push(i);
+            console.log(assignDataPanel)
             assignDataPanel.setAssignDataFields(newTemplate, dataTable.getColumnLength(), null, i, true, i + 1);
           }
         } else {
           seriesIndex = [assignDataPanel.getActiveSerie()];
         }
 
-        //console.log(newTemplate, seriesIndex);
         chartPreview.loadTemplateForSerie(newTemplate, seriesIndex);
 
         const data = dataTable.toCSV(';', true, assignDataPanel.getAllMergedLabelAndData());

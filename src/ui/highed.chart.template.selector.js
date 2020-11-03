@@ -290,7 +290,6 @@ highed.ChartTemplateSelector = function(parent, chartPreview) {
   }
 
   function selectSeriesTemplate(index, projectData) {
-    console.log("HEI")
     const settings = projectData; //projectData.settings && projectData.settings.template;
     var templateHeader, templateTitle;
     if (settings && !settings[index]) {
