@@ -216,7 +216,8 @@ gulp.task('minify', () => {
     ;
 });
 
-gulp.task('minify-advanced', gulp.series('bake-advanced', 'less'), function () {
+gulp.task('minify-advanced', function () {
+	gulp.series('bake-advanced', 'less');
 	return gulp.src('./generated_src/highed.meta.options.advanced.js')
 		.pipe(concat(name + '.advanced.js'))
 		.pipe(gulp.dest(dest))
@@ -297,7 +298,8 @@ gulp.task('zip-dist-advanced', function () {
 		.pipe(gulp.dest(buildDest));
 });
 
-gulp.task('wordpress', function () { //, gulp.series('less', 'minify', 'update-deps')
+gulp.task('wordpress', function () {
+	gulp.series('less', 'minify', 'update-deps');
 	return gulp.src([wpPluginDest + '*', wpPluginDest + 'dependencies/*'])
 		.pipe(zip(name + '.wordpress.' + packageJson.version + '.zip'))
 		.pipe(gulp.dest(buildDest))
@@ -338,7 +340,8 @@ gulp.task('build-electron', function () {
 		;
 });
 
-gulp.task('move-electron', gulp.series('build-electron'), function () {
+gulp.task('move-electron', function () {
+	gulp.series('build-electron');
 	return gulp.src([
 		'dist/electron/v1.3.4/' + packageJson.name + '-' + packageJson.version + '-darwin-x64.zip',
 		'dist/electron/v1.3.4/' + packageJson.name + '-' + packageJson.version + '-linux-x64.zip',
@@ -353,7 +356,7 @@ gulp.task('electron', gulp.series('update-deps', 'build-electron', 'move-electro
 	done();
 });
 
-gulp.task('default', gulp.series(build_Config, 'minify', 'tinymce', 'ckeditor', 'less', 'move-standalone', 'update-deps', 'plugins', 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor', 'modules'), (done) => {
+gulp.task('default', gulp.series(build_Config, 'minify', 'minify-advanced', 'zip-dist-advanced', 'tinymce', 'ckeditor', 'less', 'move-standalone', 'update-deps', 'plugins', 'wordpress', 'zip-standalone', 'zip-dist', 'zip-standalone-nominify', 'zip-tinymce', 'zip-ckeditor', 'modules'), (done) => {
 	done();
 });
 
