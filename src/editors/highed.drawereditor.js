@@ -869,6 +869,11 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
   });
 
   templatePage.on('TemplateChanged', function(newTemplate, loadTemplateForEachSerie, cb) {
+    // if(newTemplate.title === "Pie"){
+    //   loadTemplateForEachSerie = false;
+    // } else {
+    //   loadTemplateForEachSerie = true;
+    // }
     dataPage.changeAssignDataTemplate(newTemplate, loadTemplateForEachSerie, cb);
   })
   chartPreview.on('ChartChange', function(newData) {

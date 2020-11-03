@@ -96,7 +96,7 @@ highed.TemplatePage = function(parent, options, chartPreview, chartFrame, props)
     helpModal = highed.HelpModal(props.help || []);
 
     templates.on('Select', function(template) {
-      chartPreview.loadTemplateForSerie(template, chartPreview.options.full);
+      //chartPreview.loadTemplateForSerie(template, chartPreview.options.full);
       events.emit('TemplateChanged', template);
     });
 
@@ -200,7 +200,8 @@ highed.TemplatePage = function(parent, options, chartPreview, chartFrame, props)
         }
       }
 
-      highed.dom.ap(templatesContainer, highed.dom.ap(templateContainer, preview, highed.dom.cr('div', 'highed-template-title', t.title), infoContainer));
+      highed.dom.ap(templatesContainer, highed.dom.ap(templateContainer, preview,
+         highed.dom.cr('div', 'highed-template-title', t.title), infoContainer));
 
     });
     

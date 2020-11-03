@@ -66,10 +66,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           }, 
           exporting: {
             //   url: 'http://127.0.0.1:7801'
-          },
-          credits: {
-            text: 'cloud.highcharts.com',
-            href: 'https://cloud.highcharts.com'
           }
         },
         expandTo: parent
@@ -261,6 +257,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
         e.stopImmediatePropagation();
         return false;
       });
+      highed.dom.cr('div', 'highed-ok-button', 'Pick series')
     });
 
 /*
@@ -672,7 +669,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
             mergeTarget = highed.merge({}, themeOptions.series[i]);
           }
         }
-
         aggregatedOptions.series.push(highed.merge(mergeTarget, obj));
       });
     }
@@ -765,23 +761,26 @@ highed.ChartPreview = function(parent, attributes, planCode) {
   }
 
   function loadTemplateForSerie(template, seriesIndex) {
-    var type = template.config.chart.type;
     
+    var type = template.config.chart.type;
 
     if(seriesIndex.series != null || seriesIndex.series != undefined) {
-       template.config.colors = template.config.colors.slice(0, seriesIndex.series.length)
+        if(type === "pie"){
+          template.config.colors = template.config.colors.slice(0, seriesIndex.series[0].data.length);
+        } else {
+          template.config.colors = template.config.colors.slice(0, seriesIndex.series.length)
+        } 
     }
+      constr[seriesIndex] = template.constructor || 'Chart';
+      if (template.config.series && template.config.series[0]) {
+        type = template.config.series[0].type
+      }
 
-    constr[seriesIndex] = template.constructor || 'Chart';
-    if (template.config.series && template.config.series[0]) {
-      type = template.config.series[0].type
-    }
+      templateOptions[seriesIndex] = highed.merge({}, template.config || {});
 
-    templateOptions[seriesIndex] = highed.merge({}, template.config || {});
-    console.log(aggregatedOptions)
-    updateAggregated();
-    init(aggregatedOptions);
-    emitChange();
+      updateAggregated();
+      init(aggregatedOptions);
+      emitChange();
   }
 
   /** Load a template from the meta
@@ -835,7 +834,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     updateAggregated();
   }
 
-  function loadSeries() {/*
+  function loadSeries() {
     if (
       !gc(function(chart) {
         if (chart.options && chart.options.series) {
@@ -846,7 +845,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     ) {
       customizedOptions.series = [];
     }
-    updateAggregated();*/
+    updateAggregated();
   }
 
   /** Load CSV data
@@ -1087,6 +1086,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
       if (projectData.settings && projectData.settings.template) {
         templateSettings = projectData.settings.template;
+
       }
 
       if(projectData.settings && projectData.settings.plugins) {

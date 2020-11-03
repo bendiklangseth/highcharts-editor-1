@@ -283,7 +283,6 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
     }
     
     function changeAssignDataTemplate(newTemplate, loadTemplateForEachSeries, cb) {
-      
       if (dataTable.isInCSVMode()) {
         
         clearSeriesMapping();        
@@ -297,8 +296,11 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
             seriesIndex.push(i);
             assignDataPanel.setAssignDataFields(newTemplate, dataTable.getColumnLength(), null, i, true, i + 1);
           }
-        } else seriesIndex = [assignDataPanel.getActiveSerie()];
+        } else {
+          seriesIndex = [assignDataPanel.getActiveSerie()];
+        }
 
+        //console.log(newTemplate, seriesIndex);
         chartPreview.loadTemplateForSerie(newTemplate, seriesIndex);
 
         const data = dataTable.toCSV(';', true, assignDataPanel.getAllMergedLabelAndData());
