@@ -54,9 +54,9 @@ highed.plugins.import.install('Difi', {
                         header.push(key);
                     }
 
-                    //if (highed.isNum(col)) {
+		    if (highed.isNum(col)) {
                         col = col.replace(',', '.');
-                  //  }
+		    }
 
                     rdata.push(col);
                     
