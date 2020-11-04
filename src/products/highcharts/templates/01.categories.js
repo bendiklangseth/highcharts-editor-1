@@ -74,7 +74,7 @@ highed.templates.addCategory('Polar', {
 highed.templates.addCategory('More', {
 });
 
-highed.templates.addCategory('Maps', {
-  samples: ['earthquake-magnitude', 'eu-timezones',
-            'population-density', 'world-population']
-});
+// highed.templates.addCategory('Maps', {
+//   samples: ['earthquake-magnitude', 'eu-timezones',
+//             'population-density', 'world-population']
+// });
