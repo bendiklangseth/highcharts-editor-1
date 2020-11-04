@@ -768,13 +768,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     }
     constr[seriesIndex] = template.constructor || 'Chart';
 
-    if(seriesIndex.series != null || seriesIndex.series != undefined) {
-        if(type === "pie"){
-          template.config.colors = template.config.colors.slice(0, seriesIndex.series[0].data.length);
-        } else {
-          template.config.colors = template.config.colors.slice(0, seriesIndex.series.length)
-        } 
-    }
     seriesIndex.forEach(function(index) {
       if (!templateSettings[index]) templateSettings[index] = {};
 
@@ -783,6 +776,11 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       
       customizedOptions.series[index].type = type;
     });
+      if(type === "pie" || type === "funnel" || type === "pyramid"){
+        template.config.colors = template.config.colors.slice(0, customizedOptions.series[0].data.length);
+      } else {
+        template.config.colors = template.config.colors.slice(0, customizedOptions.series.length)
+      }
 
       templateOptions[seriesIndex] = highed.merge({}, template.config || {});
 
