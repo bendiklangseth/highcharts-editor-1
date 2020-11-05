@@ -874,7 +874,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
   chartPreview.on('ChartChange', function(newData) {
     events.emit('ChartChangedLately', newData);
   });
-
+ 
   templates.on('Select', function(template) {
     chartPreview.loadTemplate(template);
   });

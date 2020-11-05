@@ -39,12 +39,7 @@ highed.templates.add('Pie', {
     plotOptions: {
       pie: {
         allowPointSelect: true,
-        cursor: true
-      },
-      series: {
-        dataLabels: {
-          enabled: true
-        }
+        cursor: true,
       }
     }
   }

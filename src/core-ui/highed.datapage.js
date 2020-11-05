@@ -285,7 +285,6 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
     function changeAssignDataTemplate(newTemplate, loadTemplateForEachSeries, cb) {
       if (dataTable.isInCSVMode()) {
         clearSeriesMapping();        
-
         var seriesIndex = [];
         assignDataPanel.setAssignDataFields(newTemplate, dataTable.getColumnLength(), null, null, true);
         if (loadTemplateForEachSeries) {
@@ -293,7 +292,6 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
 
           for(var i=0;i<length;i++) {
             seriesIndex.push(i);
-            console.log(assignDataPanel)
             assignDataPanel.setAssignDataFields(newTemplate, dataTable.getColumnLength(), null, i, true, i + 1);
           }
         } else {
