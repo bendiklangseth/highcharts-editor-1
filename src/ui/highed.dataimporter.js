@@ -273,11 +273,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 								);
 							});
 						}
-
 						highed.ajax({
 							url: url.value,
 							type: 'get',
-							dataType: options.fetchAs || 'text',
+							dataType: options.treatAs || 'text',
 							success: function (val) {
 								options.filter(val, highed.merge({}, dynamicOptions), function (
 									error,

@@ -111,6 +111,7 @@ var highed = {
         p
       ),
       headers = {
+        csv: 'text/csv',
         json: 'application/json',
         xml: 'application/xml',
         text: 'text/plain',
@@ -131,7 +132,6 @@ var highed = {
 
     r.onreadystatechange = function() {
       events.emit('ReadyStateChange', r.readyState, r.status);
-
       if (r.readyState === 4 && r.status === 200) {
         if (props.dataType === 'json') {
           try {
