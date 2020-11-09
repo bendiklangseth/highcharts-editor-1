@@ -1712,26 +1712,9 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       });
     }
 
-    if (lastLoadedSheet) {
-      highed.merge(r, {
-        data: lastLoadedSheet
-      });
-    } else if (lastLoadedLiveData) {
-      highed.merge(r, {
-        data: lastLoadedLiveData,
-        googleSpreadsheetKey: false,
-        googleSpreadsheetWorksheet: false
-      });
-    } else if (lastLoadedCSV) {
-      highed.merge(r, {
-        data: {
-          csv: lastLoadedCSV,
-          googleSpreadsheetKey: false,
-          googleSpreadsheetWorksheet: false,
-          seriesMapping: (customizedOptions && customizedOptions.data && customizedOptions.data.seriesMapping ? customizedOptions.data.seriesMapping : null)
-        }
-      });
-    }
+    highed.merge(r, {
+      data: "Dataset"
+    })
 
     return r;
   }
@@ -1910,7 +1893,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     if (highed.isFn(customCode) && customCodeStr) {
       customCode(options);
     }
-    delete options.data;
+
     return stringifyFn(options, '  ');
   }
 
