@@ -572,7 +572,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     //Merge fest
 
     highed.clearObj(aggregatedOptions);
-
     highed.merge(aggregatedOptions, properties.defaultChartOptions);
     // Apply theme first
     if (themeOptions && Object.keys(themeOptions).length) {
@@ -727,9 +726,8 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       aggregatedOptions.annotations = annotations.slice();
     }
 
-
     highed.merge(aggregatedOptions, highed.option('stickyChartProperties'));
-
+  
     // Finally, do custom code
     if (!noCustomCode && highed.isFn(customCode)) {
       try{
@@ -1912,7 +1910,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     if (highed.isFn(customCode) && customCodeStr) {
       customCode(options);
     }
-
+    delete options.data;
     return stringifyFn(options, '  ');
   }
 
