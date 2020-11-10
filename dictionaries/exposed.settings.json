@@ -97,6 +97,8 @@
     "lang--downloadJPEG",
     "lang--downloadPDF",
     "lang--downloadSVG",
+    "lang--downloadXLS",
+    "lang--downloadCSV",
 
     "lang--resetZoom",
     "lang-resetZoomTitle"

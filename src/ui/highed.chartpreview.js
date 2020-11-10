@@ -65,7 +65,37 @@ highed.ChartPreview = function(parent, attributes, planCode) {
             }
           }, 
           exporting: {
-            //   url: 'http://127.0.0.1:7801'
+            menuItemDefinitions: {
+              downloadXLS: {
+                onclick: function () {
+                  console.log(chartDataToJson())
+                  console.log(jsonDataToCSV())
+                },
+                text: 'Download data as XLS'
+              },
+              downloadCSV: {
+                onclick: function() {
+                  var data = jsonDataToCSV()
+                  exportDataDownload(data, "csv")
+                  // var data = jsonDataToCSV();
+                  // let csvData = new Blob([data], { type: 'text/csv'});
+                  // console.log(csvData)
+                  // let csvUrl = URL.createObjectURL(csvData);
+
+                  // let hiddenElement = document.createElement('a');
+                  // hiddenElement.href = csvUrl;
+                  // hiddenElement.target = '_blank';
+                  // hiddenElement.download = 'data.csv';
+                  // hiddenElement.click();
+                },
+                text: "Download data as CSV"
+              }
+        },
+        buttons: {
+            contextButton: {
+                menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator', 'downloadXLS', 'downloadCSV']
+            }
+          }
           }
         },
         expandTo: parent
@@ -219,6 +249,57 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     }, false);
 
     ///////////////////////////////////////////////////////////////////////////
+
+    function exportDataDownload(data, format){
+      var hiddenElement = document.createElement('a');
+      var type = "";
+      if(format === "csv"){
+        type = "text/csv"
+      }
+      else {
+        type = "application/octet-stream"
+      }
+      hiddenElement.href = 'data:' + type + ';charset=utf-8,' + encodeURI(data);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = chart.options.title.text +'-data.' + format;
+      hiddenElement.click();
+    }
+
+    function jsonDataToCSV(){
+      var jsonData = chartDataToJson();
+      var fields = Object.keys(jsonData[0]);
+      var csv = jsonData.map(function(row) {
+        return fields.map(function(fieldName) {
+          return row[fieldName]
+        }).join(',')
+      })
+      csv.unshift(fields.join(','))
+      csv = csv.join('\r\n');
+
+      return csv;
+    }
+
+    function chartDataToJson(){
+      var chartData = chart.options.data.csv;
+      var elements = chartData.split("\n");
+      var result = [];
+      var headers = elements[0].split(';')
+       
+      for(let i = 1; i < elements.length; i++) {
+        if(!elements[i]){
+          continue;
+        }
+        const obj = {};
+        const currentLine = elements[i].split(';');
+
+        for(let j = 0; j < headers.length; j++) {
+          obj[headers[j]] = currentLine[j]
+        }
+        result.push(obj)
+      }
+      return result
+    }
+    //////////////////////////////////////////////////////////////////////////
 
   function closeAnnotationPopup() {
     stockTools.closeAnnotationPopup()

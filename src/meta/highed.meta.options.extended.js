@@ -1123,7 +1123,25 @@ highed.meta.optionsExtended = {
             defaults: 'Download SVG vector image',
             parent: 'lang',
             width: 50
-          }
+          },
+          {
+            id: "lang--downloadXLS",
+            pid: "lang.downloadXLS",
+            dataType: "string",
+            context: "General",
+            defaults: "Download XLS",
+            parent: "lang",
+            width: 50
+            },
+            {
+            id: "lang--downloadCSV",
+            pid: "lang.downloadCSV",
+            dataType: "string",
+            context: "General",
+            defaults: "Download CSV",
+            parent: "lang",
+            width: 50
+            }
         ]
       }
     ],

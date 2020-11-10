@@ -5473,7 +5473,7 @@ highed.meta.optionsAdvanced = {
                     },
                     "name": "menuItems",
                     "excludes": {},
-                    "default": "[\"viewFullscreen\", \"printChart\", \"separator\", \"downloadPNG\", \"downloadJPEG\", \"downloadPDF\", \"downloadSVG\"]",
+                    "default": "[\"viewFullscreen\", \"printChart\", \"separator\", \"downloadPNG\", \"downloadJPEG\", \"downloadPDF\", \"downloadSVG\", \"separator\", \"downloadXLS\", \"downloadCSV\"]",
                     "description": "A collection of strings pointing to config options for the menu\nitems. The config options are defined in the\n`menuItemDefinitions` option.\n\nBy default, there is the \"View in full screen\" and \"Print\" menu\nitems, plus one menu item for each of the available export types."
                   },
                   "subtree": {}
@@ -5707,7 +5707,7 @@ highed.meta.optionsAdvanced = {
             },
             "name": "menuItemDefinitions",
             "excludes": {},
-            "default": "{\"viewFullscreen\": {}, \"printChart\": {}, \"separator\": {}, \"downloadPNG\": {}, \"downloadJPEG\": {}, \"downloadPDF\": {}, \"downloadSVG\": {}}",
+            "default": "{\"viewFullscreen\": {}, \"printChart\": {}, \"separator\": {}, \"downloadPNG\": {}, \"downloadJPEG\": {}, \"downloadPDF\": {}, \"downloadSVG\": {}, \"separator\": {}, \"downloadXLS\": {}, \"downloadCSV\": {}}",
             "description": "An object consisting of definitions for the menu items in the context\nmenu. Each key value pair has a `key` that is referenced in the\n[menuItems](#exporting.buttons.contextButton.menuItems) setting,\nand a `value`, which is an object with the following properties:\n\n- **onclick:** The click handler for the menu item\n\n- **text:** The text for the menu item\n\n- **textKey:** If internationalization is required, the key to a language\n  string"
           },
           "subtree": {}

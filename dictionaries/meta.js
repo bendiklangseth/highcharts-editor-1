@@ -463,7 +463,9 @@ module.exports = {
 				{id: 'lang--downloadPNG', text: 'Download PNG'},
 				{id: 'lang--downloadJPEG', text: 'Download JPEG'},
 				{id: 'lang--downloadPDF', text: 'Download PDF'},
-				{id: 'lang--downloadSVG', text: 'Download SVG'}
+				{id: 'lang--downloadSVG', text: 'Download SVG'},
+				{id: 'lang--downloadXLS', text: 'Download XLS'},
+				{id: 'lang--downloadCSV', text: 'Download CSV'}				
 			]
 		}, {
 			text: 'option.subcat.zoombutton',			

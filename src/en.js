@@ -332,6 +332,12 @@ highed.installLanguage({
     'option.tooltip.lang.downloadPDF':
       'Exporting module only. The text for the PDF download menu item.',
     'option.text.lang.downloadSVG': 'Download SVG',
+    'option.text.lang.downloadXLS': 'Download XLS',
+    'option.tooltip.lang.downloadXLS':
+      'Exporting module only. The text for the XLS download menu item.',
+      'option.text.lang.downloadCSV': 'Download CSV',
+      'option.tooltip.lang.downloadCSV':
+        'Exporting module only. The text for the CSV download menu item.',
     'option.tooltip.lang.downloadSVG':
       'Exporting module only. The text for the SVG download menu item.',
     'option.text.lang.resetZoom': 'Reset zoom button',
