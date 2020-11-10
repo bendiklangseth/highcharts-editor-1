@@ -12381,7 +12381,7 @@
                       "Array.<string>"
                     ]
                   },
-                  "defaultvalue": "[\"viewFullscreen\", \"printChart\", \"separator\", \"downloadPNG\", \"downloadJPEG\", \"downloadPDF\", \"downloadSVG\"]",
+                  "defaultvalue": "[\"viewFullscreen\", \"printChart\", \"separator\", \"downloadPNG\", \"downloadJPEG\", \"downloadPDF\", \"downloadSVG\", \"separator\", \"downloadXLS\", \"downloadCSV\"]",
                   "since": "2.0.0"
                 },
                 "meta": {
@@ -12916,7 +12916,7 @@
               "Highcharts.Dictionary.<Highcharts.ExportingMenuObject>"
             ]
           },
-          "defaultvalue": "{\"viewFullscreen\": {}, \"printChart\": {}, \"separator\": {}, \"downloadPNG\": {}, \"downloadJPEG\": {}, \"downloadPDF\": {}, \"downloadSVG\": {}}",
+          "defaultvalue": "{\"viewFullscreen\": {}, \"printChart\": {}, \"separator\": {}, \"downloadPNG\": {}, \"downloadJPEG\": {}, \"downloadPDF\": {}, \"downloadSVG\": {}, \"separator\": {}, \"downloadXLS\": {}, \"downloadCSV\": {}}",
           "since": "5.0.13"
         },
         "meta": {
