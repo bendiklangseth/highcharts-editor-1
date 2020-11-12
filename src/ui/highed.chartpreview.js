@@ -24,7 +24,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ******************************************************************************/
 
 // @format
-
 /** Basic chart preview
  *  This is just a facade to Highcharts.Chart mostly.
  *  It implements a sliding drawer type widget,
@@ -66,34 +65,114 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           }, 
           exporting: {
             menuItemDefinitions: {
-              downloadXLS: {
-                onclick: function () {
-                  console.log(chartDataToJson())
-                  console.log(jsonDataToCSV())
-                },
-                text: 'Download data as XLS'
-              },
               downloadCSV: {
                 onclick: function() {
-                  var data = jsonDataToCSV()
-                  exportDataDownload(data, "csv")
-                  // var data = jsonDataToCSV();
-                  // let csvData = new Blob([data], { type: 'text/csv'});
-                  // console.log(csvData)
-                  // let csvUrl = URL.createObjectURL(csvData);
+                  var chartData = this.options.data.csv,
+                      elements = chartData.split('\n'),
+                      result = [],
+                      headers = elements[0].split(';');
+                  
+                  for(let i = 1; i < elements.length; i++) {
+                    if(!elements[i]){
+                      continue;
+                    }
+                    const obj = {};
+                    const currentLine = elements[i].split(';');
 
-                  // let hiddenElement = document.createElement('a');
-                  // hiddenElement.href = csvUrl;
-                  // hiddenElement.target = '_blank';
-                  // hiddenElement.download = 'data.csv';
-                  // hiddenElement.click();
+                    for(let j = 0; j < headers.length; j++) {
+                      obj[headers[j]] = currentLine[j];
+                      obj[headers[j]] = obj[headers[j]].replace(/"/g, '');
+                    }
+                    result.push(obj)
+                  }
+
+                  var fields = Object.keys(result[0]);
+                  var csv = result.map(function(row) {
+                    return fields.map(function(fieldName) {
+                      return row[fieldName]
+                    }).join(',')
+                  })
+                  csv.unshift(fields.join(','))
+                  csv = csv.join('\r\n');
+                  console.log(csv)
+                  
+                  let csvBlob = new Blob(['\ufeff', csv], { type: 'text/csv'});
+                  console.log(csvBlob.text())
+                  let csvUrl = URL.createObjectURL(csvBlob);
+
+                  let hiddenElement = document.createElement('a');
+                  hiddenElement.href = csvUrl;
+                  hiddenElement.target = '_blank';
+                  hiddenElement.download = this.options.title.text +'-data.csv';
+                  hiddenElement.click();
                 },
-                text: "Download data as CSV"
+                text: 'Download data as CSV'
+              },
+              viewDataTable: { 
+                onclick: function() {
+                  if(!document.getElementById('::dataTable')){
+                    
+                      var chartData = this.options.data.csv,                    
+                      elements = chartData.split('\n'),
+                      result = [],
+                      headers = elements[0].split(';');
+                      for(let i = 1; i < elements.length; i++) {
+                        if(!elements[i]){
+                          continue;
+                        }
+                        const obj = {};
+                        const currentLine = elements[i].split(';');
+
+                        for(let j = 0; j < headers.length; j++) {
+                          obj[headers[j]] = currentLine[j]
+                        }
+                        result.push(obj)
+                      }
+
+                      var col = [];
+                      for(let i = 0; i < result.length; i++) {
+                        for(let key in result[i]) {
+                          if (col.indexOf(key) === -1) {
+                            col.push(key);
+                          }
+                        }
+                      }
+
+                      var table = document.createElement('table');
+                      table.id = '::dataTable'
+                      var tr = table.insertRow(-1);
+
+                      for (let i = 0; i < col.length; i++) {
+                        var th = document.createElement('th');
+                        th.innerHTML = col[i].replace(/"/g, '');
+                        th.setAttribute('style', 'border: 1px solid black;')
+                        tr.appendChild(th);
+                      }
+
+                      for (let i = 0; i < result.length; i++) {
+                          tr = table.insertRow(-1);
+
+                          for(let j = 0; j < col.length; j++) { 
+                              var tabCell = tr.insertCell(-1);
+                              tabCell.setAttribute('style', 'border: 0.5px solid black; margin: 0;')
+                              tabCell.innerHTML = result[i][col[j]].replace(/"/g, '');
+                          }
+                      }
+                      table.setAttribute('style', 'border: 1px solid black;');
+                      parent.appendChild(table);
+                }
+                else {
+                  var el = document.getElementById('::dataTable')
+                  el.parentNode.removeChild(el);
+                }
+
+                },
+                text: 'View data table'
               }
         },
         buttons: {
             contextButton: {
-                menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator', 'downloadXLS', 'downloadCSV']
+                menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator', 'downloadCSV', 'viewDataTable']
             }
           }
           }
@@ -249,57 +328,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     }, false);
 
     ///////////////////////////////////////////////////////////////////////////
-
-    function exportDataDownload(data, format){
-      var hiddenElement = document.createElement('a');
-      var type = "";
-      if(format === "csv"){
-        type = "text/csv"
-      }
-      else {
-        type = "application/octet-stream"
-      }
-      hiddenElement.href = 'data:' + type + ';charset=utf-8,' + encodeURI(data);
-      hiddenElement.target = '_blank';
-      hiddenElement.download = chart.options.title.text +'-data.' + format;
-      hiddenElement.click();
-    }
-
-    function jsonDataToCSV(){
-      var jsonData = chartDataToJson();
-      var fields = Object.keys(jsonData[0]);
-      var csv = jsonData.map(function(row) {
-        return fields.map(function(fieldName) {
-          return row[fieldName]
-        }).join(',')
-      })
-      csv.unshift(fields.join(','))
-      csv = csv.join('\r\n');
-
-      return csv;
-    }
-
-    function chartDataToJson(){
-      var chartData = chart.options.data.csv;
-      var elements = chartData.split("\n");
-      var result = [];
-      var headers = elements[0].split(';')
-       
-      for(let i = 1; i < elements.length; i++) {
-        if(!elements[i]){
-          continue;
-        }
-        const obj = {};
-        const currentLine = elements[i].split(';');
-
-        for(let j = 0; j < headers.length; j++) {
-          obj[headers[j]] = currentLine[j]
-        }
-        result.push(obj)
-      }
-      return result
-    }
-    //////////////////////////////////////////////////////////////////////////
 
   function closeAnnotationPopup() {
     stockTools.closeAnnotationPopup()
@@ -740,6 +768,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     //Temporary hack
     //aggregatedOptions.series = customizedOptions.series;\
     aggregatedOptions.series = [];
+    
     if (highed.isArr(customizedOptions.series)) {
       customizedOptions.series.forEach(function(obj, i) {
         var mergeTarget = {};
@@ -1356,6 +1385,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
   }
 
   function getCleanOptions(source) {
+
     return source;
 
     // return highed.merge(highed.merge({}, source), {
@@ -1444,7 +1474,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     }
 
     getAnnotations()
-
     return {
       template: templateOptions,
       options: getCleanOptions(customizedOptions),
@@ -1793,10 +1822,26 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       });
     }
 
-    highed.merge(r, {
-      data: "Dataset"
-    })
-
+    if (lastLoadedSheet) {
+      highed.merge(r, {
+        data: lastLoadedSheet
+      });
+    } else if (lastLoadedLiveData) {
+      highed.merge(r, {
+        data: lastLoadedLiveData,
+        googleSpreadsheetKey: false,
+        googleSpreadsheetWorksheet: false
+      });
+    } else if (lastLoadedCSV) {
+      highed.merge(r, {
+        data: {
+          csv: lastLoadedCSV,
+          googleSpreadsheetKey: false,
+          googleSpreadsheetWorksheet: false,
+          seriesMapping: (customizedOptions && customizedOptions.data && customizedOptions.data.seriesMapping ? customizedOptions.data.seriesMapping : null)
+        }
+      });
+    }
     return r;
   }
 
@@ -1838,7 +1883,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           'https://code.highcharts.com/stock/modules/stock-tools.js',
           'https://code.highcharts.com/modules/accessibility.js',
           // 'https://code.highcharts.com/modules/series-label.js'
-          'https://code.highcharts.com/modules/solid-gauge.js'
+          'https://code.highcharts.com/modules/solid-gauge.js',
         ],
         cdnIncludesArr = [],
         title =
@@ -1936,7 +1981,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       const chartConstr = (constr.some(function(a) {
         return a === 'StockChart';
       }) ? 'StockChart' : 'Chart');
-
+      
       return (
         '\n' +
         [
@@ -1953,7 +1998,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
               JSON.stringify(customizedOptions.lang) +
               '});',
           'var options=',
-          stringifyFn(getEmbeddableJSON(true)),
+           stringifyFn(getEmbeddableJSON(true)),
           ';',
           highed.isFn(customCode) ? customCodeStr : '',
           'new Highcharts.' + chartConstr + '("',
