@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-highed.templates.add('Maps', {
+highed.templates.add('Map', {
   title: 'Choropleth',
   description: [
     'Choropleth Maps display divided geographical areas or regions that are coloured in relation to a data variable.', 

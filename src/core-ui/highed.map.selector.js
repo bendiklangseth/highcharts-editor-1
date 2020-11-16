@@ -465,7 +465,7 @@ highed.MapSelector = function(chartPreview, planCode) {
         var mapType = type.templateTitle === 'Honeycomb' ? 'honeycomb' : 'circle';
 
         highed.dom.style(thumbnail, {
-          'background-image': 'url(' + highed.option('thumbnailURL') + sample.thumbnail[mapType] + ')'
+          'background-image': 'url(' + 'thumbnails/' + t.thumbnail + ')'
         });
 
         highed.dom.on(container, 'click', function() {
@@ -508,7 +508,7 @@ highed.MapSelector = function(chartPreview, planCode) {
         var mapType = type.templateTitle === 'Honeycomb' ? 'honeycomb' : 'circle';
 
         highed.dom.style(thumbnail, {
-          'background-image': 'url(' + highed.option('thumbnailURL') + sample.thumbnail + ')'
+          'background-image': 'url(' + 'thumbnails/' + t.thumbnail + ')'
         });
 
         highed.dom.on(container, 'click', function() {

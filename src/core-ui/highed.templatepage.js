@@ -142,7 +142,6 @@ highed.TemplatePage = function(parent, options, chartPreview, chartFrame, props)
             preview = highed.dom.cr('div', 'highed-chart-template-thumbnail');
 
       const t = options[key];
-
       if (highed.meta.images && highed.meta.images[t.thumbnail]) {
         highed.dom.style(preview, {
           'background-image':
@@ -153,7 +152,7 @@ highed.TemplatePage = function(parent, options, chartPreview, chartFrame, props)
       } else {
         highed.dom.style(preview, {
           'background-image':
-            'url(' + highed.option('thumbnailURL') + t.thumbnail + ')'
+            'url(' + 'thumbnails/' + t.thumbnail + ')'
         });
       }
 

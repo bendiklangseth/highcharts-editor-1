@@ -31,39 +31,6 @@ highed.meta.optionsExtended = {
   options: {
     'option.cat.chart': [
       {
-        text: 'option.subcat.dimension',
-        dropdown: true,
-        group: 1,
-        options: [
-          {
-            id: 'chart--width',
-            custom: {
-              minValue: 50,
-              maxValue: 5000,
-              step: 10
-            },
-            pid: 'chart.width',
-            dataType: 'number',
-            context: 'General',
-            defaults: 'null',
-            parent: 'chart'
-          },
-          {
-            id: 'chart--height',
-            custom: {
-              minValue: 50,
-              maxValue: 5000,
-              step: 10
-            },
-            pid: 'chart.height',
-            dataType: 'number',
-            context: 'General',
-            defaults: 'null',
-            parent: 'chart'
-          }
-        ]
-      },
-      {
         text: 'option.subcat.title',
         dropdown: true,
         group: 1,
@@ -90,7 +57,7 @@ highed.meta.optionsExtended = {
             dataType: 'font',
             pid: 'title.style',
             context: 'General',
-            defaults: '{ "color": "#333333", "fontSize": "18px" }',
+            defaults: '{ "color": "#333333", "fontSize": "18px"}',
             parent: 'title'
           },
           {
@@ -98,7 +65,7 @@ highed.meta.optionsExtended = {
             dataType: 'font',
             pid: 'subtitle.style',
             context: 'General',
-            defaults: '{ "color": "#666666", "fontSize": "12px" }',
+            defaults: '{ "color": "#666666", "fontSize": "12px"}',
             parent: 'subtitle'
           }
         ]
@@ -146,88 +113,6 @@ highed.meta.optionsExtended = {
             width: 100,
             id: 'chartarea-header',
             dataType: 'header',
-          },
-          {
-            id: 'chart--backgroundColor',
-            pid: 'chart.backgroundColor',
-            dataType: 'color',
-            context: 'General',
-            defaults: '#FFFFFF',
-            parent: 'chart',
-            width:50
-          },
-          {
-            id: 'chart--borderColor',
-            pid: 'chart.borderColor',
-            dataType: 'color',
-            context: 'General',
-            defaults: '#335cad',
-            parent: 'chart',
-            width: 50
-          },
-          {
-            id: 'chart--borderWidth',
-            custom: {
-              minValue: 0
-            },
-            pid: 'chart.borderWidth',
-            dataType: 'number',
-            context: 'General',
-            defaults: '0',
-            parent: 'chart',
-            width: 50
-          },
-          {
-            id: 'chart--borderRadius',
-            custom: {
-              minValue: 0
-            },
-            pid: 'chart.borderRadius',
-            dataType: 'number',
-            context: 'General',
-            defaults: '0',
-            parent: 'chart',
-            width: 50
-          },
-          {
-            isHeader: true,
-            pid: 'option.subcat.plotarea',
-            width: 100,
-            id: 'plotarea-header',
-            dataType: 'header',
-          },
-          {
-            id: 'chart--plotBackgroundColor',
-            pid: 'chart.plotBackgroundColor',
-            dataType: 'color',
-            context: 'General',
-            parent: 'chart',
-            width: 38
-          },
-          {
-            id: 'chart--plotBorderWidth',
-            pid: 'chart.plotBorderWidth',
-            dataType: 'number',
-            context: 'General',
-            defaults: '0',
-            parent: 'chart',
-            width: 31
-          },
-          {
-            id: 'chart--plotBorderColor',
-            pid: 'chart.plotBorderColor',
-            dataType: 'color',
-            context: 'General',
-            defaults: '#cccccc',
-            parent: 'chart',
-            width: 31
-          },
-          {
-            id: 'chart--plotBackgroundImage',
-            pid: 'chart.plotBackgroundImage',
-            dataType: 'string',
-            context: 'General',
-            parent: 'chart'
           },
           {
             id: 'colors',
@@ -405,54 +290,6 @@ highed.meta.optionsExtended = {
           }
         ]
       },
-      {
-        text: 'option.subcat.interaction',
-        dropdown: true,
-        options: [
-          {
-            id: 'chart--zoomType',
-            pid: 'chart.zoomType',
-            dataType: 'string',
-            context: 'General',
-            parent: 'chart',
-            values: '[null, "x", "y", "xy"]',
-            mapDisabled: true
-          }, 
-          {
-            id: 'mapNavigation--enabled',
-            pid: 'mapNavigation.enabled',
-            dataType: 'boolean',
-            context: 'General',
-            defaults: 'true',
-            chartType: 'Map'
-          },
-          {
-            id: 'mapNavigation--enableMouseWheelZoom',
-            pid: 'mapNavigation.enableMouseWheelZoom',
-            dataType: 'boolean',
-            context: 'General',
-            defaults: 'true',
-            chartType: 'Map'
-          },
-          {
-            id: 'chart--polar',
-            pid: 'chart.polar',
-            dataType: 'boolean',
-            context: 'General',
-            defaults: 'false',
-            mapDisabled: true,
-            parent: 'chart'
-          },
-          {
-            id: 'plotOptions--series--states--inactive--opacity',
-            pid: 'plotOptions.series.states.inactive.opacity',
-            dataType: 'number',
-            context: 'General',
-            defaults: '0.2',
-            parent: 'chart'
-          }
-        ]
-      }
     ],
     'option.cat.axes': [
       {
@@ -517,8 +354,17 @@ highed.meta.optionsExtended = {
           defaults: 'false',
           parent: 'xAxis',
           width: 50
+        },
+        {
+          id: 'xAxis--linkedTo',
+          pid: 'xAxis.linkedTo',
+          custom: {
+            minValue: 0
+          },
+          dataType: 'number',
+          context: 'General',
+          parent: 'xAxis'
         }
-
         ]
       },
       {
@@ -585,6 +431,16 @@ highed.meta.optionsExtended = {
             defaults: 'false',
             parent: 'yAxis',
             width: 50
+          },
+          {
+            id: 'yAxis--linkedTo',
+            pid: 'yAxis.linkedTo',
+            dataType: 'number',
+            custom: {
+              minValue: 0
+            },
+            context: 'General',
+            parent: 'yAxis'
           }
         ]
       }
@@ -819,84 +675,13 @@ highed.meta.optionsExtended = {
             },
             width: 50
           },
-
-          // {
-          //   id: 'series-label--enabled',
-          //   pid: 'series.label.enabled',
-          //   defaults: 'true',
-          //   dataType: 'boolean',
-          //   subType: [
-          //     'line',
-          //     'spline',
-          //     'area',
-          //     'arearange',
-          //     'areaspline',
-          //     'waterfall',
-          //     'areasplinerange'
-          //   ],
-          //   subTypeDefaults: {}
-          // }
-
-          // {
-          // id: 'series-label--style',
-          // pid: 'series.label.style',
-          // dataType: 'font'
-          // }
-        ]
-      }
-    ],
-    'option.cat.export': [
-      {
-        text: 'option.cat.exporting',
-        dropdown: true,
-        options: [
           {
-            id: 'exporting--enabled',
-            pid: 'exporting.enabled',
-            dataType: 'boolean',
+            id: 'plotOptions-series--stacking',
+            pid: 'plotOptions.series.stacking',
+            datatype: 'string',
             context: 'General',
-            defaults: 'true',
-            parent: 'exporting',
-            width: 50
-          },
-          {
-            id: 'exporting--offlineExporting',
-            pid: 'exporting.offlineExporting',
-            dataType: 'boolean',
-            context: 'General',
-            defaults: 'false',
-            parent: 'exporting',
-            width: 50,
-            plugins: [
-              'modules/offline-exporting.js'
-            ],
-            noChange: true
-          },
-          {
-            id: 'exporting--sourceWidth',
-            custom: {
-              minValue: 10,
-              maxValue: 2000,
-              step: 10
-            },
-            pid: 'exporting.sourceWidth',
-            dataType: 'number',
-            context: 'General',
-            parent: 'exporting',
-            values: ''
-          },
-          {
-            id: 'exporting--scale',
-            custom: {
-              minValue: 1,
-              maxValue: 4
-            },
-            pid: 'exporting.scale',
-            dataType: 'number',
-            context: 'General',
-            defaults: '2',
-            parent: 'exporting',
-            values: ''
+            parent: 'series<gauge>',
+            values: '[ "normal", "overlap", "percent", "stream" ]'
           }
         ]
       }
@@ -967,6 +752,20 @@ highed.meta.optionsExtended = {
             dataType: 'boolean',
             context: 'General',
             defaults: 'false',
+            parent: 'legend'
+          },
+          {
+            id: 'legend--x',
+            pid: 'legend.x',
+            dataType: 'number',
+            context: 'General',
+            parent: 'legend'
+          },
+          {
+            id: 'legend--y',
+            pid: 'legend.y',
+            dataType: 'number',
+            context: 'General',
             parent: 'legend'
           }
         ]
@@ -1063,87 +862,7 @@ highed.meta.optionsExtended = {
             parent: 'lang'
           }
         ]
-      },
-      {
-        text: 'option.subcat.exportbutton',
-        dropdown: true,
-        options: [
-          {
-            id: 'lang--contextButtonTitle',
-            pid: 'lang.contextButtonTitle',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'Chart context menu',
-            parent: 'lang',
-            values: '',
-            width: 50
-          },
-          {
-            id: 'lang--printChart',
-            pid: 'lang.printChart',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'Print chart',
-            parent: 'lang',
-            values: '',
-            width: 50
-          },
-          {
-            id: 'lang--downloadPNG',
-            pid: 'lang.downloadPNG',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'Download PNG image',
-            parent: 'lang',
-            width: 50
-          },
-          {
-            id: 'lang--downloadJPEG',
-            pid: 'lang.downloadJPEG',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'Download JPEG image',
-            parent: 'lang',
-            width: 50
-          },
-          {
-            id: 'lang--downloadPDF',
-            pid: 'lang.downloadPDF',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'Download PDF document',
-            parent: 'lang',
-            width: 50
-          },
-          {
-            id: 'lang--downloadSVG',
-            pid: 'lang.downloadSVG',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'Download SVG vector image',
-            parent: 'lang',
-            width: 50
-          },
-          {
-            id: "lang--downloadXLS",
-            pid: "lang.downloadXLS",
-            dataType: "string",
-            context: "General",
-            defaults: "Download XLS",
-            parent: "lang",
-            width: 50
-            },
-            {
-            id: "lang--downloadCSV",
-            pid: "lang.downloadCSV",
-            dataType: "string",
-            context: "General",
-            defaults: "Download CSV",
-            parent: "lang",
-            width: 50
-            }
-        ]
       }
-    ],
+    ]
   }
 };

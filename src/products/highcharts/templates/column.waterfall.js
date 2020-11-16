@@ -1,6 +1,7 @@
 highed.templates.add('Column', {
     title: 'Waterfall columns',
     description: 'This is a waterfall column chart',
+    thumbnail: 'waterfall.png',
     dataValidator: false,
     sampleSets: [],
     config: {
@@ -9,12 +10,7 @@ highed.templates.add('Column', {
       },
      xAxis: {
          type: 'category'
-     },
-     plotOptions: {
-      series: {
-        additionalMetaDataTest: 'test'
-      }
-    }
+     }
     }
   });
   

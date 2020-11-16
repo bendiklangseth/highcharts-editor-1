@@ -4,9 +4,6 @@
     "subtitle--text",
     "yAxis-title--text",
 
-    "chart--width",
-    "chart--height",
-
     "chart--zoomType",
     "chart--polar",
     "cart--reflow",
@@ -83,23 +80,5 @@
     "tooltip--backgroundColor",
     "tooltip--borderWidth",
     "tooltip--borderRadius",
-    "tooltip--borderColor",
-
-    "exporting--enabled",
-    "exporting--sourceWidth",
-    "exporting--scale",
-
-    "lang--decimalPoint",
-    "lang--thousandsSep",
-    "lang--contextButtonTitle",
-    "lang--printChart",
-    "lang--downloadPNG",
-    "lang--downloadJPEG",
-    "lang--downloadPDF",
-    "lang--downloadSVG",
-    "lang--downloadXLS",
-    "lang--downloadCSV",
-
-    "lang--resetZoom",
-    "lang-resetZoomTitle"
+    "tooltip--borderColor"
 ]

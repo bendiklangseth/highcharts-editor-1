@@ -37,6 +37,9 @@ highed.templates.add('Stock', {
       type: 'column',
       polar: false
     },
+    yAxis: {
+      opposite: false
+    },
     rangeSelector: {
       enabled: false
     }

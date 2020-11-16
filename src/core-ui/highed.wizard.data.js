@@ -37,7 +37,7 @@ highed.WizardData = function(importer, mapImporter, chartContainer) {
   dropzone = null,
   container = highed.dom.cr('div', 'highed-table-dropzone-container'),
   downloadCSVLink = highed.dom.cr('a', 'highed-download-csv', 'Download Map Data'),
-  dropCSVFileHere = highed.dom.cr('div', 'highed-table-dropzone-title', 'Drop CSV files here');
+  dropCSVFileHere = highed.dom.cr('div', 'highed-table-dropzone-title', 'Upload CSV, JSON or Excel files through "Import Data".');
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -413,7 +413,7 @@ highed.WizardData = function(importer, mapImporter, chartContainer) {
       if (type === 'mappoint') {
         mapDataTableElement.classList.remove('hide');
         mapDataTableElement.classList += ' active';
-        dropCSVFileHere.innerHTML = 'Or drop CSV files here';
+        dropCSVFileHere.innerHTML = 'Upload CSV, JSON or Excel files through "Import Data".';
         
         if (!container.classList.contains('map-data')) container.classList += ' map-data';
   

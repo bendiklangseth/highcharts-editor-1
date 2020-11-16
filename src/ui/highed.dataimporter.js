@@ -189,7 +189,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 			//Always disable json options..
 
-			if (1 === 1 || !properties.options.json) {
+			if (!properties.options.json) {
 				jsonTab.hide();
 			}
 
@@ -415,6 +415,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			}, cb);
 		}
 
+
 		function loadCSVExternal(csv) {
 			csvPasteArea.value = csv;
 			emitCSVImport();
@@ -430,8 +431,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					return false;
 				}
 			}
+			console.log(json)
 			events.emit('ImportJSON', json);
-			highed.snackBar('imported json');
 		}
 
 		/** Force a resize of the widget
@@ -507,23 +508,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				'Paste CSV into the below box, or upload a file. Click Import to import your data.'
 			),
 			csvPasteArea,
-
-			// highed.dom.cr('span', 'highed-imp-label', 'Delimiter'),
-			// delimiter,
-			// highed.dom.cr('br'),
-
-			// highed.dom.cr('span', 'highed-imp-label', 'Date Format'),
-			// dateFormat,
-			// highed.dom.cr('br'),
-
-			// highed.dom.cr('span', 'highed-imp-label', 'Decimal Point Notation'),
-			// decimalPoint,
-			// highed.dom.cr('br'),
-
-			// highed.dom.cr('span', 'highed-imp-label', 'First Row Is Series Names'),
-			// firstAsNames,
-			// highed.dom.cr('br'),
-
 			csvImportBtn
 		);
 
@@ -573,7 +557,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				accept: '.csv',
 				success: function (info) {
 					csvPasteArea.value = info.data;
-					highed.snackBar('File uploaded');
 					emitCSVImport();
 				}
 			});

@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-highed.templates.add('Maps', {
+highed.templates.add('Map', {
   title: 'Categories',
   description: [
     'Similar to the Choropleth, except that the geographical regions colors are split based on specific ranges.'

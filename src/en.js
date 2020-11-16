@@ -106,6 +106,8 @@ highed.installLanguage({
     'option.text.yAxis.title.text': 'Y axis title',
     'option.tooltip.yAxis.title.text':
       'The Y axis title, normally displayed vertically along the Y axis.',
+    'option.text.yAxis.linkedTo': 'Linked To',
+      'option.tooltip.yAxis.linkedTo': 'Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to eas reading the chart by duplicating the scales.',
     'option.text.chart.width': 'Chart width',
     'option.tooltip.chart.width':
       'An explicit width for the chart. By default (when <code>null</code>) the width is calculated from the offset width of the containing element.',
@@ -123,6 +125,8 @@ highed.installLanguage({
     'option.text.plotOptions.series.states.inactive.opacity': 'Series Dimming',
     'option.tooltip.plotOptions.series.states.inactive.opacity':
       'Opacity of series elements (dataLabels, line, area).',
+    'option.text.plotOptions.series.stacking': 'Stacked',
+    'option.tooltip.plotOptions.series.stacking': 'Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". When stacking is enabled, data must be sorted in ascending X order.Some stacking options are related to specific series types. In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series.',
     'option.text.chart.polar': 'Polar (radar) projection',
     'option.tooltip.chart.polar':
       'When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. Requires <code>highcharts-more.js</code>.',
@@ -196,6 +200,8 @@ highed.installLanguage({
     'option.text.xAxis.labels.format': 'Axis labels format',
     'option.tooltip.xAxis.labels.format':
       '<p>A format string for the axis labels. The value is available through a variable <code>{value}</code>.</p><p><b>Units</b> can be added for example like <code>{value} USD</code>.</p><p><b>Formatting</b> can be added after a colon inside the variable, for example <code>USD {value:.2f}</code> to display two decimals, or <code>{value:%Y-%m-%d}</code> for a certain time format.',
+    'option.text.xAxis.linkedTo': 'Linked To',
+    'option.tooltip.xAxis.linkedTo': 'Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to eas reading the chart by duplicating the scales.',
     'option.text.yAxis.title.style': 'Y axis title style',
     'option.tooltip.yAxis.title.style': 'Styling and text for the X axis title',
     'option.text.yAxis.type': 'Type',

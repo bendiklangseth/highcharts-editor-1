@@ -43,37 +43,6 @@ module.exports = {
 			}]
 		}],
 
-		'option.cat.general': [
-			// {
-			// 	text: 'Label Items',
-			// 	options: [
-			// 		{text: 'Label Items:', id: 'labels-items'}
-			// 	]
-			// },
-			{
-				text: 'option.subcat.size',				
-				options: [
-					{
-						id: 'chart--width',
-						text: 'Chart width',
-						custom: {minValue: 50, maxValue: 5000, step: 10}
-					},
-					{
-						id: 'chart--height',
-						text: 'Chart height',
-						custom: {minValue: 50, maxValue: 5000, step: 10}
-					}
-				]
-			}, {
-				text: 'option.subcat.interaction',				
-				options: [
-					{id: 'chart--zoomType', text: 'Allow zooming'},
-					{id: 'chart--polar', text: 'Polar (radar) projection'},
-					{id: 'chart--reflow', text: 'Reflow on window resize'}
-				]
-			}
-		],
-
 		'option.cat.appearance': [{
 			text: 'option.subcat.fonts',			
 			options: [
@@ -143,23 +112,11 @@ module.exports = {
 		}
 		],
 
-		'option.cat.axes': [{
-			text: 'option.subcat.axessetup',
-			
-			options: [
-				{id: 'chart--inverted', text: 'Inverted axes'}
-			]
-		}, {
-			id: 'xAxis',
+		'option.cat.axes': [
+		 {
 			text: 'option.subcat.xaxis',
 			
 			options: [
-				// {
-				// 	id: 'xAxis-crosshair',
-				// 	text: 'Crosshair',
-				// 	dataIndex: 0
-
-				// },
 				{
 					id: 'xAxis-title--style',
 					dataType: 'font',
@@ -196,23 +153,19 @@ module.exports = {
 					'<p><b>Formatting</b> can be added after a colon inside the variable, for example <code>USD {value:.2f}</code> to display two decimals, ' +
 					'or <code>{value:%Y-%m-%d}</code> for a certain time format.',
 					dataIndex: 0
-				}//,
-				// {
-				// 	id: 'xAxis-labels--rotation', text: 'Axis labels rotation',
-				// 	custom: {step: 5, minValue: -90, maxValue: 90},
-				// 	dataIndex: 0
-				// }
+				},
+				{
+					id: 'xAxis--linkedTo',
+					text: 'Linked To',
+					tooltipText: 'Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes '
+								+ 'as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to eas reading the chart by '
+								+ 'duplicating the scales.'
+				}
 			]
 		}, {
-			id: 'yAxis',
 			text: 'option.subcat.yaxis',
 			
 			options: [
-				// {
-				// 	id: 'yAxis-crosshair',
-				// 	text: 'Crosshair',
-				// 	dataIndex: 0
-				// },
 				{
 					id: 'yAxis-title--style',
 					dataType: 'font',
@@ -220,7 +173,6 @@ module.exports = {
 					tooltipText: 'Styling and text for the X axis title',
 					dataIndex: 0
 				},
-				//{id: 'yAxis-title--text'},
 				{
 					id: 'yAxis--type', 
 					text: 'Type', 
@@ -245,6 +197,13 @@ module.exports = {
 					'<p><b>Formatting</b> can be added after a colon inside the variable, for example <code>USD {value:.2f}</code> to display two decimals, ' +
 					'or <code>{value:%Y-%m-%d}</code> for a certain time format.',
 					dataIndex: 0
+				},
+				{
+					id: 'yAxis--linkedTo',
+					text: 'Linked To',
+					tooltipText: 'Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes '
+								+ 'as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to eas reading the chart by '
+								+ 'duplicating the scales.'
 				}
 			]
 		}
@@ -280,7 +239,6 @@ module.exports = {
 				{id: 'series--dashStyle', text: 'Dash style'},
 				{id: 'series-marker--enabled', text: 'Enable point markers'},
 				{id: 'series-marker--symbol', text: 'Marker symbol'},
-				//{id: 'series<*>-dataLabels--enabled', text: 'Enable data labels'},
 				{
 					id: 'series-tooltip--valuePrefix',
 					text: 'Prefix in tooltip',
@@ -290,21 +248,14 @@ module.exports = {
 					id: 'series-tooltip--valueSuffix',
 					text: 'Suffix (unit) in tooltip',
 					tooltipText: 'Text to append after the value in the tooltip'
+				},
+				{
+					id: 'plotOptions-series--stacking',
+					text: 'Stacked',
+					tooltipText: 'Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". '
+					+ 'When stacking is enabled, data must be sorted in ascending X order.Some stacking options are related to specific series types. '
+					+ 'In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series.'
 				}
-				// {id: 'series-seriesMapping--x', text: 'Explicit x column'},
-				// {id: 'series-seriesMapping--label', text: 'Explicit label column'},
-				// /*funnel*/
-				// {id: 'series--width', text: 'Funnel width'},
-				// {
-				// 	id: 'series--neckWidth',
-				// 	text: 'Neck width',
-				// 	tooltipText: 'The width of the neck, the lower part of the funnel. A number defines pixel width, a percentage string, f. eks. \'25%\', defines a percentage of the plot area width. Defaults to 25%.'
-				// },
-				// {
-				// 	id: 'series--neckHeight',
-				// 	text: 'Neck height',
-				// 	tooltipText: 'The height of the neck, the lower part of the funnel. A number defines pixel width, a percentage string, f. eks. \'25%\', defines a percentage of the plot area height. Defaults to 25%.'
-				// }
 			]
 		}],
 
@@ -343,18 +294,18 @@ module.exports = {
 				
 				options: [
 					{id: 'legend--align', text: 'Horizontal alignment'},
-					{
-						id: 'legend--x',
-						text: 'Horizontal offset',
-						tooltipText: 'The pixel offset of the legend relative to its alignment'
-					},
 					{id: 'legend--verticalAlign', text: 'Vertical alignment'},
 					{
 						id: 'legend--y',
 						text: 'Vertical offset',
 						tooltipText: 'The pixel offset of the legend relative to its alignment'
 					},
-					{id: 'legend--floating', text: 'Float on top of plot area'}
+					{id: 'legend--floating', text: 'Float on top of plot area'},
+					{
+						id: 'legend--x',
+						text: 'Horizontal offset',
+						tooltipText: 'The pixel offset of the legend relative to its alignment'
+					}
 				]
 			}, {
 				text: 'option.subcat.legendappearance',

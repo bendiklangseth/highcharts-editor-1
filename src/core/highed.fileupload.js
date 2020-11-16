@@ -33,7 +33,7 @@ highed.ready(function() {
     cb = false;
 
   uploader.type = 'file';
-  uploader.accept = '.csv';
+  uploader.accept = ['.csv', '.json', '.xlsx'];
 
   highed.dom.ap(document.body, uploader);
 
@@ -58,7 +58,6 @@ highed.ready(function() {
   highed.readLocalFile = function(props) {
     var p = highed.merge(
       {
-        type: 'text',
         multiple: false,
         accept: '.csv'
       },
@@ -72,27 +71,54 @@ highed.ready(function() {
     }
 
     cb = highed.dom.on(uploader, 'change', function() {
-      function crReader(file) {
-        var reader = new FileReader();
+      if(uploader.files[0].name.substring(uploader.files[0].name.length - 4) === ".xls" ||
+           uploader.files[0].name.substring(uploader.files[0].name.length - 5) === ".xlsx") {
+             p = highed.merge(p,{ type: 'binary'})
+        }
+        else if (uploader.files[0].name.substring(uploader.files[0].name.length - 4) === ".csv"){
+             p = highed.merge(p,{ type:"text"})
+        } else if(uploader.files[0].name.substring(uploader.files[0].name.length - 5) === ".json"){
+             p = highed.merge(p,{ type: 'json'})
+        }
 
+      function crReader(file) {
+
+        var reader = new FileReader();
         reader.onloadstart = function(evt) {
           if (highed.isFn(p.progress)) {
             p.progress(Math.round(evt.loaded / evt.total * 100));
           }
         };
-
         reader.onload = function(event) {
           var data = reader.result;
 
           if (p.type === 'json') {
             try {
-              data = JSON.parse(data);
+              var jsonData = JSON.parse(data);
+              var fields = Object.keys(jsonData[0])
+              var replacer = function(key, value) { return value === null ? '' : value } 
+              var csv = jsonData.map(function(row){
+                return fields.map(function(fieldName){
+                  return JSON.stringify(row[fieldName], replacer)
+                }).join(',')
+              })
+              csv.unshift(fields.join(','))
+
+              data = csv.join('\r\n');
+              
             } catch (e) {
               if (highed.isFn(p.error)) {
                 p.error(e);
               }
             }
           }
+          else if (p.type === "binary"){
+            var workbook = XLSX.read(event.target.result, {
+              type: 'binary'
+            })
+            var firstSheet = workbook.SheetNames[0];
+            data = XLSX.utils.sheet_to_csv(workbook.Sheets[firstSheet]);
+           }
 
           if (highed.isFn(p.success)) {
             p.success({
@@ -105,7 +131,7 @@ highed.ready(function() {
 
         return reader;
       }
-
+  
       for (var i = 0; i < uploader.files.length; i++) {
         if (!p.type || p.type === 'text' || p.type === 'json') {
           crReader(uploader.files[i]).readAsText(uploader.files[i]);

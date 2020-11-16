@@ -175,7 +175,7 @@ highed.ChartTemplateSelector = function(parent, chartPreview) {
       } else {
         highed.dom.style(preview, {
           'background-image':
-            'url(' + highed.option('thumbnailURL') + t.thumbnail + ')'
+            'url(thumbnails/' + t.thumbnail + ')'
         });
       }
 
