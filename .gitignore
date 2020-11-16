@@ -10,4 +10,5 @@ docs/
 demos/
 *.log
 tmp.txt
+temp.txt
 
