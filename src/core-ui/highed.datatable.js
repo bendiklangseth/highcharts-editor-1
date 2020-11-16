@@ -221,7 +221,7 @@ highed.DataTable = function(parent, attributes) {
     dragHeaderMode = false,
     mapImporter = highed.MapImporter(),
     mapDataTable = null,
-    dropCSVFileHere = highed.dom.cr('div', 'highed-table-dropzone-title', 'Drop CSV files here'),
+    dropCSVFileHere = highed.dom.cr('div', 'highed-table-dropzone-title', 'Upload CSV, JSON or Excel files through "Import Data".'),
     globalContextMenu = highed.ContextMenu([
       {
         title: "Insert Row Above",
@@ -2426,8 +2426,8 @@ highed.DataTable = function(parent, attributes) {
   ////////////////////////////////////////////////////////////////////////////
 
   dropZone.innerHTML =
-    'Drop CSV files here.<br/>' +
-    '<span class="highed-dtable-drop-zone-small">You can also paste CSV or Excel data into any cell</span>';
+    'Upload CSV, JSON or Excel files through "Import Data".<br/>' +
+    '<span class="highed-dtable-drop-zone-small">You can also paste CSV or Excel data induvidially into any cell</span>';
 
   table.cellPadding = 0;
   table.cellSpacing = 0;
