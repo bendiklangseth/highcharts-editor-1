@@ -104,7 +104,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       style = highed.merge(
         {
-          fontFamily: 'Open sans',//'"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif',
+          fontFamily: '"Open sans", sans-serif',//'"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif',
           color: '#333',
           fontSize: '18px',
           fontWeight: 'normal',
@@ -163,7 +163,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           return callback(customFont[0]);
         }
       } else if (selected.id() === 'Default') {
-        style.fontFamily = 'Open sans';
+        style.fontFamily = '"Open sans", sans-serif';
         return callback();
       } else {
         style.fontFamily = selected.id();
