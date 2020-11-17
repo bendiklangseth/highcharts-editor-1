@@ -81,7 +81,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
                     for(let j = 0; j < headers.length; j++) {
                       obj[headers[j]] = currentLine[j];
-                      obj[headers[j]] = obj[headers[j]].replace(/"/g, '');
+                      obj[headers[j]] = obj[headers[j]].replace(/&quot;/g, /^$/);
                     }
                     result.push(obj)
                   }
@@ -94,10 +94,8 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                   })
                   csv.unshift(fields.join(','))
                   csv = csv.join('\r\n');
-                  console.log(csv)
                   
                   let csvBlob = new Blob(['\ufeff', csv], { type: 'text/csv'});
-                  console.log(csvBlob.text())
                   let csvUrl = URL.createObjectURL(csvBlob);
 
                   let hiddenElement = document.createElement('a');
@@ -175,7 +173,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                 menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator', 'downloadCSV', 'viewDataTable']
             }
           }
-          }
+        }
         },
         expandTo: parent
       },
@@ -303,14 +301,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       }
     });
 
-
-/*
-    highed.dom.ap(document.body, inputField);
-
-    inputField.addEventListener('keydown', function (e) {
-    });
-*/
-
     document.addEventListener('keydown', function (e) {
 
       if(e.keyCode === 8 || e.keyCode === 46){
@@ -368,35 +358,10 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       });
       highed.dom.cr('div', 'highed-ok-button', 'Pick series')
     });
-
-/*
-    Object.keys(wysiwyg2).forEach(function(key) {
-
-      highed.dom.on(parent.querySelector(key), 'click', function(e) {
-
-        var element = document.querySelector(key);
-        var source = document.querySelector(wysiwyg2[key].source),
-            pos = highed.dom.pos(element, true);
-
-        highed.dom.style(inputField, {
-          position: 'absolute',
-          top: pos.y + 'px',
-          left: pos.x + 'px'
-        });
-
-        console.log(source);
-        inputField.value = source.innerHTML;
-
-        inputField.focus();
-      });
-
-    })
-
-*/
-
   }
 
   function stringifyFn(obj, tabs) {
+   
     return JSON.stringify(
       obj,
       function(key, value) {
@@ -424,7 +389,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
   /* Emit change events */
   function emitChange() {
     events.emit('ChartChange', aggregatedOptions);
-
     //Throttled event - we use this when doing server stuff in the handler
     //since e.g. using the color picker can result in quite a lot of updates
     //within a short amount of time
@@ -432,6 +396,169 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     throttleTimeout = window.setTimeout(function() {
       events.emit('ChartChangeLately', aggregatedOptions);
     }, 200);
+  }
+
+  function getCharOptionsArr(embeddableJson){
+    var collection = [];
+
+    collection.push('{');
+      for(var i in embeddableJson){
+        if(typeof i != 'object') {  //Første elementer i json
+          collection.push(i);
+          collection.push(": ");
+        }
+
+        if(Array.isArray(embeddableJson[i])){ // Color: ["#ifj", #jka]  node 2
+          collection.push('[')
+          for(var prop in embeddableJson[i]){
+              if(typeof embeddableJson[i][prop] != 'object'){
+                 collection.push(JSON.stringify(embeddableJson[i][prop]));
+                 collection.push(',');
+              }
+              else {
+                collection.push('{')
+                
+                for(var propChild in embeddableJson[i][prop]){
+                  collection.push(propChild);
+                  collection.push(': ');
+
+                  if(typeof embeddableJson[i][prop][propChild] === 'object'){
+                    collection.push('{') 
+                    for(var propGrandChild in embeddableJson[i][prop][propChild]) {
+                      collection.push(propGrandChild);
+                      collection.push(': ');
+                        if(embeddableJson[i][prop][propChild][propGrandChild] === ""){
+                          collection.push('""')
+                        }
+                        else{ // NOp
+                          collection.push(embeddableJson[i][prop][propChild][propGrandChild])
+                        }
+                    }
+                    collection.push('},');
+                  }
+                  else {
+                    collection.push(JSON.stringify(embeddableJson[i][prop][propChild]));
+                    collection.push(',');
+                  } 
+                }
+                collection.push('},')
+              }
+          }
+          collection.push("],");
+        } 
+        else {
+          collection.push('{');
+          for(var prop in embeddableJson[i]){
+            collection.push(prop); // node 1
+            collection.push(': ')
+            if(Array.isArray(embeddableJson[i][prop])){
+              collection.push('[');
+              for(var item in embeddableJson[i][prop]){
+                collection.push('{');
+                  for(var itemChild in embeddableJson[i][prop][item]){
+                      collection.push(itemChild)  // node 2
+                      collection.push(': ')
+                      collection.push(embeddableJson[i][prop][item][itemChild])
+                      collection.push(',');
+                  }
+                  collection.push('},');
+              }
+              collection.push('],');
+            }
+            else if (typeof embeddableJson[i][prop] === 'object'){
+              collection.push('{')
+              for(var propChild in embeddableJson[i][prop]){
+                collection.push(propChild);
+                collection.push(': ');
+
+                if (Array.isArray(embeddableJson[i][prop][propChild])) {
+                    collection.push('[');
+                    for(var items in embeddableJson[i][prop][propChild]){
+                      if(typeof embeddableJson[i][prop][propChild][items] === 'string'){
+                        collection.push(JSON.stringify(embeddableJson[i][prop][propChild][items]));
+                      }
+                      else {
+                        collection.push(embeddableJson[i][prop][propChild][items]);
+                      }
+                       collection.push(',')
+
+                    }
+                    collection.push('],');
+                }
+                else if(typeof embeddableJson[i][prop][propChild] === 'object'){
+                  collection.push('{') 
+                  for(var propGrandChild in embeddableJson[i][prop][propChild]) {
+                    collection.push(propGrandChild);
+                    collection.push(': ');
+
+                    if(Array.isArray(embeddableJson[i][prop][propChild][propGrandChild])){ //
+                      collection.push("[");
+                      for(var items in embeddableJson[i][prop][propChild][propGrandChild]){
+                        collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild][items]))
+                        collection.push(',');
+                      }
+                      collection.push("],");
+                    }
+                    else if(typeof embeddableJson[i][prop][propChild][propGrandChild] === 'object'){
+                      collection.push('{')
+                      for(var propGreatGrandChild in embeddableJson[i][prop][propChild][propGrandChild]) {
+                          collection.push(propGreatGrandChild);
+                          collection.push(': ')
+                            if(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild].startsWith("#")
+                            || typeof embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild] === 'string'){
+                              collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild]));
+                            }
+                            else {
+                              collection.push(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild]);
+                            }
+                          collection.push(',');
+                      }
+                      collection.push('},');
+                    }
+                    else {
+                      if(typeof embeddableJson[i][prop][propChild][propGrandChild] === 'string') {
+                        collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild]));
+                      }
+                      else {
+                        collection.push(embeddableJson[i][prop][propChild][propGrandChild])
+                      }
+                      collection.push(',');
+                    }
+                  }
+                  collection.push('},');
+                }
+                else {
+                  if(typeof embeddableJson[i][prop][propChild] === 'string'){
+                    collection.push(JSON.stringify(embeddableJson[i][prop][propChild]));
+                  }
+                  else {
+                    collection.push(embeddableJson[i][prop][propChild]);
+                  }
+                  collection.push(',');
+                } 
+              }
+              collection.push('},');
+            } 
+            else {
+              if(embeddableJson[i][prop] === ""){
+                 collection.push('""');
+              } 
+              else {
+                if(typeof embeddableJson[i][prop] === 'string') {
+                  collection.push(JSON.stringify(embeddableJson[i][prop]));
+                } else {
+                  collection.push(embeddableJson[i][prop]);
+                }
+              }
+              collection.push(',');
+            } 
+          }
+          collection.push('},');
+        }
+        
+     }
+     collection.push("}")
+    return collection.join('');
   }
 
   function isTileMap(options){
@@ -679,9 +806,9 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
 
     //Merge fest
-
     highed.clearObj(aggregatedOptions);
     highed.merge(aggregatedOptions, properties.defaultChartOptions);
+
     // Apply theme first
     if (themeOptions && Object.keys(themeOptions).length) {
       highed.merge(
@@ -888,9 +1015,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       if(type === "pie" || type === "funnel" || type === "pyramid"){
         template.config.colors = template.config.colors.slice(0, customizedOptions.series[0].data.length);
       }
-      // } else {
-      //   template.config.colors = template.config.colors.slice(0, customizedOptions.series.length)
-      // }
 
       templateOptions[seriesIndex] = highed.merge({}, template.config || {});
       
@@ -1981,7 +2105,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       const chartConstr = (constr.some(function(a) {
         return a === 'StockChart';
       }) ? 'StockChart' : 'Chart');
-      
       return (
         '\n' +
         [
@@ -1998,7 +2121,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
               JSON.stringify(customizedOptions.lang) +
               '});',
           'var options=',
-           stringifyFn(getEmbeddableJSON(true)),
+            getCharOptionsArr(getEmbeddableJSON()),
           ';',
           highed.isFn(customCode) ? customCodeStr : '',
           'new Highcharts.' + chartConstr + '("',
