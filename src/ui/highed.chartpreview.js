@@ -65,6 +65,56 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           }, 
           exporting: {
             menuItemDefinitions: {
+              downloadXLSX: {
+                onclick: function() {
+                  var chartData = this.options.data.csv,
+                      elements = chartData.split('\n'),
+                      result = [],
+                      headers = elements[0].split(';');
+                  
+                  for(let i = 1; i < elements.length; i++) {
+                    if(!elements[i]){
+                      continue;
+                    }
+                    const obj = {};
+                    const currentLine = elements[i].split(';');
+
+                    for(let j = 0; j < headers.length; j++) {
+                      obj[headers[j]] = currentLine[j];
+                      obj[headers[j]] = obj[headers[j]].replace(/&quot;/g, /^$/);
+                    }
+                    result.push(obj)
+                  }
+                  
+                  var wb = XLSX.utils.book_new();
+                  wb.SheetNames.push(this.options.title.text);
+
+                  var ws = XLSX.utils.json_to_sheet(result);
+
+                  wb.Sheets[this.options.title.text] = ws;
+
+                  var wbout = XLSX.write(wb, {bookType: 'xlsx', type: 'binary' });
+
+                  function s2ab(s) {
+                    var buf = new ArrayBuffer(s.length);
+                    var view = new Uint8Array(buf);
+                    for (var i = 0; i < s.length; i++) {
+                      view[i] = s.charCodeAt(i) & 0xFF;
+                    }
+                    return buf;
+                  }
+
+                  var blob = new Blob([s2ab(wbout)], {type: 'application/octet-stream'});
+                  let excelUrl = URL.createObjectURL(blob);
+
+                  let hiddenElement = document.createElement('a');
+                  hiddenElement.href = excelUrl;
+                  hiddenElement.target = '_blank';
+                  hiddenElement.download = this.options.title.text +'-data.xlsx';
+                  hiddenElement.click();
+                },
+                text: 'Download data as Excel'
+              },
               downloadCSV: {
                 onclick: function() {
                   var chartData = this.options.data.csv,
@@ -170,7 +220,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
         },
         buttons: {
             contextButton: {
-                menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator', 'downloadCSV', 'viewDataTable']
+                menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator','downloadXLSX', 'downloadCSV', 'viewDataTable']
             }
           }
         }
@@ -2008,6 +2058,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           'https://code.highcharts.com/modules/accessibility.js',
           // 'https://code.highcharts.com/modules/series-label.js'
           'https://code.highcharts.com/modules/solid-gauge.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js'
         ],
         cdnIncludesArr = [],
         title =
