@@ -77,7 +77,7 @@ highed.ready(function() {
              p = highed.merge(p,{ type: 'binary'})
         }
         else if (uploader.files[0].name.substring(uploader.files[0].name.length - 4) === ".csv"){
-             p = highed.merge(p,{ type:"text"})
+             p = highed.merge(p,{ type: "binary"}) // To open CSV with ANSI formatting aswell as utf8
         } else if(uploader.files[0].name.substring(uploader.files[0].name.length - 5) === ".json"){
              p = highed.merge(p,{ type: 'json'})
         }
@@ -92,7 +92,8 @@ highed.ready(function() {
         };
         reader.onload = function(event) {
           var data = reader.result;
-
+          
+          
           if (p.type === 'json') {
             try {
               var jsonData = JSON.parse(data);
