@@ -38,7 +38,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
               type: "line",
               style: {
                 fontFamily: '"Open Sans", sans-serif',
-                color: "#f00"
+                color: "#000000"
               }
             },
             title: {
