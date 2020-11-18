@@ -65,7 +65,7 @@ highed.ready(function() {
     );
 
     uploader.accept = p.accept;
-
+    var excelFile = false;  
     if (highed.isFn(cb)) {
       cb();
     }
@@ -73,6 +73,7 @@ highed.ready(function() {
     cb = highed.dom.on(uploader, 'change', function() {
       if(uploader.files[0].name.substring(uploader.files[0].name.length - 4) === ".xls" ||
            uploader.files[0].name.substring(uploader.files[0].name.length - 5) === ".xlsx") {
+             excelFile = true;
              p = highed.merge(p,{ type: 'binary'})
         }
         else if (uploader.files[0].name.substring(uploader.files[0].name.length - 4) === ".csv"){
@@ -112,9 +113,9 @@ highed.ready(function() {
               }
             }
           }
-          else if (p.type === "binary"){
+          else if (excelFile){
             var workbook = XLSX.read(event.target.result, {
-              type: 'binary'
+              type: p.type
             })
             var firstSheet = workbook.SheetNames[0];
             data = XLSX.utils.sheet_to_csv(workbook.Sheets[firstSheet]);

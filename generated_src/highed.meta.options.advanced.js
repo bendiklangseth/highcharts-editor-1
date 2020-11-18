@@ -1344,7 +1344,7 @@ highed.meta.optionsAdvanced = {
                         },
                         "name": "style",
                         "excludes": {},
-                        "default": "{\"color\": \"#666666\", \"fontSize\": \"11px\"}",
+                        "default": "{\"color\": \"##000000\", \"fontSize\": \"11px\"}",
                         "description": "CSS styles for the measure label."
                       },
                       "subtree": {
@@ -1355,7 +1355,7 @@ highed.meta.optionsAdvanced = {
                             },
                             "name": "color",
                             "excludes": {},
-                            "default": "#666666"
+                            "default": "#000000"
                           },
                           "subtree": {}
                         },
@@ -2065,7 +2065,7 @@ highed.meta.optionsAdvanced = {
             },
             "name": "style",
             "excludes": {},
-            "default": "{\"color\": \"#666666\"}",
+            "default": "{\"color\": \"#000000\"}",
             "description": "CSS styles for the caption.\n\nIn styled mode, the caption style is given in the\n`.highcharts-caption` class."
           },
           "subtree": {}
@@ -6100,7 +6100,7 @@ highed.meta.optionsAdvanced = {
                 },
                 "name": "symbolFill",
                 "excludes": {},
-                "default": "#666666",
+                "default": "#000000",
                 "description": "Fill color for the symbol within the button."
               },
               "subtree": {}
@@ -6124,7 +6124,7 @@ highed.meta.optionsAdvanced = {
                 },
                 "name": "symbolStroke",
                 "excludes": {},
-                "default": "#666666",
+                "default": "#000000",
                 "description": "The color of the symbol's stroke or line."
               },
               "subtree": {}
@@ -15125,7 +15125,7 @@ highed.meta.optionsAdvanced = {
                 },
                 "name": "borderColor",
                 "excludes": {},
-                "default": "#666666",
+                "default": "#000000",
                 "description": "The border color of the node cards."
               },
               "subtree": {}
@@ -15195,7 +15195,7 @@ highed.meta.optionsAdvanced = {
                 },
                 "name": "linkColor",
                 "excludes": {},
-                "default": "#666666",
+                "default": "#000000",
                 "description": "The color of the links between nodes."
               },
               "subtree": {}
@@ -27915,7 +27915,7 @@ highed.meta.optionsAdvanced = {
             },
             "name": "style",
             "excludes": {},
-            "default": "{\"color\": \"#666666\"}",
+            "default": "{\"color\": \"#000000\"}",
             "description": "CSS styles for the title.\n\nIn styled mode, the subtitle style is given in the\n`.highcharts-subtitle` class."
           },
           "subtree": {}
@@ -29954,7 +29954,7 @@ highed.meta.optionsAdvanced = {
                     },
                     "name": "color",
                     "excludes": {},
-                    "default": "#666666"
+                    "default": "#000000"
                   },
                   "subtree": {}
                 },
@@ -31375,7 +31375,7 @@ highed.meta.optionsAdvanced = {
                 },
                 "name": "style",
                 "excludes": {},
-                "default": "{\"color\": \"#666666\"}",
+                "default": "{\"color\": \"#000000\"}",
                 "description": "CSS styles for the title. If the title text is longer than the\naxis length, it will wrap to multiple lines by default. This can\nbe customized by setting `textOverflow: 'ellipsis'`, by\nsetting a specific `width` or by setting `whiteSpace: 'nowrap'`.\n\nIn styled mode, the stroke width is given in the\n`.highcharts-axis-title` class."
               },
               "subtree": {}
