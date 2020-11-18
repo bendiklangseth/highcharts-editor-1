@@ -3288,7 +3288,7 @@
                           "Highcharts.CSSObject"
                         ]
                       },
-                      "defaultvalue": "{\"color\": \"#666666\", \"fontSize\": \"11px\"}"
+                      "defaultvalue": "{\"color\": \"#000000\", \"fontSize\": \"11px\"}"
                     },
                     "meta": {
                       "fullname": "annotations.measure.typeOptions.label.style",
@@ -3314,7 +3314,7 @@
                           "lineEnd": 807,
                           "column": 20,
                           "filename": "highcharts/js/annotations/types/Measure.js",
-                          "default": "#666666"
+                          "default": "#000000"
                         },
                         "children": {}
                       },
@@ -4898,7 +4898,7 @@
               "Highcharts.CSSObject"
             ]
           },
-          "defaultvalue": "{\"color\": \"#666666\"}",
+          "defaultvalue": "{\"color\": \"#000000\"}",
           "since": "7.2.0"
         },
         "meta": {
@@ -12466,7 +12466,7 @@
                       "Highcharts.ColorString"
                     ]
                   },
-                  "defaultvalue": "#666666",
+                  "defaultvalue": "#000000",
                   "since": "2.0.0"
                 },
                 "meta": {
@@ -23291,7 +23291,7 @@
               "lineEnd": 393,
               "column": 8,
               "filename": "highcharts/js/modules/exporting.src.js",
-              "default": "#666666"
+              "default": "#000000"
             },
             "children": {}
           },
@@ -23351,7 +23351,7 @@
               "lineEnd": 403,
               "column": 8,
               "filename": "highcharts/js/modules/exporting.src.js",
-              "default": "#666666"
+              "default": "#000000"
             },
             "children": {}
           },
@@ -41800,7 +41800,7 @@
               "lineEnd": 81,
               "column": 4,
               "filename": "highcharts/js/modules/organization.src.js",
-              "default": "#666666"
+              "default": "#000000"
             },
             "children": {}
           },
@@ -41913,7 +41913,7 @@
               "lineEnd": 194,
               "column": 4,
               "filename": "highcharts/js/modules/organization.src.js",
-              "default": "#666666"
+              "default": "#000000"
             },
             "children": {}
           },
@@ -76701,7 +76701,7 @@
               "Highcharts.CSSObject"
             ]
           },
-          "defaultvalue": "{\"color\": \"#666666\"}"
+          "defaultvalue": "{\"color\": \"#000000\"}"
         },
         "meta": {
           "filename": "highcharts/js/parts/Options.js",
@@ -82021,7 +82021,7 @@
                   "lineEnd": 1163,
                   "column": 16,
                   "filename": "highcharts/js/parts/Axis.js",
-                  "default": "#666666"
+                  "default": "#000000"
                 },
                 "children": {}
               },
@@ -86060,7 +86060,7 @@
                   "Highcharts.CSSObject"
                 ]
               },
-              "defaultvalue": "{\"color\": \"#666666\"}"
+              "defaultvalue": "{\"color\": \"#000000\"}"
             },
             "meta": {
               "fullname": "xAxis.title.style",

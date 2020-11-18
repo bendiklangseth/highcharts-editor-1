@@ -85,7 +85,10 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
         },
         properties.dataGrid
       )
-    ),   
+    ),
+    revertButton = highed.dom.cr('button', 'highed-undo-button', ''),
+    revertIcon = highed.dom.ap(revertButton, highed.dom.cr('i', 'fa fa-undo')), 
+    revertDiv = highed.dom.ap(highed.dom.cr('div', 'highed-undo-div'), revertButton),
     addRowInput = highed.dom.cr('input', 'highed-field-input highed-add-row-input'),
     addRowBtn = highed.dom.cr('button', 'highed-import-button highed-ok-button highed-add-row-btn small', 'Add'),
     addRowDiv = highed.dom.ap(highed.dom.cr('div', 'highed-dtable-extra-options'),
@@ -128,6 +131,11 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
       assignDataPanel.getFieldsToHighlight(dataTable.highlightCells, true);
     });
 
+
+    highed.dom.on(revertButton, 'click', function() {
+        console.log("REVERT")
+    }),
+
     highed.dom.on(dataImportBtn, 'click', function() {
       dataTable.showImportModal(0);
     }),
@@ -148,7 +156,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
     function init() {
 
       if (!highed.onPhone()) {
-        highed.dom.ap(iconsContainer, addRowDiv, dataClearBtn, dataImportBtn, dataExportBtn);
+        highed.dom.ap(iconsContainer, revertDiv, addRowDiv, dataClearBtn, dataImportBtn, dataExportBtn);
       } else {
         highed.dom.ap(iconsContainer, dataImportBtn);
       }

@@ -531,7 +531,7 @@ highed.DataTable = function(parent, attributes) {
       moveToColumn = colNumber;
     }
   }
-
+  var dataHistory = [];
   ////////////////////////////////////////////////////////////////////////////
   function Column(row, colNumber, val, keyVal) {
     var value = typeof val === 'undefined' || typeof val === 'object' || (val === 'null') ? null : val, //object check for ie11/edge
@@ -838,9 +838,10 @@ highed.DataTable = function(parent, attributes) {
       }
     };
 
+    dataHistory.push(exports.value())
     return exports;
   }
-
+  console.log(dataHistory)
   function deselectAllCells() {
 
     allSelectedCells.forEach(function(cells) {
