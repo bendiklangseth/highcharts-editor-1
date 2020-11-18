@@ -42,7 +42,7 @@ highed.meta.fonts = [
   'Courier New',
   'Monaco',
   'Monospace',
-  '"Open sans", sans-serif'
+  'Open sans, sans-serif'
 ];
 
 highed.meta.customFonts = [/*

@@ -3139,7 +3139,7 @@ highed.meta.optionsAdvanced = {
             },
             "name": "style",
             "excludes": {},
-            "default": "{\"fontFamily\": \"\\\"Open Sans\\\", \\\"Lucida Sans Unicode\\\", Verdana, Arial, Helvetica, sans-serif\",\"fontSize\":\"12px\"}",
+            "default": "{\"fontFamily\": \"\\\"Open Sans, sans-serif\\\", \\\"Lucida Sans Unicode\\\", Verdana, Arial, Helvetica, sans-serif\",\"fontSize\":\"12px\"}",
             "description": "Additional CSS styles to apply inline to the container `div`. Note\nthat since the default font styles are applied in the renderer, it\nis ignorant of the individual chart options and must be set globally."
           },
           "subtree": {}
@@ -21824,7 +21824,7 @@ highed.meta.optionsAdvanced = {
                         },
                         "name": "lineColor",
                         "excludes": {},
-                        "default": "#333333",
+                        "default": "#000000",
                         "description": "Color of the line."
                       },
                       "subtree": {}

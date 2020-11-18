@@ -45,27 +45,32 @@ highed.meta.optionsExtended = {
             width: 50
           },
           {
-            id: 'subtitle--text',
-            pid: 'subtitle.text',
-            dataType: 'string',
-            context: 'General',
-            parent: 'subtitle',
-            width: 50
-          },
-          {
             id: 'title--style',
             dataType: 'font',
             pid: 'title.style',
             context: 'General',
-            defaults: '{ "color": "#333333", "fontSize": "18px"}',
+            defaults: '{ "color": "#000000", "fontSize": "18px"}',
             parent: 'title'
+          }
+        ]
+      },
+      {
+        text: 'option.subcat.subtitle',
+        dropdown: true,
+        options: [
+          {
+            id: 'subtitle--text',
+            pid:'subtitle.text',
+            datatype: 'string',
+            context: 'General',
+            parent: 'subtitle'
           },
           {
             id: 'subtitle--style',
             dataType: 'font',
             pid: 'subtitle.style',
             context: 'General',
-            defaults: '{ "color": "#000000", "fontSize": "12px"}',
+            defaults: '{ "color": "#000000", "fontSize": "10px"}',
             parent: 'subtitle'
           }
         ]
@@ -355,16 +360,6 @@ highed.meta.optionsExtended = {
           parent: 'xAxis',
           width: 50
         },
-        {
-          id: 'xAxis--linkedTo',
-          pid: 'xAxis.linkedTo',
-          custom: {
-            minValue: 0
-          },
-          dataType: 'number',
-          context: 'General',
-          parent: 'xAxis'
-        }
         ]
       },
       {
@@ -431,16 +426,6 @@ highed.meta.optionsExtended = {
             defaults: 'false',
             parent: 'yAxis',
             width: 50
-          },
-          {
-            id: 'yAxis--linkedTo',
-            pid: 'yAxis.linkedTo',
-            dataType: 'number',
-            custom: {
-              minValue: 0
-            },
-            context: 'General',
-            parent: 'yAxis'
           }
         ]
       }
@@ -681,7 +666,15 @@ highed.meta.optionsExtended = {
             datatype: 'string',
             context: 'General',
             parent: 'series<gauge>',
-            values: '[ "normal", "overlap", "percent", "stream" ]'
+            values: '[ "undefined", "normal", "overlap", "percent", "stream" ]'
+          },
+          {
+            id: 'series<abands>--yAxis',
+            pid: 'series<abands>.yAxis',
+            datatype: 'number',
+            default: 0,
+            context: 'General',
+            parent: 'series<gauge>'
           }
         ]
       }
