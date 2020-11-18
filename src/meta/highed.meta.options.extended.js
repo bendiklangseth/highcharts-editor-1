@@ -65,7 +65,7 @@ highed.meta.optionsExtended = {
             dataType: 'font',
             pid: 'subtitle.style',
             context: 'General',
-            defaults: '{ "color": "#666666", "fontSize": "12px"}',
+            defaults: '{ "color": "#000000", "fontSize": "12px"}',
             parent: 'subtitle'
           }
         ]
@@ -303,7 +303,7 @@ highed.meta.optionsExtended = {
           dataIndex: 0,
           pid: 'xAxis.title.style',
           context: 'General',
-          defaults: '{ "color": "#666666" }',
+          defaults: '{ "color": "#000000" }',
           parent: 'xAxis-title'
         },
         {
@@ -378,7 +378,7 @@ highed.meta.optionsExtended = {
             dataIndex: 0,
             pid: 'yAxis.title.style',
             context: 'General',
-            defaults: '{ "color": "#666666" }',
+            defaults: '{ "color": "#000000" }',
             parent: 'yAxis-title'
           },
           {
