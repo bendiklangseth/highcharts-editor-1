@@ -36,6 +36,13 @@ highed.templates.add('Line', {
       type: 'line',
       inverted: true,
       polar: false
+    },
+    plotOptions: {
+      line: {
+        marker: {
+          enabled: false
+        }
+      }
     }
   }
 });

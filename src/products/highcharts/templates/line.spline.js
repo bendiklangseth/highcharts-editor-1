@@ -35,6 +35,13 @@ highed.templates.add('Line', {
     chart: {
       type: 'spline',
       polar: false
+    },
+    plotOptions: {
+      line: {
+        marker: {
+          enabled: false
+        }
+      }
     }
   }
 });

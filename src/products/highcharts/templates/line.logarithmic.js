@@ -39,6 +39,13 @@ highed.templates.add('Line', {
     yAxis: {
       type: 'logarithmic',
       minorTickInterval: 'auto'
+    },
+    plotOptions: {
+      line: {
+        marker: {
+          enabled: false
+        }
+      }
     }
   }
 });

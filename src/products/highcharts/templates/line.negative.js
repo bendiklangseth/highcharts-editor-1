@@ -39,6 +39,13 @@ highed.templates.add('Line', {
     'series[0]': {
       negativeColor: '#0088FF',
       color: '#FF0000'
+    },
+    plotOptions: {
+      line: {
+        marker: {
+          enabled: false
+        }
+      }
     }
   }
 });
