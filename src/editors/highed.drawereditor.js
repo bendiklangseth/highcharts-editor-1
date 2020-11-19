@@ -50,6 +50,9 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
                 fontWeight: 'normal'
               },
             },
+            subtitle: {
+              align: "left"
+            },
             legend: {
               align: 'center',
               itemStyle: {
@@ -77,6 +80,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
               },
               tickWidth: 1,
               tickLength: 10,
+              tickPosition: 'inside',
               tickColor: '#000000',
               gridLineColor: 'transparent',
               lineColor: '#000000',
@@ -95,6 +99,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
               tickLength: 10,
               tickColor: '#000000',
               gridLineColor: 'transparent',
+              tickPosition: 'inside',
               linkedTo: 0,
               lineColor: '#000000',
               opposite:  true,
