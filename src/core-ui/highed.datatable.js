@@ -307,7 +307,7 @@ highed.DataTable = function(parent, attributes) {
   gsheetPluginButton.target = "_blank";
 
   if (highed.chartType !== 'Map') highed.dom.ap(hideCellsDiv, switchRowColumns)
-
+  
   highed.dom.on(mainInput, 'click', function(e) {
     return highed.dom.nodefault(e);
   });
@@ -500,7 +500,6 @@ highed.DataTable = function(parent, attributes) {
     highed.dom.ap(target, mainInput);
 
     if (!dontFocus) mainInput.focus();
-
   }
 
   ////////////////////////////////////////////////////////////////////////////
@@ -531,7 +530,8 @@ highed.DataTable = function(parent, attributes) {
       moveToColumn = colNumber;
     }
   }
-  var dataHistory = [];
+
+  var valueHistory = [];
   ////////////////////////////////////////////////////////////////////////////
   function Column(row, colNumber, val, keyVal) {
     var value = typeof val === 'undefined' || typeof val === 'object' || (val === 'null') ? null : val, //object check for ie11/edge
@@ -541,6 +541,7 @@ highed.DataTable = function(parent, attributes) {
       disabled = false,
       exports = {};
 
+    
     function goLeft() {
       if (colNumber >= 1) {
         row.columns[colNumber - 1].focus();
@@ -664,6 +665,11 @@ highed.DataTable = function(parent, attributes) {
         return false;
       });
 
+      if(valueHistory.length === 0){
+        valueHistory.push([colNumber, row.number, null])
+        console.log('Push Start of array: ', valueHistory)
+      }
+      var lastElm = valueHistory[valueHistory.length -1]
       makeEditable(
         col,
         value,
@@ -672,8 +678,15 @@ highed.DataTable = function(parent, attributes) {
           value = checkNull(val) ? null : val;
           colVal.innerHTML = value;
           if (changed) {
-            emitChanged();
+            if((lastElm[lastElm.length -1] === null && value === null)){
+              emitChanged();
+              events.emit('ChangeMapCategoryValue', value);
+            } else {
+              valueHistory.push([colNumber, row.number, value])
+              console.log('Push from inner: ', valueHistory)
+              emitChanged();
             events.emit('ChangeMapCategoryValue', value);
+            }
           }
         },
         handleKeyup,
@@ -837,11 +850,9 @@ highed.DataTable = function(parent, attributes) {
         exports.colNumber = i;
       }
     };
-
-    dataHistory.push(exports.value())
     return exports;
   }
-  console.log(dataHistory)
+
   function deselectAllCells() {
 
     allSelectedCells.forEach(function(cells) {
@@ -1096,6 +1107,18 @@ highed.DataTable = function(parent, attributes) {
     if (index >= 0 && index < rows.length) {
       rows.splice(index + 1, 0, addRow(true, true));
       rebuildRows();
+    }
+  }
+
+  function UndoLastInput() {
+    if(valueHistory.length > 1){
+      var lastElement = valueHistory[valueHistory.length - 1];
+      var elementPos = getInputPosition(lastElement[0],lastElement[1]);
+      elementPos.setValue(lastElement[2])
+      valueHistory.pop()
+      console.log('Whole Array: ', valueHistory)
+    } else {
+      alert("There is nothing to undo!")
     }
   }
 
@@ -1498,8 +1521,8 @@ highed.DataTable = function(parent, attributes) {
         },
         function(e) {
           if (e.keyCode === 13) {
-            mainInput.className = 'highed-dtable-input';
-            header.removeChild(mainInput);
+             mainInput.className = 'highed-dtable-input';
+             header.removeChild(mainInput);
           }
         }
       );
@@ -1745,6 +1768,18 @@ highed.DataTable = function(parent, attributes) {
     return (sections || []).some(function(section) {
       return (section.dataColumns.indexOf(index) > -1 || (section.extraColumns && section.extraColumns.indexOf(index) > -1) || section.labelColumn === index);
     });
+  }
+
+  function getInputPosition(colPos, rowPos) {
+    var correctCol = {};
+    rows.forEach(function(row) {
+      row.columns.forEach(function(col) {
+        if(col.colNumber === colPos && col.rowNumber === rowPos){
+           correctCol = col;
+        }
+      });
+    });
+    return correctCol;
   }
 
   /** Get the table contents as an array of arrays
@@ -3006,6 +3041,7 @@ highed.DataTable = function(parent, attributes) {
     initGSheet: initGSheet,
     on: events.on,
     resize: resize,
+    undoInput: UndoLastInput,
     loadSampleData: loadSampleData,
     loadLiveDataFromURL: loadLiveDataFromURL,
     loadLiveDataPanel: loadLiveDataPanel,

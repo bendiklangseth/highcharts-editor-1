@@ -133,7 +133,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
 
 
     highed.dom.on(revertButton, 'click', function() {
-        console.log("REVERT")
+      dataTable.undoInput() //dataTable.undo()
     }),
 
     highed.dom.on(dataImportBtn, 'click', function() {
@@ -309,7 +309,8 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
         chartPreview.loadTemplateForSerie(newTemplate, seriesIndex);
 
         const data = dataTable.toCSV(';', true, assignDataPanel.getAllMergedLabelAndData());
-        
+
+
         chartPreview.data.csv({
           csv: data
         }, null, false, function() {
@@ -354,6 +355,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
       }
 
     }
+
     function setSeriesMapping(allOptions) {
 
       var tempOption = [],
@@ -651,6 +653,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
     
     clearSeriesMapping();
     const data = dataTable.toCSV(';', true, assignDataPanel.getAllMergedLabelAndData());
+    
     chartPreview.data.csv({
       csv: data
     }, null, false, function() {
@@ -670,6 +673,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
   assignDataPanel.on('ChangeData', function(allOptions) {
     //Series map all of the "linkedTo" options
     const data = dataTable.toCSV(';', true, assignDataPanel.getAllMergedLabelAndData());
+
     chartPreview.data.setAssignDataFields(assignDataPanel.getAssignDataFields());
 
     chartPreview.data.csv({
