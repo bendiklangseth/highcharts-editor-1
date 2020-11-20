@@ -681,12 +681,17 @@ highed.DataTable = function(parent, attributes) {
         if(value === null){
           console.log('Value of new item is null')
         } else {
-          valueHistory.push([colNumber, row.number, value]);
-         console.log('Push when clicking new word: ', valueHistory)
+          if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){ //Return -1 when item is not in array, otherwise return index pos
+            valueHistory.push([colNumber, row.number, value]);
+            console.log('Push when clicking new word: ', valueHistory)
+          } 
+          // else {
+          //   console.log('This element is already in arrray')
+          // }
         }
       }
       else {
-        console.log("duplicate",[ lastElm[lastElm.length - 1 ], value])
+        console.log("duplicate", [lastElm[lastElm.length - 1 ], value])
       }
       makeEditable(
         col,
@@ -698,11 +703,12 @@ highed.DataTable = function(parent, attributes) {
           if (changed) {
             if((lastElm[lastElm.length -1] === null && value === null)){
               emitChanged();
-              events.emit('ChangeMapCategoryValue', value);
             } else {
-              valueHistory.push([colNumber, row.number, value])
-              console.log('Push from inner: ', valueHistory)
-              emitChanged();
+              if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){
+                  valueHistory.push([colNumber, row.number, value])
+                  console.log('Push from inner: ', valueHistory)
+                  emitChanged();
+              }
             events.emit('ChangeMapCategoryValue', value);
             }
           }
@@ -869,6 +875,19 @@ highed.DataTable = function(parent, attributes) {
       }
     };
     return exports;
+  }
+
+  function searchForArray(haystack, needle){
+    var i, j, current;
+    for(i = 0; i < haystack.length; ++i){
+      if(needle.length === haystack[i].length){
+        current = haystack[i];
+        for(j = 0; j < needle.length && needle[j] === current[j]; ++j);
+        if(j === needle.length)
+          return i;
+      }
+    }
+    return -1;
   }
 
   function deselectAllCells() {
