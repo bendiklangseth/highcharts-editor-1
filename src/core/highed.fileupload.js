@@ -77,7 +77,7 @@ highed.ready(function() {
              p = highed.merge(p,{ type: 'binary'})
         }
         else if (uploader.files[0].name.substring(uploader.files[0].name.length - 4) === ".csv"){
-             p = highed.merge(p,{ type: "binary"}) // To open CSV with ANSI formatting aswell as utf8
+             p = highed.merge(p,{ type: "text"}) 
         } else if(uploader.files[0].name.substring(uploader.files[0].name.length - 5) === ".json"){
              p = highed.merge(p,{ type: 'json'})
         }
