@@ -86,7 +86,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
         properties.dataGrid
       )
     ),
-    revertButton = highed.dom.cr('button', 'highed-undo-button', ''),
+    revertButton = highed.dom.cr('button', 'highed-undo-button highed-ok-button highed-sm-button', ''),
     revertIcon = highed.dom.ap(revertButton, highed.dom.cr('i', 'fa fa-undo')), 
     revertDiv = highed.dom.ap(highed.dom.cr('div', 'highed-undo-div'), revertButton),
     addRowInput = highed.dom.cr('input', 'highed-field-input highed-add-row-input'),
@@ -785,7 +785,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
     setSeriesMapping(assignDataPanel.getAllOptions());
     chartPreview.data.gsheet(settings);
   });
-  
+
   dataTable.on('Change', function(headers, data) {
 
     chartPreview.data.setDataTableCSV(dataTable.toCSV(';', true));

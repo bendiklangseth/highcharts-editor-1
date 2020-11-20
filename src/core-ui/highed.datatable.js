@@ -632,6 +632,7 @@ highed.DataTable = function(parent, attributes) {
     }
 
     function setValue(newValue) {
+      console.log("Value set", newValue)
       colVal.innerHTML = newValue;
       mainInput.value = newValue;
       value = newValue;
@@ -1109,14 +1110,13 @@ highed.DataTable = function(parent, attributes) {
       rebuildRows();
     }
   }
-
+ 
   function UndoLastInput() {
-    if(valueHistory.length > 1){
+    if(valueHistory.length != 0){
       var lastElement = valueHistory[valueHistory.length - 1];
       var elementPos = getInputPosition(lastElement[0],lastElement[1]);
-      elementPos.setValue(lastElement[2])
       valueHistory.pop()
-      console.log('Whole Array: ', valueHistory)
+      elementPos.setValue(lastElement[2])
     } else {
       alert("There is nothing to undo!")
     }
@@ -3011,6 +3011,7 @@ highed.DataTable = function(parent, attributes) {
   }
 
   function loadSampleData(data) {
+    console.log(data)
     importer.emitCSVImport(data);
   }
 
