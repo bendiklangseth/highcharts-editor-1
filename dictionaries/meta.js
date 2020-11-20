@@ -250,7 +250,7 @@ module.exports = {
 					tooltipText: 'Text to append after the value in the tooltip'
 				},
 				{
-					id: 'plotOptions-series--stacking',
+					id: 'series--stacking',
 					text: 'Stacked',
 					tooltipText: 'Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". '
 					+ 'When stacking is enabled, data must be sorted in ascending X order.Some stacking options are related to specific series types. '

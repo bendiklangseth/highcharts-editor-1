@@ -661,16 +661,16 @@ highed.meta.optionsExtended = {
             width: 50
           },
           {
-            id: 'plotOptions-series--stacking',
-            pid: 'plotOptions.series.stacking',
+            id: 'series--stacking',
+            pid: 'series.stacking',
             datatype: 'string',
             context: 'General',
             parent: 'series<gauge>',
             values: '[ "undefined", "normal", "overlap", "percent", "stream" ]'
           },
           {
-            id: 'series<abands>--yAxis',
-            pid: 'series<abands>.yAxis',
+            id: 'series--yAxis',
+            pid: 'series.yAxis',
             datatype: 'number',
             default: 0,
             context: 'General',

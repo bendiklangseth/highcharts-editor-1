@@ -126,8 +126,8 @@ highed.installLanguage({
     'option.text.plotOptions.series.states.inactive.opacity': 'Series Dimming',
     'option.tooltip.plotOptions.series.states.inactive.opacity':
       'Opacity of series elements (dataLabels, line, area).',
-    'option.text.plotOptions.series.stacking': 'Stacked',
-    'option.tooltip.plotOptions.series.stacking': 'Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". When stacking is enabled, data must be sorted in ascending X order.Some stacking options are related to specific series types. In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series.',
+    'option.text.series.stacking': 'Stacked',
+    'option.tooltip.series.stacking': 'Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". When stacking is enabled, data must be sorted in ascending X order.Some stacking options are related to specific series types. In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series.',
     'option.text.series<abands>.yAxis': 'y Axis',
     'option.tooltip.series<abands>.yAxis': 'When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the {@link #yAxis.id|axis id} or the index of the axis in the yAxis array, with 0 being the first.',
     'option.text.chart.polar': 'Polar (radar) projection',
