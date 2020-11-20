@@ -51,7 +51,7 @@ highed.CustomizePage = function(parent, options, chartPreview, chartFrame, props
     width,
     chartWidth = 68,
     iconClass,
-    autoAppearanceTab = true,
+    autoTitleTab = true,
     icon = highed.dom.cr('div', iconClass),
     helpModal,
     // Data table
@@ -551,10 +551,10 @@ highed.CustomizePage = function(parent, options, chartPreview, chartFrame, props
     });
 
 
-    if (autoAppearanceTab) {
+    if (autoTitleTab) {
       setTimeout(function() {
-        if (!document.getElementById('highed-list-header-Appearance').classList.contains('active')){
-          document.getElementById('highed-list-header-Appearance').children[0].click()
+        if (!document.getElementById('highed-list-header-Title').classList.contains('active')){
+          document.getElementById('highed-list-header-Title').children[0].click()
         }
       }, 300)
     }
@@ -610,7 +610,7 @@ highed.CustomizePage = function(parent, options, chartPreview, chartFrame, props
   }
 
   function setTabBehaviour(behaviour) {
-    autoAppearanceTab = behaviour
+    autoTitleTab = behaviour
   }
 
   function destroy() {}
