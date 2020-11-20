@@ -37,6 +37,11 @@ highed.templates.add('Line', {
       polar: false
     },
     plotOptions: {
+      line: {
+        marker: {
+          enabled: false
+        }
+      },
       series: {
         dataLabels: {
           enabled: true

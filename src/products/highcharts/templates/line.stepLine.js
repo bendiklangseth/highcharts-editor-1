@@ -38,7 +38,10 @@ highed.templates.add('Line', {
     },
     plotOptions: {
       line: {
-        step: 'left'
+        step: 'left',
+        marker: {
+          enabled: false
+        }
       }
     }
   }

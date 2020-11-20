@@ -38,6 +38,13 @@ highed.templates.add('Line', {
   config: {
     chart: {
       type: 'line'
+    },
+    plotOptions: {
+      line: {
+        marker: {
+          enabled: false
+        }
+      }
     }
   }
 });

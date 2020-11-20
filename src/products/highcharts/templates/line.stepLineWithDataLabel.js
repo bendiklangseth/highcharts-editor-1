@@ -43,7 +43,10 @@ highed.templates.add('Line', {
         }
       },
       line: {
-        step: 'left'
+        step: 'left',
+        marker: {
+          enabled: false
+        }
       }
     }
   }

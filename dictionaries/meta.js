@@ -255,6 +255,11 @@ module.exports = {
 					tooltipText: 'Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". '
 					+ 'When stacking is enabled, data must be sorted in ascending X order.Some stacking options are related to specific series types. '
 					+ 'In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series.'
+				},
+				{
+					id: 'series<abands>--yAxis',
+					text: 'Y Axis',
+					tooltipText: 'When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the {@link #yAxis.id|axis id} or the index of the axis in the yAxis array, with 0 being the first.'
 				}
 			]
 		}],

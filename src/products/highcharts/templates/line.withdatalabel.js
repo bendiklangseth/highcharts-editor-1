@@ -41,6 +41,11 @@ highed.templates.add('Line', {
         dataLabels: {
           enabled: true
         }
+      },
+      line: {
+        marker: {
+          enabled: false
+        }
       }
     }
   }

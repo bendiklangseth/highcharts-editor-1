@@ -60,7 +60,12 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                     borderColor: 'black',
                     dashStyle: 'dot'
                 }
-            }
+              },          
+            },
+            line: {
+              marker: {
+                enabled: false,
+              }
             }
           }, 
           exporting: {

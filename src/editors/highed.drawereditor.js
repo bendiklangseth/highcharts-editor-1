@@ -45,12 +45,18 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
               align: 'left',
               style: {
                 fontSize: '16px'
-              }
+              },
+              itemStyle: {
+                fontWeight: 'normal'
+              },
+            },
+            subtitle: {
+              align: "left"
             },
             legend: {
-              align: 'left',
+              align: 'center',
               itemStyle: {
-                fontWeight: 'lighter'
+                fontWeight: 'normal'
               },
               style: {
                 fontSize: '15px'
@@ -58,19 +64,51 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
             },
             xAxis: {
               minorTickLength: 0,
-              tickLength: 0
+              tickLength: 0,
+              tickWidth: 1,
+              lineColor: '#000000',
+              labels: {
+                style: {
+                    color: '#000000'
+                }
+              },
+              lineWidth: 1 
             },
             yAxis: [{
               title: {
                 text: ''
-              }
+              },
+              tickWidth: 1,
+              tickLength: 10,
+              tickPosition: 'inside',
+              tickColor: '#000000',
+              gridLineColor: 'transparent',
+              lineColor: '#000000',
+              labels: {
+                style: {
+                    color: '#000000'
+                }  
+              },
+              lineWidth: 1        
             },
             {
               title: {
                 text: ''
               },
-                linkedTo: 0,
-                opposite:  true
+              tickWidth: 1,
+              tickLength: 10,
+              tickColor: '#000000',
+              gridLineColor: 'transparent',
+              tickPosition: 'inside',
+              linkedTo: 0,
+              lineColor: '#000000',
+              opposite:  true,
+              labels: {
+                style: {
+                    color: '#000000'
+                }
+              },
+              lineWidth: 1 
             }],
             credits: {
               enabled: false
