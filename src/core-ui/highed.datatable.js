@@ -668,7 +668,7 @@ highed.DataTable = function(parent, attributes) {
 
       if(valueHistory.length === 0){
         valueHistory.push([colNumber, row.number, null])
-        console.log('Push Start of array: ', valueHistory)
+        // console.log('Push Start of array: ', valueHistory)
       }
       var lastElm = valueHistory[valueHistory.length -1]
       makeEditable(
@@ -684,7 +684,7 @@ highed.DataTable = function(parent, attributes) {
               events.emit('ChangeMapCategoryValue', value);
             } else {
               valueHistory.push([colNumber, row.number, value])
-              console.log('Push from inner: ', valueHistory)
+              // console.log('Push from inner: ', valueHistory)
               emitChanged();
             events.emit('ChangeMapCategoryValue', value);
             }
@@ -3011,7 +3011,6 @@ highed.DataTable = function(parent, attributes) {
   }
 
   function loadSampleData(data) {
-    console.log(data)
     importer.emitCSVImport(data);
   }
 
