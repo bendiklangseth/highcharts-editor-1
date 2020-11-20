@@ -133,7 +133,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
 
 
     highed.dom.on(revertButton, 'click', function() {
-      dataTable.undoInput() //dataTable.undo()
+      dataTable.undoInput();
     }),
 
     highed.dom.on(dataImportBtn, 'click', function() {

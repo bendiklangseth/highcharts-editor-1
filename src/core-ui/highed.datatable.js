@@ -665,12 +665,29 @@ highed.DataTable = function(parent, attributes) {
         highed.dom.nodefault(e);
         return false;
       });
-
-      if(valueHistory.length === 0){
-        valueHistory.push([colNumber, row.number, null])
-        // console.log('Push Start of array: ', valueHistory)
+     
+      if(valueHistory.length === 0 && value === null){
+        valueHistory.push([colNumber, row.number, null]);
+        console.log('Push Start of array: ', valueHistory)
+      }     
+      else if (valueHistory.length === 0 && value != null) {
+        valueHistory.push([colNumber, row.number, value]);
+        console.log('Push Start of array: ', valueHistory)
       }
-      var lastElm = valueHistory[valueHistory.length -1]
+
+      var lastElm = valueHistory[valueHistory.length -1];
+
+      if(lastElm[lastElm.length - 1] != value) {
+        if(value === null){
+          console.log('Value of new item is null')
+        } else {
+          valueHistory.push([colNumber, row.number, value]);
+         console.log('Push when clicking new word: ', valueHistory)
+        }
+      }
+      else {
+        console.log("duplicate",[ lastElm[lastElm.length - 1 ], value])
+      }
       makeEditable(
         col,
         value,
@@ -684,7 +701,7 @@ highed.DataTable = function(parent, attributes) {
               events.emit('ChangeMapCategoryValue', value);
             } else {
               valueHistory.push([colNumber, row.number, value])
-              // console.log('Push from inner: ', valueHistory)
+              console.log('Push from inner: ', valueHistory)
               emitChanged();
             events.emit('ChangeMapCategoryValue', value);
             }
