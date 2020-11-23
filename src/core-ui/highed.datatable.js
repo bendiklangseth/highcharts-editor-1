@@ -631,11 +631,15 @@ highed.DataTable = function(parent, attributes) {
       emitChanged();
     }
 
-    function setValue(newValue) {
-      console.log("Value set", newValue)
-      colVal.innerHTML = newValue;
-      mainInput.value = newValue;
-      value = newValue;
+    function setValue(newElement) {
+      console.trace();
+      console.log("Value set", newElement[2])
+      console.log(['ColSet: ' + colNumber, 'RowSet: ' + row.number])
+      // if(newElement[2] != null){
+         colVal.innerHTML = newElement[2];
+         mainInput.value = newElement[2];
+         value = newElement[2];
+      // }
       emitChanged();
     }
 
@@ -1152,7 +1156,8 @@ highed.DataTable = function(parent, attributes) {
       var lastElement = valueHistory[valueHistory.length - 1];
       var elementPos = getInputPosition(lastElement[0],lastElement[1]);
       valueHistory.pop()
-      elementPos.setValue(lastElement[2])
+      console.log(['Col: ' + lastElement[0], 'Row: ' + lastElement[1]])
+      elementPos.setValue(lastElement);
     } else {
       alert("There is nothing to undo!")
     }
