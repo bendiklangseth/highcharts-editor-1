@@ -632,14 +632,12 @@ highed.DataTable = function(parent, attributes) {
     }
 
     function setValue(newElement) {
-      console.trace();
-      console.log("Value set", newElement[2])
-      console.log(['ColSet: ' + colNumber, 'RowSet: ' + row.number])
-      // if(newElement[2] != null){
-         colVal.innerHTML = newElement[2];
+      // console.log("Value set", newElement[2])
+      colVal.innerHTML = newElement[2];
+      if(mainInput.value.includes(newElement[2]) || newElement[2] === null){
          mainInput.value = newElement[2];
-         value = newElement[2];
-      // }
+      }
+      value = newElement[2];
       emitChanged();
     }
 
@@ -672,11 +670,9 @@ highed.DataTable = function(parent, attributes) {
      
       if(valueHistory.length === 0 && value === null){
         valueHistory.push([colNumber, row.number, null]);
-        console.log('Push Start of array: ', valueHistory)
       }     
       else if (valueHistory.length === 0 && value != null) {
         valueHistory.push([colNumber, row.number, value]);
-        console.log('Push Start of array: ', valueHistory)
       }
 
       var lastElm = valueHistory[valueHistory.length -1];
@@ -687,11 +683,7 @@ highed.DataTable = function(parent, attributes) {
         } else {
           if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){ //Return -1 when item is not in array, otherwise return index pos
             valueHistory.push([colNumber, row.number, value]);
-            console.log('Push when clicking new word: ', valueHistory)
           } 
-          // else {
-          //   console.log('This element is already in arrray')
-          // }
         }
       }
       else {
@@ -710,7 +702,6 @@ highed.DataTable = function(parent, attributes) {
             } else {
               if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){
                   valueHistory.push([colNumber, row.number, value])
-                  console.log('Push from inner: ', valueHistory)
                   emitChanged();
               }
             events.emit('ChangeMapCategoryValue', value);
@@ -1155,8 +1146,7 @@ highed.DataTable = function(parent, attributes) {
     if(valueHistory.length != 0){
       var lastElement = valueHistory[valueHistory.length - 1];
       var elementPos = getInputPosition(lastElement[0],lastElement[1]);
-      valueHistory.pop()
-      console.log(['Col: ' + lastElement[0], 'Row: ' + lastElement[1]])
+      valueHistory.pop();
       elementPos.setValue(lastElement);
     } else {
       alert("There is nothing to undo!")
@@ -2753,6 +2743,7 @@ highed.DataTable = function(parent, attributes) {
   }
 
   function clearData() {
+    importer.clearImportPasteArea();
     highed.emit('UIAction', 'FlushDataConfirm');
     init();
     emitChanged();
