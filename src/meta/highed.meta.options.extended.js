@@ -671,10 +671,9 @@ highed.meta.optionsExtended = {
           {
             id: 'series--yAxis',
             pid: 'series.yAxis',
-            datatype: 'number',
-            default: 0,
+            dataType: 'number',
             context: 'General',
-            parent: 'series<gauge>'
+            parent: 'series'
           }
         ]
       }

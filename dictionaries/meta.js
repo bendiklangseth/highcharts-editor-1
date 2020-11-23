@@ -257,7 +257,7 @@ module.exports = {
 					+ 'In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series.'
 				},
 				{
-					id: 'series<abands>--yAxis',
+					id: 'series--yAxis',
 					text: 'Y Axis',
 					tooltipText: 'When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the {@link #yAxis.id|axis id} or the index of the axis in the yAxis array, with 0 being the first.'
 				}
