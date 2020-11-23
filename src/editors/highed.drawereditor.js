@@ -1010,27 +1010,20 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
     });
 
     chartPreview.on('Error', function(e) {
-      if (e && e.code && highed.highchartsErrors[e.code]) {
+      var errorCode = e.code.message.split('#').pop().split(':')[0]
+      if (highed.highchartsErrors[errorCode] != null) {
         
-        var item = highed.highchartsErrors[e.code],
-            url = '';
-
-        if (e.url >= 0) {
-          url =
-            '<div class="highed-errorbar-more"><a href="https://' +
-            e.substr(e.url) +
-            '" target="_blank">Click here for more information</a></div>';
-        }
+        var item = highed.highchartsErrors[errorCode];
 
         return showError(
-          (item.title || "There's a problem with your chart") + '!',
-          (item.text) + url,
-          e.warning,
+          (item.title) + '!',
+          (item.text) + '\n' + '. [More info: ' + e.url + '] ',
           e.code
         );
+      } 
+      else {
+          return showError("There's a problem with your chart! [More info: " + e.url + '] ', e.code);
       }
-
-      showError("There's a problem with your chart!", e);
     });
 
     chartPreview.on('ChartRecreated', hideError);

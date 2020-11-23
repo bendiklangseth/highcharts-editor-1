@@ -799,6 +799,7 @@ highed.DataPage = function(parent, options, chartPreview, chartFrame, props) {
 
   dataTable.on('ClearData', function() {
     chartPreview.data.clear();
+    
   });
 
   dataTable.on('ClearSeriesForImport', function() {
