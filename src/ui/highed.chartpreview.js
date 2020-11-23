@@ -447,6 +447,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     //Throttled event - we use this when doing server stuff in the handler
     //since e.g. using the color picker can result in quite a lot of updates
     //within a short amount of time
+    console.log(getCharOptionsArr(getEmbeddableJSON()));
     window.clearTimeout(throttleTimeout);
     throttleTimeout = window.setTimeout(function() {
       events.emit('ChartChangeLately', aggregatedOptions);
@@ -474,6 +475,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                 collection.push('{')
                 
                 for(var propChild in embeddableJson[i][prop]){
+                  console.log(propChild, embeddableJson[i][prop][propChild])
                   collection.push(propChild);
                   collection.push(': ');
 
@@ -485,14 +487,24 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                         if(embeddableJson[i][prop][propChild][propGrandChild] === ""){
                           collection.push('""')
                         }
-                        else{ // NOp
-                          collection.push(embeddableJson[i][prop][propChild][propGrandChild])
+                        else{ 
+                          collection.push('{')
+                          for(var propGreatGrandChild in embeddableJson[i][prop][propChild][propGrandChild]) {
+                            collection.push(propGreatGrandChild)
+                            collection.push(': ');
+                            collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild]))
+                          }
+                          collection.push('},')
                         }
                     }
                     collection.push('},');
                   }
                   else {
-                    collection.push(JSON.stringify(embeddableJson[i][prop][propChild]));
+                    if(embeddableJson[i][prop][propChild] === "" || embeddableJson[i][prop][propChild] === undefined){
+                      collection.push('""');
+                    } else {
+                      collection.push(JSON.stringify(embeddableJson[i][prop][propChild]));
+                    }
                     collection.push(',');
                   } 
                 }
