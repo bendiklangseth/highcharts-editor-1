@@ -307,7 +307,7 @@ highed.DataTable = function(parent, attributes) {
   gsheetPluginButton.target = "_blank";
 
   if (highed.chartType !== 'Map') highed.dom.ap(hideCellsDiv, switchRowColumns)
-
+  
   highed.dom.on(mainInput, 'click', function(e) {
     return highed.dom.nodefault(e);
   });
@@ -500,7 +500,6 @@ highed.DataTable = function(parent, attributes) {
     highed.dom.ap(target, mainInput);
 
     if (!dontFocus) mainInput.focus();
-
   }
 
   ////////////////////////////////////////////////////////////////////////////
@@ -532,6 +531,7 @@ highed.DataTable = function(parent, attributes) {
     }
   }
 
+  var valueHistory = [];
   ////////////////////////////////////////////////////////////////////////////
   function Column(row, colNumber, val, keyVal) {
     var value = typeof val === 'undefined' || typeof val === 'object' || (val === 'null') ? null : val, //object check for ie11/edge
@@ -541,6 +541,7 @@ highed.DataTable = function(parent, attributes) {
       disabled = false,
       exports = {};
 
+    
     function goLeft() {
       if (colNumber >= 1) {
         row.columns[colNumber - 1].focus();
@@ -630,10 +631,13 @@ highed.DataTable = function(parent, attributes) {
       emitChanged();
     }
 
-    function setValue(newValue) {
-      colVal.innerHTML = newValue;
-      mainInput.value = newValue;
-      value = newValue;
+    function setValue(newElement) {
+      // console.log("Value set", newElement[2])
+      colVal.innerHTML = newElement[2];
+      if(mainInput.value.includes(newElement[2]) || newElement[2] === null){
+         mainInput.value = newElement[2];
+      }
+      value = newElement[2];
       emitChanged();
     }
 
@@ -663,7 +667,28 @@ highed.DataTable = function(parent, attributes) {
         highed.dom.nodefault(e);
         return false;
       });
+     
+      if(valueHistory.length === 0 && value === null){
+        valueHistory.push([colNumber, row.number, null]);
+      }     
+      else if (valueHistory.length === 0 && value != null) {
+        valueHistory.push([colNumber, row.number, value]);
+      }
 
+      var lastElm = valueHistory[valueHistory.length -1];
+
+      if(lastElm[lastElm.length - 1] != value) {
+        if(value === null){
+          console.log('Value of new item is null')
+        } else {
+          if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){ //Return -1 when item is not in array, otherwise return index pos
+            valueHistory.push([colNumber, row.number, value]);
+          } 
+        }
+      }
+      else {
+        console.log("duplicate", [lastElm[lastElm.length - 1 ], value])
+      }
       makeEditable(
         col,
         value,
@@ -672,8 +697,15 @@ highed.DataTable = function(parent, attributes) {
           value = checkNull(val) ? null : val;
           colVal.innerHTML = value;
           if (changed) {
-            emitChanged();
+            if((lastElm[lastElm.length -1] === null && value === null)){
+              emitChanged();
+            } else {
+              if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){
+                  valueHistory.push([colNumber, row.number, value])
+                  emitChanged();
+              }
             events.emit('ChangeMapCategoryValue', value);
+            }
           }
         },
         handleKeyup,
@@ -837,8 +869,20 @@ highed.DataTable = function(parent, attributes) {
         exports.colNumber = i;
       }
     };
-
     return exports;
+  }
+
+  function searchForArray(haystack, needle){
+    var i, j, current;
+    for(i = 0; i < haystack.length; ++i){
+      if(needle.length === haystack[i].length){
+        current = haystack[i];
+        for(j = 0; j < needle.length && needle[j] === current[j]; ++j);
+        if(j === needle.length)
+          return i;
+      }
+    }
+    return -1;
   }
 
   function deselectAllCells() {
@@ -1095,6 +1139,17 @@ highed.DataTable = function(parent, attributes) {
     if (index >= 0 && index < rows.length) {
       rows.splice(index + 1, 0, addRow(true, true));
       rebuildRows();
+    }
+  }
+ 
+  function UndoLastInput() {
+    if(valueHistory.length != 0){
+      var lastElement = valueHistory[valueHistory.length - 1];
+      var elementPos = getInputPosition(lastElement[0],lastElement[1]);
+      valueHistory.pop();
+      elementPos.setValue(lastElement);
+    } else {
+      alert("There is nothing to undo!")
     }
   }
 
@@ -1497,8 +1552,8 @@ highed.DataTable = function(parent, attributes) {
         },
         function(e) {
           if (e.keyCode === 13) {
-            mainInput.className = 'highed-dtable-input';
-            header.removeChild(mainInput);
+             mainInput.className = 'highed-dtable-input';
+             header.removeChild(mainInput);
           }
         }
       );
@@ -1744,6 +1799,18 @@ highed.DataTable = function(parent, attributes) {
     return (sections || []).some(function(section) {
       return (section.dataColumns.indexOf(index) > -1 || (section.extraColumns && section.extraColumns.indexOf(index) > -1) || section.labelColumn === index);
     });
+  }
+
+  function getInputPosition(colPos, rowPos) {
+    var correctCol = {};
+    rows.forEach(function(row) {
+      row.columns.forEach(function(col) {
+        if(col.colNumber === colPos && col.rowNumber === rowPos){
+           correctCol = col;
+        }
+      });
+    });
+    return correctCol;
   }
 
   /** Get the table contents as an array of arrays
@@ -2676,6 +2743,7 @@ highed.DataTable = function(parent, attributes) {
   }
 
   function clearData() {
+    importer.clearImportPasteArea();
     highed.emit('UIAction', 'FlushDataConfirm');
     init();
     emitChanged();
@@ -3005,6 +3073,7 @@ highed.DataTable = function(parent, attributes) {
     initGSheet: initGSheet,
     on: events.on,
     resize: resize,
+    undoInput: UndoLastInput,
     loadSampleData: loadSampleData,
     loadLiveDataFromURL: loadLiveDataFromURL,
     loadLiveDataPanel: loadLiveDataPanel,

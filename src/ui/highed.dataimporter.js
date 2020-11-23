@@ -406,13 +406,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}
 
 		function emitCSVImport(csv, cb) {
-			events.emit('ImportCSV', {
+			var data = {
 				itemDelimiter: delimiter.value,
 				firstRowAsNames: firstAsNames.checked,
 				dateFormat: dateFormat.value,
 				csv: csv || csvPasteArea.value,
 				decimalPoint: decimalPoint.value
-			}, cb);
+			}
+			events.emit('ImportCSV', data, cb);
 		}
 
 
@@ -593,9 +594,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 		///////////////////////////////////////////////////////////////////////////
 
+		function clearImportPasteArea() {
+			csvPasteArea.value = null
+		}
+
 		return {
 			on: events.on,
 			loadCSV: loadCSVExternal,
+			clearImportPasteArea: clearImportPasteArea,
 			resize: resize,
 			show: show,
 			hide: hide,
