@@ -447,7 +447,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     //Throttled event - we use this when doing server stuff in the handler
     //since e.g. using the color picker can result in quite a lot of updates
     //within a short amount of time
-    console.log(getCharOptionsArr(getEmbeddableJSON()));
     window.clearTimeout(throttleTimeout);
     throttleTimeout = window.setTimeout(function() {
       events.emit('ChartChangeLately', aggregatedOptions);
@@ -463,7 +462,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           collection.push(i);
           collection.push(": ");
         }
-
         if(Array.isArray(embeddableJson[i])){ // Color: ["#ifj", #jka]  node 2
           collection.push('[')
           for(var prop in embeddableJson[i]){
@@ -475,7 +473,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                 collection.push('{')
                 
                 for(var propChild in embeddableJson[i][prop]){
-                  console.log(propChild, embeddableJson[i][prop][propChild])
                   collection.push(propChild);
                   collection.push(': ');
 
