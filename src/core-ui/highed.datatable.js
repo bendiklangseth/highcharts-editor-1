@@ -675,7 +675,7 @@ highed.DataTable = function(parent, attributes) {
         valueHistory.push([colNumber, row.number, value]);
       }
 
-      var lastElm = valueHistory[valueHistory.length -1];
+      var lastElm = valueHistory[valueHistory.length -1]; //Burde sjekke opp nest siste?
 
       if(lastElm[lastElm.length - 1] != value) {
         if(value === null){
@@ -1143,8 +1143,15 @@ highed.DataTable = function(parent, attributes) {
   }
  
   function UndoLastInput() {
-    if(valueHistory.length != 0){
-      var lastElement = valueHistory[valueHistory.length - 1];
+    if(valueHistory.length >= 1){
+      var lastElement = {};
+      if(valueHistory.length === 1){
+        lastElement = valueHistory[valueHistory.length - 1];
+      } 
+      else {
+        lastElement = valueHistory[valueHistory.length - 2];
+      }
+
       var elementPos = getInputPosition(lastElement[0],lastElement[1]);
       valueHistory.pop();
       elementPos.setValue(lastElement);
