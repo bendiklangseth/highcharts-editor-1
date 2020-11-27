@@ -60,7 +60,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                     borderColor: 'black',
                     dashStyle: 'dot'
                 }
-              },          
+              },      
             },
             line: {
               marker: {
@@ -228,8 +228,8 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                 menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator','downloadXLSX', 'downloadCSV', 'viewDataTable']
             }
           }
-        }
         },
+      },
         expandTo: parent
       },
       attributes
@@ -286,12 +286,13 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     ),
     expanded = false,
     constr = ['Chart'],
-    wysiwyg = {
+    customizeChartClickNavigation = {
       'g.highcharts-legend': { tab: 'Legend', dropdown: 'General', id: 'legend--enabled' },
       'text.highcharts-title': { tab: 'Chart',  dropdown: 'Title', id: 'title--text' },
       'text.highcharts-subtitle': { tab: 'Chart', dropdown: 'Title',id: 'subtitle--text' },
       '.highcharts-yaxis-labels': { tab: 'Axes', dropdown: 'Y Axis', id: 'yAxis-labels--format' },
       '.highcharts-xaxis-labels': { tab: 'Axes', dropdown: 'X Axis', id: 'xAxis-labels--format' },
+      '.highcharts-tracker-line': { tab: 'Data Series', id: 'series'},
       '.highcharts-xaxis .highcharts-axis-title': {
         tab: 'Axes', 
         dropdown: 'X Axis',
@@ -334,6 +335,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
         }
       );
     }
+
 
 
   stockTools.on('ShowAnnotationModal', function(options) {
@@ -398,13 +400,13 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
   function attachWYSIWYG() {
 
-    Object.keys(wysiwyg).forEach(function(key) {
+    Object.keys(customizeChartClickNavigation).forEach(function(key) {
       highed.dom.on(parent.querySelector(key), 'click', function(e) {
         
         var navigation = chart.navigationBindings;
         if (navigation.selectedButtonElement) return;
 
-        events.emit('RequestEdit', wysiwyg[key], e.clientX, e.clientY);
+        events.emit('RequestEdit', customizeChartClickNavigation[key], e.clientX, e.clientY);
         e.cancelBubble = true;
         e.preventDefault();
         e.stopPropagation();
@@ -453,7 +455,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     }, 200);
   }
 
-  function getCharOptionsArr(embeddableJson){
+  function getCharOptionsArr(embeddableJson){ //TODO: MÅ RYDDES OPP
     var collection = [];
 
     collection.push('{');
@@ -568,8 +570,8 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                       for(var propGreatGrandChild in embeddableJson[i][prop][propChild][propGrandChild]) {
                           collection.push(propGreatGrandChild);
                           collection.push(': ')
-                            if(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild].startsWith("#")
-                            || typeof embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild] === 'string'){
+                            if(typeof embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild] === 'string') {
+                            // || (embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild].startsWith("#"))){
                               collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild]));
                             }
                             else {
@@ -844,27 +846,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
   }
 
   function updateAggregated(noCustomCode) {
-    // customizedOptions.plotOptions = customizedOptions.plotOptions || {};
-    // customizedOptions.plotOptions.series = customizedOptions.plotOptions.series || [];
-    //  customizedOptions.series = customizedOptions.series || [];
 
-    if (
-      customizedOptions &&
-      !highed.isArr(customizedOptions.yAxis) &&
-      customizedOptions.yAxis
-    ) {
-      customizedOptions.yAxis = [customizedOptions.yAxis || {}];
-    }
-
-    if (
-      customizedOptions &&
-      !highed.isArr(customizedOptions.xAxis) &&
-      customizedOptions.xAxis
-    ) {
-      customizedOptions.xAxis = [customizedOptions.xAxis || {}];
-    }
-
-   // templateOptions = templateOptions || {};
     templateOptions = templateOptions || [];
     var aggregatedTemplate = {}; 
 
@@ -894,6 +876,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
         aggregatedTemplate = highed.merge(aggregatedTemplate, arr);
       }
     });
+
 
     highed.merge(
       aggregatedOptions,
@@ -956,6 +939,75 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       }
     }
 
+    function isEmpty(obj) {
+      for(var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          return false;
+        }
+      }
+      return JSON.stringify(obj) === JSON.stringify({});
+    }
+
+    if(highed.isArr(aggregatedOptions.yAxis)){
+      customizedOptions.yAxis = aggregatedOptions.yAxis;
+      aggregatedOptions.yAxis = [];
+
+      customizedOptions.yAxis.forEach(function(obj, i) {
+        var mergeTarget = {};
+
+        for(var prop in obj) {
+          if(isEmpty(obj[prop]) || Number.isNaN(obj[prop])){
+            delete obj[prop];
+          }
+        }
+
+        if(highed.isArr(aggregatedOptions.series)){
+          aggregatedOptions.series.forEach(function(serie) {
+            for(var prop in serie){
+              if(prop === "yAxis") {
+                 delete obj['linkedTo'];
+              }
+              else {
+                if(obj['opposite'] !== undefined){ //Funker nesten. blir ikke satt før man går ut av customize
+                  highed.merge(obj ,{ linkedTo: 0 })
+                }
+              }
+            }
+          })
+        }
+
+        if(themeOptions && highed.isArr(themeOptions.yAxis)) {
+          if(i < themeOptions.yAxis.length) {
+            mergeTarget = highed.merge({}, themeOptions.series[i]);
+          }
+        }
+        var axisMerged = highed.merge(mergeTarget, obj)
+        aggregatedOptions.yAxis.push(axisMerged);
+      })
+    }
+
+    if(highed.isArr(aggregatedOptions.xAxis)){
+      customizedOptions.xAxis = aggregatedOptions.xAxis;
+      aggregatedOptions.xAxis = [];
+
+      customizedOptions.xAxis.forEach(function(obj, i) {
+        var mergeTarget = {};
+
+        for(var prop in obj){
+          if(isEmpty(obj[prop]) || Number.isNaN(obj[prop])){
+            delete obj[prop];
+          }
+        }
+
+        if(themeOptions && highed.isArr(themeOptions.xAxis)) {
+          if(i < themeOptions.xAxis.length) {
+            mergeTarget = highed.merge({}, themeOptions.series[i]);
+          }
+        }
+        aggregatedOptions.xAxis.push(highed.merge(mergeTarget, obj));
+      })
+    }
+
     //Temporary hack
     //aggregatedOptions.series = customizedOptions.series;\
     aggregatedOptions.series = [];
@@ -963,6 +1015,13 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     if (highed.isArr(customizedOptions.series)) {
       customizedOptions.series.forEach(function(obj, i) {
         var mergeTarget = {};
+        for(var prop in obj){
+          if(isEmpty(obj[prop]) || Number.isNaN(obj[prop])){
+            delete obj[prop];
+          }
+        }
+
+        
 
         if (themeOptions && highed.isArr(themeOptions.series)) {
           if (i < themeOptions.series.length) {
@@ -1075,13 +1134,15 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       templateSettings[index].templateHeader = template.header;
       
       customizedOptions.series[index].type = type;
+
+      
     });
       if(type === "pie" || type === "funnel" || type === "pyramid"){
         template.config.colors = template.config.colors.slice(0, customizedOptions.series[0].data.length);
       }
 
       templateOptions[seriesIndex] = highed.merge({}, template.config || {});
-      
+
       updateAggregated();
       init(aggregatedOptions);
       emitChange();
@@ -1103,13 +1164,13 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
     //highed.clearObj(templateOptions);
 
-    if (customizedOptions.xAxis) {
-      delete customizedOptions.xAxis;
-    }
+    // if (customizedOptions.xAxis) {
+    //   delete customizedOptions.xAxis;
+    // }
 
-    if (customizedOptions.yAxis) {
-      delete customizedOptions.yAxis;
-    }
+    // if (customizedOptions.yAxis) {
+    //   delete customizedOptions.yAxis;
+    // }
 
     // highed.setAttr(customizedOptions, 'series', []);
     gc(function(chart) {
@@ -1125,6 +1186,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
 
   function loadSeriesFromDataSource(){
+
     if (
       !gc(function(chart) {
         if (chart.options && chart.options.series) {
@@ -1143,6 +1205,11 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       !gc(function(chart) {
         if (chart.options && chart.options.series) {
           customizedOptions.series = chart.options.series;
+          if(highed.isArr(customizedOptions.series)){
+            customizedOptions.series.forEach(function(elm) {
+              highed.merge(elm, { label: { enabled: false }})
+            })
+          }
         }
         return true;
       })
@@ -1833,7 +1900,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
         id: 'chart.width'
       });
     }
-
     function emitHeightChange() {
       events.emit('AttrChange', {
         id: 'chart.height'
@@ -1949,8 +2015,8 @@ highed.ChartPreview = function(parent, attributes, planCode) {
    *  @param index {number} - used if the option is an array
    */
   function set(id, value, index) {
+
     gc(function(chart) {
-      //highed.setAttr(chart.options, id, value, index);
       highed.setAttr(
         chart.options,
         'plotOptions--series--animation',
@@ -1961,8 +2027,9 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
     //We want to be able to set the customized options even if the chart
     //doesn't exist
-    highed.setAttr(customizedOptions, id, value, index);
 
+    highed.setAttr(customizedOptions, id, value, index);
+  
     flatOptions[id] = value;
 
     if (id.indexOf('lang--') === 0 && customizedOptions.lang) {

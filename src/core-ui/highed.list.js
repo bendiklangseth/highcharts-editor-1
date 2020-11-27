@@ -148,14 +148,13 @@ highed.List = function(parent, responsive, props, planCode, dataPage) {
 
       if (highed.isArr(group.options)) {
         table = highed.dom.cr('div', 'highed-customizer-table');
-        warningContainer = highed.dom.cr('div', 'highed-customize-warning-container'),
-        warning = highed.dom.cr('div', 'highed-customize-warning', 'You need to be on a paid plan for this to work in production');
+        // warningContainer = highed.dom.cr('div', 'highed-customize-warning-container'),
+        // warning = highed.dom.cr('div', 'highed-customize-warning', 'You need to be on a paid plan for this to work in production');
         doInclude = shouldInclude(group);
-        
-        if (group.warning && group.warning.length > 0 && 
-          planCode && group.warning.indexOf(planCode) > -1) {
-          highed.dom.ap(table, highed.dom.ap(warningContainer, warning));
-        }
+        //if (group.warning && group.warning.length > 0 && 
+          // planCode && group.warning.indexOf(planCode) > -1) {
+          // highed.dom.ap(table, highed.dom.ap(warningContainer, warning));
+       // }
 
         if (!doInclude) {
           return;
@@ -322,8 +321,8 @@ highed.List = function(parent, responsive, props, planCode, dataPage) {
             group.values ? 'options' : group.dataType,
             typeof def !== 'undefined'
               ? def
-              : filter && group.subTypeDefaults[filter]
-                ? group.subTypeDefaults[filter]
+              // : filter && group.subTypeDefaults[filter]
+              //   ? group.subTypeDefaults[filter]
                 : group.defaults,
             {
               title: highed.L('option.text.' + group.pid).replace('Chart', highed.chartType ==='Map' ? 'Map' : 'Chart'),
@@ -382,7 +381,6 @@ highed.List = function(parent, responsive, props, planCode, dataPage) {
         });
       }
       dropdowns = {};
-
       nodeArrow.innerHTML = '<i class="fa fa-angle-down" aria-hidden="true"></i>';
       nodeChildren.innerHTML = '';
       var entry = highed.meta.optionsExtended.options[item.id];

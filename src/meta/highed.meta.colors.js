@@ -38,7 +38,7 @@ highed.meta.FINcolors = [
   '#B1DED3', // 11 Lys grønn
   '#FFDF4F', // 12 Gul
   '#FBCEC7',  // 13 Rosa
-  '#000000'
+  '#0a0a0a' // Svart
 ];
 
 highed.meta.colors = [

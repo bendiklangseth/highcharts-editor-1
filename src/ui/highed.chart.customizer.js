@@ -362,7 +362,6 @@ highed.ChartCustomizer = function(parent, attributes, chartPreview, planCode, da
       }))) {
         return;
       }
-
       list.addItem({
         id: key,
         title: highed.L(key)
@@ -486,9 +485,9 @@ highed.ChartCustomizer = function(parent, attributes, chartPreview, planCode, da
   list.on('Select', function(id) {
     var entry = highed.meta.optionsExtended.options[id];
     body.innerHTML = '';
-    entry.forEach(function(thing) {
-      //selectGroup(thing);
-    });
+    // entry.forEach(function(thing) {
+    //   //selectGroup(thing);
+    // });
     highlighted = false;
     highed.emit('UIAction', 'SimplePropCatChoose', id);
   });

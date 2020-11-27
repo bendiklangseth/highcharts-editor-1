@@ -37,7 +37,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
             chart: {
               type: "line",
               style: {
-                fontFamily: '"Open Sans", sans-serif',
+                fontFamily: 'Open Sans, sans-serif',
                 color: "#000000"
               }
             },
@@ -51,7 +51,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
               },
             },
             subtitle: {
-              align: "left"
+              align: "left",
             },
             legend: {
               align: 'center',
@@ -75,6 +75,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
               lineWidth: 1 
             },
             yAxis: [{
+              id: '0',
               title: {
                 text: ''
               },
@@ -84,14 +85,22 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
               tickColor: '#000000',
               gridLineColor: 'transparent',
               lineColor: '#000000',
+              softMin: 0,
               labels: {
                 style: {
                     color: '#000000'
                 }  
               },
-              lineWidth: 1        
+              lineWidth: 1,
+              plotLines: [{
+                color: '#000000',
+                width: 1,
+                value: 0
+                
+            }]
             },
             {
+              id: '1',
               title: {
                 text: ''
               },
@@ -108,7 +117,13 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
                     color: '#000000'
                 }
               },
-              lineWidth: 1 
+              lineWidth: 1 ,
+              plotLines: [{
+                color: '#000000',
+                width: 1,
+                value: 0
+                
+            }]
             }],
             credits: {
               enabled: false
@@ -822,7 +837,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
      * ID and so on.
      */
     function assignTheme(theme, skipEmit) {
-      
+
       const themeKeys = highed.keyifyNestedObject(theme.options),
             customizedKeys = highed.keyifyNestedObject(chartPreview.options.getCustomized());
             
