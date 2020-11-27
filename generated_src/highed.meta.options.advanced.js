@@ -24797,7 +24797,7 @@ highed.meta.optionsAdvanced = {
                 },
                 "name": "style",
                 "excludes": {},
-                "default": "{\"fontFamily\":\"sans-serif\", \"fontWeight\": \"900\"}",
+                "default": "{\"fontFamily\":\"Open sans, sans-serif\", \"fontWeight\": \"900\"}",
                 "description": "CSS styles for the words."
               },
               "subtree": {}
