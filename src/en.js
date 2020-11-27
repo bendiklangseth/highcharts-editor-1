@@ -73,6 +73,7 @@ highed.installLanguage({
     'option.subcat.chartarea': 'Chart Area',
     'option.subcat.plotarea': 'Plot Area',
     'option.cat.axes': 'Axes',
+
     'option.subcat.axessetup': 'Axes Setup',
     'option.subcat.xaxis': 'X Axis',
     'option.subcat.yaxis': 'Y Axis',
@@ -109,7 +110,24 @@ highed.installLanguage({
       'The Y axis title, normally displayed vertically along the Y axis.',
     'option.text.yAxis.linkedTo': 'Linked To',
       'option.tooltip.yAxis.linkedTo': 'Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to eas reading the chart by duplicating the scales.',
-    'option.text.chart.width': 'Chart width',
+    'option.text.yAxis.min': 'Min',
+    'options.tooltip.yAxis.min': 
+      'The minimum value of the axis. If null the min value is automatically calculated. If the startOnTick option is true (default), the min value might be rounded down. The automatically calculated minimum value is also affected by floor, softMin, minPadding, minRange as well as series.threshold and series.softThreshold. Defaults to undefined.',
+    'option.text.yAxis.max': 'Max',
+    'options.tooltip.yAxis.max': 
+      'The maximum value of the axis. If null, the max value is automatically calculated. If the endOnTick option is true, the max value might be rounded up. If a tickAmount is set, the axis may be extended beyond the set max in order to reach the given number of ticks. The same may happen in a chart with multiple axes, determined by chart. alignTicks, where a tickAmount is applied internally. Defaults to undefined.',
+    'option.text.yAxis.tickInterval': 'Tick interval',
+    'options.tooltip.yAxis.tickInterval': 
+      'The interval of the tick marks in axis units. When undefined, the tick interval is computed to approximately follow the tickPixelInterval on linear and datetime axes. On categorized axes, a undefined tickInterval will default to 1, one category. Note that datetime axes are based on milliseconds, so for example an interval of one day is expressed as 24 * 3600 * 1000. On logarithmic axes, the tickInterval is based on powers, so a tickInterval of 1 means one tick on each of 0.1, 1, 10, 100 etc. A tickInterval of 2 means a tick of 0.1, 10, 1000 etc. A tickInterval of 0.2 puts a tick on 0.1, 0.2, 0.4, 0.6, 0.8, 1, 2, 4, 6, 8, 10, 20, 40 etc. If the tickInterval is too dense for labels to be drawn, Highcharts may remove ticks. If the chart has multiple axes, the alignTicks option may interfere with the tickInterval setting. Defaults to undefined.',
+    'option.text.yAxis.plotLines.value': 'Plotline value',
+    'options.tooltip.yAxis.plotLines.value': 'The position of the line in axis units.',
+    'option.text.yAxis.plotLines.width': 'Plotline width',
+    'options.tooltip.yAxis.plotLines.width': 'The width or thickness of the plot line.',
+    'option.text.yAxis.plotLines.color': 'Plotline color',
+    'options.tooltip.yAxis.plotLines.color': 'The color of the line',
+    'option.text.yAxis.plotLines.zIndex': 'Plotline Z Index',
+    'options.tooltip.yAxis.plotLines.zIndex': 'The z index of the plot line within the chart.',
+      'option.text.chart.width': 'Chart width',
     'option.tooltip.chart.width':
       'An explicit width for the chart. By default (when <code>null</code>) the width is calculated from the offset width of the containing element.',
     'option.text.chart.height': 'Chart height',
@@ -128,7 +146,7 @@ highed.installLanguage({
       'Opacity of series elements (dataLabels, line, area).',
     'option.text.series.stacking': 'Stacked',
     'option.tooltip.series.stacking': 'Whether to stack the values of each series on top of each other. Possible values are undefined to disable, "normal" to stack by value or "percent". When stacking is enabled, data must be sorted in ascending X order.Some stacking options are related to specific series types. In the streamgraph series type, the stacking option is set to "stream". The second one is "overlap", which only applies to waterfall series.',
-    'option.text.series.yAxis': 'y Axis',
+    'option.text.series.yAxis': 'Y Axis',
     'option.tooltip.series.yAxis': 'When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the {@link #yAxis.id|axis id} or the index of the axis in the yAxis array, with 0 being the first.',
     'option.text.chart.polar': 'Polar (radar) projection',
     'option.tooltip.chart.polar':
@@ -232,7 +250,9 @@ highed.installLanguage({
     'option.text.series.dashStyle': 'Dash style',
     'option.tooltip.series.dashStyle':
       'A name for the dash style to use for the graph. Applies only to series type having a graph, like <code>line</code>, <code>spline</code>, <code>area</code> and <code>scatter</code> in  case it has a <code>lineWidth</code>. The value for the <code>dashStyle</code> include:\r\n\t\t    <ul>\r\n\t\t    \t<li>Solid</li>\r\n\t\t    \t<li>ShortDash</li>\r\n\t\t    \t<li>ShortDot</li>\r\n\t\t    \t<li>ShortDashDot</li>\r\n\t\t    \t<li>ShortDashDotDot</li>\r\n\t\t    \t<li>Dot</li>\r\n\t\t    \t<li>Dash</li>\r\n\t\t    \t<li>LongDash</li>\r\n\t\t    \t<li>DashDot</li>\r\n\t\t    \t<li>LongDashDot</li>\r\n\t\t    \t<li>LongDashDotDot</li>\r\n\t\t    </ul>',
-    'option.text.series.marker.enabled': 'Enable point markers',
+    'option.text.series.zIndex': 'Z Index',
+    'option.tooltip.series.zIndex': 'Define the visual z index of the series',
+      'option.text.series.marker.enabled': 'Enable point markers',
     'option.tooltip.series.marker.enabled':
       'Enable or disable the point marker. If <code>null</code>, the markers are hidden when the data is dense, and shown for more widespread data points.',
     'option.text.series.marker.symbol': 'Marker symbol',

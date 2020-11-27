@@ -111,24 +111,11 @@ module.exports = {
 			]
 		}
 		],
-
-		'option.cat.axes': [
-		 {
+		'options.cat.axes': [
+			{
+			id: 'xAxis',
 			text: 'option.subcat.xaxis',
-			
 			options: [
-				{
-					id: 'xAxis-title--style',
-					dataType: 'font',
-					text: 'X axis title',
-					tooltipText: 'Styling and text for the X axis title',
-					dataIndex: 0
-				},
-				{
-					id: 'xAxis-title--text',
-					text: 'Text',
-					dataIndex: 0
-				},
 				{
 					id: 'xAxis--type', 
 					text: 'Type', 
@@ -153,30 +140,25 @@ module.exports = {
 					'<p><b>Formatting</b> can be added after a colon inside the variable, for example <code>USD {value:.2f}</code> to display two decimals, ' +
 					'or <code>{value:%Y-%m-%d}</code> for a certain time format.',
 					dataIndex: 0
-				},
-				{
-					id: 'xAxis--linkedTo',
-					text: 'Linked To',
-					tooltipText: 'Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes '
-								+ 'as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to eas reading the chart by '
-								+ 'duplicating the scales.'
 				}
 			]
-		}, {
+		},
+		{
+			id: 'yAxis',
 			text: 'option.subcat.yaxis',
-			
 			options: [
-				{
-					id: 'yAxis-title--style',
-					dataType: 'font',
-					text: 'Y axis title style',
-					tooltipText: 'Styling and text for the X axis title',
-					dataIndex: 0
-				},
 				{
 					id: 'yAxis--type', 
 					text: 'Type', 
 					tooltipText: 'The type of axis',
+				},
+				{
+					id: 'yAxis-labels-format',
+					text: 'Axis labels format',
+					tooltipText: '<p>A format string for the axis labels. The value is available through a variable <code>{value}</code>.</p>' +
+					'<p><b>Units</b> can be added for example like <code>{value} USD</code>.</p>' +
+					'<p><b>Formatting</b> can be added after a colon inside the variable, for example <code>USD {value:.2f}</code> to display two decimals, ' +
+					'or <code>{value:%Y-%m-%d}</code> for a certain time format.',
 					dataIndex: 0
 				},
 				{
@@ -204,10 +186,51 @@ module.exports = {
 					tooltipText: 'Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes '
 								+ 'as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to eas reading the chart by '
 								+ 'duplicating the scales.'
+				},
+				{
+					id: 'yAxis--min',
+					text: 'Min',
+					tooltipText: 'The minimum value of the axis. If null the min value is automatically calculated. ' +
+					'If the startOnTick option is true (default), the min value might be rounded down. ' +
+					'The automatically calculated minimum value is also affected by floor, softMin, minPadding, minRange as well as series.threshold and series.softThreshold. '+
+					'Defaults to undefined.'
+				},
+				{
+					id: 'yAxis--max',
+					text: 'Max',
+					tooltipText: 'The maximum value of the axis. If null, the max value is automatically calculated. '+
+					'If the endOnTick option is true, the max value might be rounded up. ' +
+					'If a tickAmount is set, the axis may be extended beyond the set max in order to reach the given number of ticks. The same may happen in a chart with multiple axes, determined by chart. alignTicks, where a tickAmount is applied internally. ' +
+					'Defaults to undefined.'
+				},
+				{
+					id: 'yAxis--tickInterval',
+					text: 'Tick Interval',
+					tooltipText: ''
+				},
+				{
+					id: 'yAxis-plotLines--value',
+					text: 'Plotline Value',
+					tooltipText: ''
+				},
+				{
+					id: 'yAxis-plotLines--width',
+					text: 'Plotline width',
+					tooltipText: ''
+				},
+				{
+					id: 'yAxis-plotLines--color',
+					text: 'Plotline color',
+					tooltipText: ''
+				},
+				{
+					id: 'yAxis-plotLines--zIndex',
+					text: 'Plotline zIndex',
+					tooltipText: ''
 				}
 			]
 		}
-		],
+	],
 		'option.cat.series': [{
 			id: 'series',
 			array: true,
@@ -219,7 +242,11 @@ module.exports = {
 			},
 			filteredBy: 'series--type',
 			options: [
-				{id: 'series--type', text: 'Series type', tooltipText: 'The type of series'},
+				{
+					id: 'series--type',
+					 text: 'Series type', 
+					 tooltipText: 'The type of series'
+				},
 				{
 					id: 'series--color',
 					text: 'Color',
@@ -260,6 +287,11 @@ module.exports = {
 					id: 'series--yAxis',
 					text: 'Y Axis',
 					tooltipText: 'When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the {@link #yAxis.id|axis id} or the index of the axis in the yAxis array, with 0 being the first.'
+				},
+				{
+					id: 'series--zIndex',
+					text: 'zIndex',
+					tooltipText: ''
 				}
 			]
 		}],

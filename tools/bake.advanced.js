@@ -103,6 +103,9 @@ function sortAPI(api) {
             apiSorted[entry.name].filteredBy = entry.filteredBy = 'series--type';
 
         }
+        if (entry.name === 'yAxis'){
+            apiSorted[entry.name].filteredBy = entry.filteredBy = 'yAxis--type';
+        }
     });
 }
 

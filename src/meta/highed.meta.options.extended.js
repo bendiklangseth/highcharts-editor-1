@@ -299,27 +299,9 @@ highed.meta.optionsExtended = {
     'option.cat.axes': [
       {
         text: 'option.subcat.xaxis',
-        dropdown: true,
         mapDisabled: true,
+        dropdown: true,
         options: [
-        {
-          id: 'xAxis-title--style',
-          dataType: 'font',
-          dataIndex: 0,
-          pid: 'xAxis.title.style',
-          context: 'General',
-          defaults: '{ "color": "#000000" }',
-          parent: 'xAxis-title'
-        },
-        {
-          id: 'xAxis-title--text',
-          dataIndex: 0,
-          pid: 'xAxis.title.text',
-          dataType: 'string',
-          context: 'General',
-          parent: 'xAxis-title',
-          width: 50
-        },
         {
           id: 'xAxis-labels--format',
           dataIndex: 0,
@@ -338,7 +320,8 @@ highed.meta.optionsExtended = {
           context: 'General',
           defaults: 'linear',
           parent: 'xAxis',
-          values: '["linear", "logarithmic", "datetime", "category"]'
+          values: '["linear", "logarithmic", "datetime", "category"]',
+          width: 50
         },
         {
           id: 'xAxis--opposite',
@@ -365,36 +348,29 @@ highed.meta.optionsExtended = {
       {
         text: 'option.subcat.yaxis',
         dropdown: true,
-        mapDisabled: true,  
+        array: true,
+        mapDisabled: true,
+        controlledBy: {
+          title: 'Select yAxis',
+          options: 'yAxis',
+          optionsTitle: 'name'
+        },
+        filteredBy: 'yAxis--type',
         options: [
           {
-            id: 'yAxis-title--style',
-            dataType: 'font',
-            dataIndex: 0,
-            pid: 'yAxis.title.style',
-            context: 'General',
-            defaults: '{ "color": "#000000" }',
-            parent: 'yAxis-title'
-          },
-          {
-            id: 'yAxis-title--text',
-            dataIndex: 0,
-            pid: 'yAxis.title.text',
-            dataType: 'string',
-            context: 'General',
-            defaults: 'Values',
-            parent: 'yAxis-title',
-            width: 50
-          },
-          {
             id: 'yAxis--type',
-            dataIndex: 0,
             pid: 'yAxis.type',
             dataType: 'string',
             context: 'General',
-            defaults: 'linear',
             parent: 'yAxis',
-            values: '["linear", "logarithmic", "datetime", "category"]',
+            values: '[null, "linear", "logarithmic", "datetime", "category"]',
+            subType: [
+              'linear', 
+              'logarithmic', 
+              'datetime', 
+              'category'
+            ],
+            subTypeDefaults: {},
             width: 50
           },
           {
@@ -403,9 +379,8 @@ highed.meta.optionsExtended = {
             pid: 'yAxis.labels.format',
             dataType: 'string',
             context: 'General',
-            defaults: '{value}',
             parent: 'yAxis-labels',
-            width: 100
+            width: 50
           },
           {
             id: 'yAxis--opposite',
@@ -425,6 +400,73 @@ highed.meta.optionsExtended = {
             context: 'General',
             defaults: 'false',
             parent: 'yAxis',
+            width: 50
+          },
+          {
+            id: 'yAxis--linkedTo',
+            pid: 'yAxis.linkedTo',
+            defaults: null,
+            dataType: 'number',
+            context: 'General',
+            parent: 'yAxis'
+          },
+          { 
+            id: 'yAxis--min',
+            pid: 'yAxis.min',
+            dataType: 'number',
+            context: 'General',
+            parent: 'yAxis',
+            width: 25
+          },
+          { 
+            id: 'yAxis--max',
+            pid: 'yAxis.max',
+            dataType: 'number',
+            context: 'General',
+            parent: 'yAxis',
+            width: 25
+          },
+          { 
+            id: 'yAxis--tickInterval',
+            pid: 'yAxis.tickInterval',
+            dataType: 'number',
+            context: 'General',
+            parent: 'yAxis',
+            width: 50
+          },
+          {
+            id: 'yAxis-plotLines--value',
+            pid: 'yAxis.plotLines.value',
+            dataType: 'number',
+            defaults: 0,
+            context: 'General',
+            parent: 'yAxis-plotLines',
+            width: 50
+          },
+          {
+            id: 'yAxis-plotLines--width',
+            pid: 'yAxis.plotLines.width',
+            dataType: 'number',
+            defaults: 1,
+            context: 'General',
+            parent: 'yAxis-plotLines',
+            width: 50
+          },
+          {
+            id: 'yAxis-plotLines--zIndex',
+            pid: 'yAxis.plotLines.zIndex',
+            dataType: 'number',
+            context: 'General',
+            parent: 'yAxis-plotLines',
+            width: 50
+          },
+          {
+            id: 'yAxis-plotLines--color',
+            pid: 'yAxis.plotLines.color',
+            dataType: 'color',
+            defaults: '#000000',
+            context: 'General',
+            parent: 'yAxis-plotLines',
             width: 50
           }
         ]
@@ -448,7 +490,7 @@ highed.meta.optionsExtended = {
             pid: 'series.type',
             dataType: 'string',
             context: 'General',
-            parent: 'series<treemap>',
+            parent: 'series',
             values:
               '[null, "line", "spline", "column", "area", "areaspline", "pie", "arearange", "areasplinerange", "boxplot", "bubble", "columnrange", "errorbar", "funnel", "gauge", "scatter", "waterfall"]',
             subType: [
@@ -484,7 +526,7 @@ highed.meta.optionsExtended = {
             dataType: 'string',
             context: 'General',
             defaults: 'Solid',
-            parent: 'series<areasplinerange>',
+            parent: 'series',
             values:
               '["Solid", "ShortDash", "ShortDot", "ShortDashDot", "ShortDashDotDot", "Dot", "Dash" ,"LongDash", "DashDot", "LongDashDot", "LongDashDotDot"]',
             subType: [
@@ -513,84 +555,19 @@ highed.meta.optionsExtended = {
             width: 50
           },
           {
-            id: 'series--color',
-            pid: 'series.color',
-            dataType: 'color',
+            id: 'series--zIndex',
+            pid: 'series.zIndex',
+            dataType: 'number',
             context: 'General',
-            defaults: 'null',
-            parent: 'series<boxplot>',
-            subType: [
-              'boxplot',
-              'column',
-              'waterfall',
-              'columnrange',
-              'heatmap',
-              'area',
-              'scatter',
-              'bar',
-              'treemap',
-              'arearange',
-              'bubble',
-              'errorbar',
-              'spline',
-              'polygon',
-              'line',
-              'gauge',
-              'areaspline',
-              'areasplinerange'
-            ],
-            subTypeDefaults: {
-              heatmap: 'null',
-              treemap: 'null',
-              errorbar: '#000000'
-            },
-            width: 18
-          },
-          {
-            id: 'series--negativeColor',
-            pid: 'series.negativeColor',
-            dataType: 'color',
-            context: 'General',
-            defaults: 'null',
-            parent: 'series<gauge>',
-            subType: [
-              'gauge',
-              'arearange',
-              'areasplinerange',
-              'line',
-              'errorbar',
-              'boxplot',
-              'areaspline',
-              'spline',
-              'bar',
-              'scatter',
-              'polygon',
-              'bubble',
-              'area',
-              'column'
-            ],
-            subTypeDefaults: {
-              arearange: 'null',
-              areasplinerange: 'null',
-              line: 'null',
-              errorbar: 'null',
-              boxplot: 'null',
-              areaspline: 'null',
-              spline: 'null',
-              bar: 'null',
-              scatter: 'null',
-              polygon: 'null',
-              bubble: 'null',
-              area: 'null',
-              column: 'null'
-            },
-            width: 33
+            parent: 'series',
+            width: 50
           },
           {
             id: 'series-marker--symbol',
             pid: 'series.marker.symbol',
             dataType: 'string',
             context: 'General',
+            defaults: 'square',
             parent: 'series<bubble>-marker',
             values:
               '[null, "circle", "square", "diamond", "triangle", "triangle-down"]',
@@ -661,6 +638,89 @@ highed.meta.optionsExtended = {
             width: 50
           },
           {
+            id: 'series-label-enabled',
+            pid: 'series.label.enabled',
+            dataType: 'boolean',
+            context: 'General',
+            parent: 'series-label',
+            defaults: 'false',
+            width: 50
+          },
+          {
+            id: 'series--color',
+            pid: 'series.color',
+            dataType: 'color',
+            context: 'General',
+            defaults: 'null',
+            parent: 'series<boxplot>',
+            subType: [
+              'boxplot',
+              'column',
+              'waterfall',
+              'columnrange',
+              'heatmap',
+              'area',
+              'scatter',
+              'bar',
+              'treemap',
+              'arearange',
+              'bubble',
+              'errorbar',
+              'spline',
+              'polygon',
+              'line',
+              'gauge',
+              'areaspline',
+              'areasplinerange'
+            ],
+            subTypeDefaults: {
+              heatmap: 'null',
+              treemap: 'null',
+              errorbar: '#000000'
+            },
+            width: 25
+          },
+          {
+            id: 'series--negativeColor',
+            pid: 'series.negativeColor',
+            dataType: 'color',
+            context: 'General',
+            defaults: 'null',
+            parent: 'series<gauge>',
+            subType: [
+              'gauge',
+              'arearange',
+              'areasplinerange',
+              'line',
+              'errorbar',
+              'boxplot',
+              'areaspline',
+              'spline',
+              'bar',
+              'scatter',
+              'polygon',
+              'bubble',
+              'area',
+              'column'
+            ],
+            subTypeDefaults: {
+              arearange: 'null',
+              areasplinerange: 'null',
+              line: 'null',
+              errorbar: 'null',
+              boxplot: 'null',
+              areaspline: 'null',
+              spline: 'null',
+              bar: 'null',
+              scatter: 'null',
+              polygon: 'null',
+              bubble: 'null',
+              area: 'null',
+              column: 'null'
+            },
+            width: 25
+          },
+          {
             id: 'series--stacking',
             pid: 'series.stacking',
             datatype: 'string',
@@ -673,8 +733,9 @@ highed.meta.optionsExtended = {
             pid: 'series.yAxis',
             dataType: 'number',
             context: 'General',
-            parent: 'series'
-          }
+            parent: 'series',
+            width: 100
+          },
         ]
       }
     ],
