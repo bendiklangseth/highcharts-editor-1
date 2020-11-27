@@ -8578,7 +8578,7 @@
               "Highcharts.CSSObject"
             ]
           },
-          "defaultvalue": "{\"fontFamily\": \"\\\"Lucida Grande\\\", \\\"Lucida Sans Unicode\\\", Verdana, Arial, Helvetica, sans-serif\",\"fontSize\":\"12px\"}"
+          "defaultvalue": "{\"fontFamily\": \"\\\"Open Sans, sans-serif\\\", \\\"Lucida Sans Unicode\\\", Verdana, Arial, Helvetica, sans-serif\", \"fontSize\":\"12px\"}"
         },
         "meta": {
           "filename": "highcharts/js/parts/Options.js",
