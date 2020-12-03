@@ -428,7 +428,6 @@ highed.AssignDataPanel = function(parent, dataTable, extraClass) {
       title: 'Series ' + ((seriesIndex || index) + 1) + ' - ' + capitalizeFirstLetter(seriesType)
     });
     seriesTypeSelect.selectByIndex(index);
-    
     chartTypeOptions = highed.meta.charttype[seriesType.toLowerCase()];
 
     if (options[seriesIndex || index] && options[seriesIndex || index].values) {

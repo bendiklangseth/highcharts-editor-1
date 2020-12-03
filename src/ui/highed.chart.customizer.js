@@ -305,7 +305,6 @@ highed.ChartCustomizer = function(parent, attributes, chartPreview, planCode, da
   }
 
   function buildTree() {
-
     if (properties.noAdvanced) {
       return;
     }

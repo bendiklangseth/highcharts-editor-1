@@ -434,6 +434,7 @@ highed.meta.optionsExtended = {
             parent: 'yAxis',
             width: 50
           },
+
           {
             id: 'yAxis-plotLines--value',
             pid: 'yAxis.plotLines.value',
