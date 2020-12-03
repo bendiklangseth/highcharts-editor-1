@@ -188,7 +188,7 @@
           "lineEnd": 94,
           "column": 8,
           "filename": "highcharts/js/modules/accessibility/options.js",
-          "default": "%Y-%m-%d %H:%M:%S"
+          "default": "%d-%m-%Y %H:%M:%S"
         },
         "children": {}
       },
@@ -11065,7 +11065,7 @@
             ]
           },
           "since": "4.0.0",
-          "values": "[\"YYYY/mm/dd\", \"dd/mm/YYYY\", \"mm/dd/YYYY\", \"dd/mm/YYYY\",\n            \"dd/mm/YY\", \"mm/dd/YY\"]"
+          "values": "[\"YYYY/mm/dd\", \"dd/mm/YYYY\",\n            \"dd/mm/YY\"]"
         },
         "meta": {
           "filename": "highcharts/js/modules/data.src.js",
@@ -12644,7 +12644,7 @@
               "lineEnd": 155,
               "column": 12,
               "filename": "highcharts/js/modules/export-data.src.js",
-              "default": "%Y-%m-%d %H:%M:%S"
+              "default": "%d-%m-%Y %H:%M:%S"
             },
             "children": {}
           },
@@ -63638,7 +63638,7 @@
       },
       "inputDateFormat": {
         "doclet": {
-          "description": "The date format in the input boxes when not selected for editing.\nDefaults to `%b %e, %Y`.",
+          "description": "The date format in the input boxes when not selected for editing.\nDefaults to `%e %b, %Y`.",
           "sample": {
             "value": "stock/rangeselector/input-format/\n        Milliseconds in the range selector",
             "products": [
@@ -63659,7 +63659,7 @@
               "string"
             ]
           },
-          "defaultvalue": "%b %e, %Y"
+          "defaultvalue": "%e %b, %Y"
         },
         "meta": {
           "filename": "highcharts/js/parts/RangeSelector.js",
@@ -63723,7 +63723,7 @@
               "string"
             ]
           },
-          "defaultvalue": "%Y-%m-%d"
+          "defaultvalue": "%d-%m-%Y"
         },
         "meta": {
           "filename": "highcharts/js/parts/RangeSelector.js",

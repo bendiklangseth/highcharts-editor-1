@@ -142,7 +142,7 @@ highed.CustomizePage = function(parent, options, chartPreview, chartFrame, props
 
         },
         icon: 'eye'
-      }
+       }
     ],
 
     isVisible = false,
@@ -354,7 +354,7 @@ highed.CustomizePage = function(parent, options, chartPreview, chartFrame, props
         highed.dom.ap(annotationContainer, btn, ellipses);
       });
     }
-    
+
     highed.dom.ap(iconsContainer, annotationContainer);
     highed.dom.ap(contents, userContents);
     highed.dom.ap(body, contents);

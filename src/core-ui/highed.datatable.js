@@ -188,15 +188,15 @@ highed.DataTable = function(parent, attributes) {
     dataModal,
     surpressChangeEvents = false,
     monthNumbers = {
-      JAN: 1,
-      FEB: 2,
-      MAR: 3,
-      APR: 4,
-      MAY: 5,
-      JUN: 6,
-      JUL: 7,
-      AUG: 8,
-      SEP: 9,
+      JAN: 01,
+      FEB: 02,
+      MAR: 03,
+      APR: 04,
+      MAY: 05,
+      JUN: 06,
+      JUL: 07,
+      AUG: 08,
+      SEP: 09,
       OCT: 10,
       NOV: 11,
       DEC: 12
@@ -243,7 +243,6 @@ highed.DataTable = function(parent, attributes) {
           events.emit('ColumnMoved');
         }
       },
-      '-',
       {
         title: 'Remove Row',
         icon: 'trash',
@@ -267,18 +266,7 @@ highed.DataTable = function(parent, attributes) {
           rebuildRows();
         }
       },
-      {
-        title: highed.L('dgDelCol'),
-        icon: 'trash',
-        click: function() {
-          if (confirm(highed.L('dgDelColConfirm'))) {
-            events.emit('ColumnMoving');
-            delCol(selectedFirstCell[0]);
-            updateColumns();
-            events.emit('ColumnMoved');
-          }
-        }
-      },
+     
       '-',
       {
         title: highed.L('dgInsColBefore'),
@@ -296,6 +284,18 @@ highed.DataTable = function(parent, attributes) {
           events.emit('ColumnMoving');
           insertCol(selectedFirstCell[0] + 1);
           events.emit('ColumnMoved');
+        }
+      },
+       {
+        title: highed.L('dgDelCol'),
+        icon: 'trash',
+        click: function() {
+          if (confirm(highed.L('dgDelColConfirm'))) {
+            events.emit('ColumnMoving');
+            delCol(selectedFirstCell[0]);
+            updateColumns();
+            events.emit('ColumnMoved');
+          }
         }
       }
     ]);
@@ -1608,7 +1608,7 @@ highed.DataTable = function(parent, attributes) {
    */
   function sortRows(column, direction, asMonths) {
     tbody.textContent = '';
-    
+
     direction = (direction || '').toUpperCase();
     rows.sort(function(a, b) {
       var ad = a.columns[column].value(),
@@ -1618,6 +1618,7 @@ highed.DataTable = function(parent, attributes) {
         if (asMonths) {
           ad = monthNumbers[ad.toUpperCase().substr(0, 3)] || 13;
           bd = monthNumbers[bd.toUpperCase().substr(0, 3)] || 13;
+          console.log([ad, bd])
         } else {
           ad = parseFloat(ad);
           bd = parseFloat(bd);
@@ -1827,6 +1828,7 @@ highed.DataTable = function(parent, attributes) {
    *  @returns {array<array<string>>}
    */
   function toData(quoteStrings, includeHeaders, section) {
+
     var data = [];
     if (includeHeaders) {
       data.push(getHeaderTextArr(quoteStrings, section));
@@ -1870,9 +1872,39 @@ highed.DataTable = function(parent, attributes) {
             v = undefined;
           }
         }
+        
+        if(v){
+          //Looking for date values: either dd-mm-yyyy , dd.mm.yyyy or dd/mm/yyyy. Converts to en-US format to work with highcharts
+          var rgexpHyphen = /(^(((0[1-9]|1[0-9]|2[0-8])[-](0[1-9]|1[012]))|((29|30|31)[-](0[13578]|1[02]))|((29|30)[-](0[4,6,9]|11)))[-](19|[2-9][0-9])\d\d$)|(^29[-]02[-](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/;
+          var rgexpDot = /(^(((0[1-9]|1[0-9]|2[0-8])[.](0[1-9]|1[012]))|((29|30|31)[.](0[13578]|1[02]))|((29|30)[.](0[4,6,9]|11)))[.](19|[2-9][0-9])\d\d$)|(^29[.]02[.](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/;
+          var rgexpSlash = /(^(((0[1-9]|1[0-9]|2[0-8])[/](0[1-9]|1[012]))|((29|30|31)[/](0[13578]|1[02]))|((29|30)[/](0[4,6,9]|11)))[/](19|[2-9][0-9])\d\d$)|(^29[/]02[/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/;
+          var isValidDateHyphen = rgexpHyphen.test(v);
+          var isValidDateDot = rgexpDot.test(v);
+          var isValidDateSlash = rgexpSlash.test(v);
 
-        addData(v, rarr);
-
+          if(isValidDateHyphen && !(/^-?\d+$/.test(v)) && typeof v === 'string') { 
+            var dateArr = "";
+            dateArr = v.split('-');
+            
+            newDate = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2]
+            v = newDate;
+          }
+          else if (isValidDateDot && !(/^-?\d+$/.test(v)) && typeof v === 'string') {
+            var dateArr = "";
+            dateArr = v.split('.');
+            
+            newDate = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2]
+            v = newDate;
+          }
+          else if (isValidDateSlash && !(/^-?\d+$/.test(v)) && typeof v === 'string') {
+            var dateArr = "";
+            dateArr = v.split('/');
+            
+            newDate = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2]
+            v = newDate;
+          }
+        }
+         addData(v, rarr);
       });
 
       if (hasData) {
@@ -1906,7 +1938,6 @@ highed.DataTable = function(parent, attributes) {
     rows.forEach(function(row, i) {
       row.columns.forEach(function(col, ci) {
         var v = col.value();
-
         if (!ci) {
           if (v && highed.isStr(v) && Date.parse(v) !== NaN) {
             // v = new Date(v);
@@ -1940,6 +1971,7 @@ highed.DataTable = function(parent, attributes) {
    */
   function toCSV(delimiter, quoteStrings, section) {
     delimiter = delimiter || ','; 
+
     
     if (highed.chartType !== 'Map') {
       return toData(quoteStrings, true, section)

@@ -116,10 +116,25 @@ highed.ready(function() {
           }
           else if (excelFile){
             var workbook = XLSX.read(event.target.result, {
-              type: p.type
+              type: p.type,
+              cellDates:true, 
+              cellNF: false, 
+              cellText:false
             })
+
             var firstSheet = workbook.SheetNames[0];
-            data = XLSX.utils.sheet_to_csv(workbook.Sheets[firstSheet]);
+            data = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {raw:false, dateNF: 'dd-mm-yyyy'});
+        
+            var fields = Object.keys(data[0])
+              var replacer = function(key, value) { return value === null ? '' : value } 
+              var csv = data.map(function(row){
+                return fields.map(function(fieldName){
+                  return JSON.stringify(row[fieldName], replacer)
+                }).join(',')
+              })
+              csv.unshift(fields.join(','))
+
+              data = csv.join('\r\n');
            }
 
           if (highed.isFn(p.success)) {

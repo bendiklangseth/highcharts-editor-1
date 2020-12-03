@@ -1149,11 +1149,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     }
   }
 
-  function getAggregatedOptionsHistory() {
-    console.log(optionsHistory);
-    return optionsHistory;
-  }
-
   function deleteSeries(length) {
     if (customizedOptions && customizedOptions.series) {
       customizedOptions.series = customizedOptions.series.slice(0, length);
