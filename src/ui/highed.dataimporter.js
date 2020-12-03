@@ -274,7 +274,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							});
 						}
 						highed.ajax({
-							url: url.value,
+							url: "https://cors-anywhere.herokuapp.com/" + url.value, //Temp CORS fix
 							type: 'get',
 							dataType: options.treatAs || 'text',
 							success: function (val) {
@@ -282,6 +282,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									error,
 									val
 								) {
+
 									if (error) return highed.snackBar('import error: ' + error);
 									if (options.treatAs === 'csv') {
 										csvTab.focus();
@@ -406,6 +407,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}
 
 		function emitCSVImport(csv, cb) {
+			
 			var data = {
 				itemDelimiter: delimiter.value,
 				firstRowAsNames: firstAsNames.checked,
@@ -583,7 +585,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		updateOptions();
 
 		delimiter.value = ',';
-		//dateFormat.value = 'YYYY-mm-dd';
+		dateFormat.value = 'dd-mm-YYYY';
 		firstAsNames.type = 'checkbox';
 		decimalPoint.value = '.';
 		firstAsNames.checked = true;
