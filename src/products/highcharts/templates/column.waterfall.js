@@ -9,7 +9,17 @@ highed.templates.add('Column', {
         type: 'waterfall',
       },
      xAxis: {
-         type: 'category'
+         type: 'category',
+         minorTickLength: 0,
+         tickLength: 0,
+         tickWidth: 1,
+         lineColor: '#000000',
+         labels: {
+           style: {
+               color: '#000000'
+           }
+         },
+         lineWidth: 1 
      }
     }
   });
