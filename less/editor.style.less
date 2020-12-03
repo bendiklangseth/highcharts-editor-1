@@ -76,10 +76,27 @@
 }
 
 .highed-warningbar {
-  background: #e6a031 !important;
+  background: #bf2a22 !important;
   .highed-errorbar-body {
-    background: #F5AB35;
+    background: lighten(#bf2a22, 5);
   }
+}
+
+.highed-errorbar-revert-div {
+  border: 2px solid white;
+  border-radius: 25px;
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.highed-errorbar-revert-btn {
+  border: 0;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
 }
 
 .highed-errorbar {
@@ -88,7 +105,7 @@
   width: 40%;
   margin-left: auto;
   margin-right: auto;
-  background: @background-error;
+  background: #bf2a22;
   color: @color-error;
   position: fixed;
   z-index: 100000;
@@ -120,7 +137,7 @@
   overflow-y: auto;
   min-height: 23px;
   padding: 5px;
-  background: lighten(@background-error, 5);    
+  background: lighten(#bf2a22, 5);    
   padding-top: 10px;
   font-size: 12px;
 }

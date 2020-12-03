@@ -336,8 +336,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       );
     }
 
-
-
   stockTools.on('ShowAnnotationModal', function(options) {
       events.emit('ShowAnnotationModal', options);
     });
@@ -445,6 +443,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
 
   /* Emit change events */
   function emitChange() {
+    
     events.emit('ChartChange', aggregatedOptions);
     //Throttled event - we use this when doing server stuff in the handler
     //since e.g. using the color picker can result in quite a lot of updates
@@ -478,22 +477,48 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                   collection.push(propChild);
                   collection.push(': ');
 
-                  if(typeof embeddableJson[i][prop][propChild] === 'object'){
-                    collection.push('{') 
+                  if(Array.isArray(embeddableJson[i][prop][propChild])){
+                    collection.push("[");
                     for(var propGrandChild in embeddableJson[i][prop][propChild]) {
-                      collection.push(propGrandChild);
-                      collection.push(': ');
+                      if(propGrandChild !== "0"){
+                          collection.push(propGrandChild);
+                          collection.push(': ');
+                      }
                         if(embeddableJson[i][prop][propChild][propGrandChild] === ""){
                           collection.push('""')
                         }
                         else{ 
-                          collection.push('{')
+                         collection.push('{')
                           for(var propGreatGrandChild in embeddableJson[i][prop][propChild][propGrandChild]) {
                             collection.push(propGreatGrandChild)
                             collection.push(': ');
                             collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild]))
+                            collection.push(',');
                           }
-                          collection.push('},')
+                         collection.push('},')
+                        }
+                    }
+                    collection.push("]");
+                  }
+                  else if(typeof embeddableJson[i][prop][propChild] === 'object'){
+                    collection.push('{'); 
+                    for(var propGrandChild in embeddableJson[i][prop][propChild]) {
+                      if(propGrandChild !== "0"){
+                          collection.push(propGrandChild);
+                          collection.push(': ');
+                      }
+                        if(embeddableJson[i][prop][propChild][propGrandChild] === ""){
+                          collection.push('""')
+                        }
+                        else{ 
+                         collection.push('{')
+                          for(var propGreatGrandChild in embeddableJson[i][prop][propChild][propGrandChild]) {
+                            collection.push(propGreatGrandChild)
+                            collection.push(': ');
+                            collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild]))
+                            collection.push(',');
+                          }
+                         collection.push('},')
                         }
                     }
                     collection.push('},');
@@ -571,7 +596,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
                           collection.push(propGreatGrandChild);
                           collection.push(': ')
                             if(typeof embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild] === 'string') {
-                            // || (embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild].startsWith("#"))){
                               collection.push(JSON.stringify(embeddableJson[i][prop][propChild][propGrandChild][propGreatGrandChild]));
                             }
                             else {
@@ -845,11 +869,23 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     return true;
   }
 
+  function revertAggregatedOptions() {
+    for(var prop in aggregatedOptions){
+      for(var oldProp in attributes.defaultChartOptions){
+        if(oldProp === prop){
+          aggregatedOptions[prop] = attributes.defaultChartOptions[prop];
+        }
+      }
+    }
+    init(aggregatedOptions);
+    updateAggregated();
+    emitChange();
+  }
+
   function updateAggregated(noCustomCode) {
 
     templateOptions = templateOptions || [];
     var aggregatedTemplate = {}; 
-
 
     //Merge fest
     highed.clearObj(aggregatedOptions);
@@ -919,6 +955,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       if (highed.isArr(aggregatedOptions.xAxis)) {
         (aggregatedOptions.xAxis).forEach(function(obj, i) {
           if (i < themeOptions.xAxis.length) {
+    
             highed.merge(obj, themeOptions.xAxis[i]);
           }
         });
@@ -948,13 +985,15 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       return JSON.stringify(obj) === JSON.stringify({});
     }
 
+    var isLinked = true;
+
     if(highed.isArr(aggregatedOptions.yAxis)){
       customizedOptions.yAxis = aggregatedOptions.yAxis;
       aggregatedOptions.yAxis = [];
 
       customizedOptions.yAxis.forEach(function(obj, i) {
         var mergeTarget = {};
-
+        
         for(var prop in obj) {
           if(isEmpty(obj[prop]) || Number.isNaN(obj[prop])){
             delete obj[prop];
@@ -966,10 +1005,12 @@ highed.ChartPreview = function(parent, attributes, planCode) {
             for(var prop in serie){
               if(prop === "yAxis") {
                  delete obj['linkedTo'];
+                 isLinked = false;
               }
               else {
                 if(obj['opposite'] !== undefined){ //Funker nesten. blir ikke satt før man går ut av customize
-                  highed.merge(obj ,{ linkedTo: 0 })
+                  highed.merge(obj ,{ linkedTo: 0 });
+                  isLinked = true;
                 }
               }
             }
@@ -986,27 +1027,24 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       })
     }
 
-    if(highed.isArr(aggregatedOptions.xAxis)){
       customizedOptions.xAxis = aggregatedOptions.xAxis;
-      aggregatedOptions.xAxis = [];
+      aggregatedOptions.xAxis = {};
 
-      customizedOptions.xAxis.forEach(function(obj, i) {
+
         var mergeTarget = {};
 
-        for(var prop in obj){
-          if(isEmpty(obj[prop]) || Number.isNaN(obj[prop])){
-            delete obj[prop];
+        for(var prop in aggregatedOptions.xAxis){
+          if(isEmpty(aggregatedOptions.xAxis[prop]) || Number.isNaN(aggregatedOptions.xAxis[prop])){
+            delete aggregatedOptions.xAxis[prop];
           }
         }
 
-        if(themeOptions && highed.isArr(themeOptions.xAxis)) {
-          if(i < themeOptions.xAxis.length) {
-            mergeTarget = highed.merge({}, themeOptions.series[i]);
-          }
+        if(themeOptions && themeOptions.xAxis) {       
+          mergeTarget = highed.merge({}, themeOptions.series[0]);
         }
-        aggregatedOptions.xAxis.push(highed.merge(mergeTarget, obj));
-      })
-    }
+
+        highed.merge(aggregatedOptions.xAxis, highed.merge(mergeTarget, aggregatedOptions.xAxis));
+
 
     //Temporary hack
     //aggregatedOptions.series = customizedOptions.series;\
@@ -1086,6 +1124,19 @@ highed.ChartPreview = function(parent, attributes, planCode) {
       aggregatedOptions.annotations = annotations.slice();
     }
 
+    if(isLinked){
+       for(var prop in aggregatedOptions.yAxis[0]){
+        if(prop === 'type'){
+          highed.merge(aggregatedOptions.yAxis[1], { type: aggregatedOptions.yAxis[0].type })
+        }
+       }
+       for(var prop in aggregatedOptions.yAxis[1]){
+         if(prop === 'type'){
+           highed.merge(aggregatedOptions.yAxis[0], { type: aggregatedOptions.yAxis[1].type })
+         }
+       }
+    }
+
     highed.merge(aggregatedOptions, highed.option('stickyChartProperties'));
   
     // Finally, do custom code
@@ -1096,6 +1147,11 @@ highed.ChartPreview = function(parent, attributes, planCode) {
         console.log("Error in Custom Code:", e);
       }
     }
+  }
+
+  function getAggregatedOptionsHistory() {
+    console.log(optionsHistory);
+    return optionsHistory;
   }
 
   function deleteSeries(length) {
@@ -1207,7 +1263,17 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           customizedOptions.series = chart.options.series;
           if(highed.isArr(customizedOptions.series)){
             customizedOptions.series.forEach(function(elm) {
-              highed.merge(elm, { label: { enabled: false }})
+              highed.merge(elm, 
+                { 
+                  label: { 
+                    enabled: false 
+                  }, 
+                  // marker: { 
+                  //   symbol: "square",
+                  //   radius: 6
+
+                  // }
+                })
             })
           }
         }
@@ -1288,7 +1354,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           if (axis.categories) axis.categories = [];
         });
       }
-
+      
       highed.merge(customizedOptions, {
         plotOptions: {
           series: {
@@ -1299,13 +1365,12 @@ highed.ChartPreview = function(parent, attributes, planCode) {
           csv: data.csv,
           itemDelimiter: data.itemDelimiter,
           firstRowAsNames: data.firstRowAsNames,
-          dateFormat: data.dateFormat,
+          dateFormat: 'dd.mm.YYYY',
           decimalPoint: data.decimalPoint,
           googleSpreadsheetKey: undefined,
           url: data.url
         }
       });
-
       updateAggregated();
 
       init(aggregatedOptions);
@@ -1344,16 +1409,17 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     //     customizedOptions.xAxis = customizedOptions.xAxis || [];
     //     chart.xAxis.forEach(function (a, i) {
     //       customizedOptions.xAxis[i] = customizedOptions.xAxis[i] || {};
-    //       if (a.isDatetimeAxis) {
+    //        console.log(a)
+    //       if (a.dateTime) {
     //         customizedOptions.xAxis[i].type = 'datetime';
     //       } else if (a.categories) {
     //         customizedOptions.xAxis[i].type = 'categories';
     //       } else {
-    //         // customizedOptions.xAxis[i].type = 'linear';
+    //         customizedOptions.xAxis[i].type = 'linear';
     //       }
     //     });
     //   }
-    //   console.log(chart);
+    //   //console.log(chart);
     // });
     // }, 1000);
   }
@@ -2015,7 +2081,6 @@ highed.ChartPreview = function(parent, attributes, planCode) {
    *  @param index {number} - used if the option is an array
    */
   function set(id, value, index) {
-
     gc(function(chart) {
       highed.setAttr(
         chart.options,
@@ -2579,6 +2644,7 @@ highed.ChartPreview = function(parent, attributes, planCode) {
     collapse: collapse,
     new: newChart,
     changeParent: changeParent,
+    revertAggregatedOptions : revertAggregatedOptions,
 
     getHighchartsInstance: gc,
 

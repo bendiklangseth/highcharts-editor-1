@@ -55,6 +55,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
             },
             legend: {
               align: 'center',
+              symbolRadius: 0,
               itemStyle: {
                 fontWeight: 'normal'
               },
@@ -860,32 +861,42 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
         //applyTheme(theme, skipEmit);
       }
     }
+    var revertBtn = highed.dom.ap(highed.dom.cr('button', 'highed-errorbar-revert-btn', ''), highed.dom.cr('i', 'fa fa-undo'))
+    var revertDiv = highed.dom.ap(highed.dom.cr('div', 'highed-errorbar-revert-div'), revertBtn);
 
     function showError(title, message, warning, code) {
-      
-      if (suppressWarning) return;
-        
-      highed.dom.style(errorBarClose, {
-        display: 'inline-block'
-      });
 
-      if (warning) {
-        if (!errorBar.classList.contains('highed-warningbar')) errorBar.classList += ' highed-warningbar';
-      } else {
-        errorBar.classList.remove('highed-warningbar');
-      }
-      
-      highed.dom.style(errorBar, {
-        opacity: 1,
-        'pointer-events': 'auto',
-      });
-
-      errorBarHeadline.innerHTML = title;
-      errorBarBody.innerHTML = message;
-
-      if (code === 14) {
+      if (code === "14") {
         dataPage.showDataTableError();
+        highed.dom.style(revertDiv, {
+          opacity: 0
+        })
       }
+      else {
+        highed.dom.style(revertDiv, {
+          opacity: 1
+        })
+      }
+
+        if (suppressWarning) return;
+        
+        highed.dom.style(errorBarClose, {
+          display: 'inline-block'
+        });
+
+        if (warning) {
+          if (!errorBar.classList.contains('highed-warningbar')) errorBar.classList += ' highed-warningbar';
+        } else {
+          errorBar.classList.remove('highed-warningbar');
+        }
+        
+        highed.dom.style(errorBar, {
+          opacity: 1,
+          'pointer-events': 'auto'
+        });
+
+        errorBarHeadline.innerHTML = title;
+        errorBarBody.innerHTML = message;
     }
 
     function hideError() {
@@ -990,6 +1001,12 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
       }, 2000);
     });
 
+    highed.dom.on(revertDiv, 'click', function () {
+      hideError();
+      chartPreview.revertAggregatedOptions();
+      //customizeOptions = gammel versjon
+    })
+
     chartPreview.on('RequestEdit', function(event, x, y) {
 
       const customize = panel.getOptions().customize;
@@ -1024,16 +1041,18 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
       //dataTable.loadLiveDataPanel(p);
     });
 
-    chartPreview.on('Error', function(e) {
+    chartPreview.on('Error', function(e) { 
+
       var errorCode = e.code.message.split('#').pop().split(':')[0]
       if (highed.highchartsErrors[errorCode] != null) {
         
         var item = highed.highchartsErrors[errorCode];
-
+     
         return showError(
           (item.title) + '!',
           (item.text) + '\n' + '. [More info: ' + e.url + '] ',
-          e.code
+          true,
+          errorCode
         );
       } 
       else {
@@ -1063,7 +1082,6 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
 
     highed.dom.on(errorBarClose, 'click', function() {
       hideError();
-      suppressWarning = true;
     });
 
     //////////////////////////////////////////////////////////////////////////////
@@ -1093,7 +1111,7 @@ highed.DrawerEditor = function(parent, options, planCode, chartType) {
         highed.dom.ap(chartFrame, chartContainer)
       ),
       showChartSmallScreen,
-      highed.dom.ap(errorBar, highed.dom.ap(errorBarHeadlineContainer, errorBarHeadline, errorBarClose), errorBarBody)
+      highed.dom.ap(errorBar, highed.dom.ap(errorBarHeadlineContainer, errorBarHeadline, revertDiv, errorBarClose), errorBarBody)
     );
 
     highed.dom.on([resWidth, resHeight], 'change', function() {
