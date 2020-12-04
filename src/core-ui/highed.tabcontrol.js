@@ -72,6 +72,10 @@ highed.TabControl = function(parent, noOverflow, extraPadding, skipTabs) {
     ctx.show(e.clientX, e.clientY);
   });
 
+  function getParent(){
+    
+  }
+
   /** Force a resize of the tab control
    *  @memberof highed.TabControl
    *  @param w {number} - the width, uses parent width if null

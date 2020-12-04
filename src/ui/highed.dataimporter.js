@@ -101,7 +101,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			properties = highed.merge(
 				{
 					options: ['csv', 'plugins', 'samples', 'export'],
-					plugins: ['CSV', 'JSON', 'Apiary', 'Difi', 'Socrata', 'Google Spreadsheets']
+					plugins: ['CSV', 'JSON', 'Apiary', 'FAME', 'Difi', 'Socrata', 'Google Spreadsheets']
 				},
 				attributes
 			),
@@ -214,157 +214,209 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				}
 
 				function buildBody() {
-					var options = webImports[name],
-						url = highed.dom.cr('input', 'highed-imp-input-stretch'),
-						urlTitle = highed.dom.cr('div', '', 'URL'),
-						importBtn = highed.dom.cr(
-							'button',
-							'highed-imp-button',
-							'Import ' + name + ' from URL'
-						),
-						dynamicOptionsContainer = highed.dom.cr(
-							'table',
-							'highed-customizer-table'
-						),
-						dynamicOptions = {};
+					if(name === "FAME"){ 
+						highed.dom.style(parent, {
+							width: '1200px',
+							height: '800px'
+						});
 
-					url.value = options.defaultURL || '';
-
-					Object.keys(options.options || {}).forEach(function (name) {
-						dynamicOptions[name] = options.options[name].default;
-
-						highed.dom.ap(
-							dynamicOptionsContainer,
-							highed.InspectorField(
-								options.options[name].type,
-								options.options[name].default,
-								{
-									title: options.options[name].label
-								},
-								function (nval) {
-									dynamicOptions[name] = nval;
-								},
-								true
-							)
-						);
-					});
-
-					if (options.surpressURL) {
-						highed.dom.style([url, urlTitle], {
-							display: 'none'
+						var fameTitle = highed.dom.cr('div', 'highed-plugin-fame-title highed-customizer-table-heading', name + ' - Search for time series'),
+						    serieImport = highed.dom.cr('button', 'highed-imp-button','Import time series'),
+							selectCat = highed.dom.cr('ol', 'highed-plugin-fame-nav-ul', '1. Select category'),
+							selectTimeS = highed.dom.cr('ol', 'highed-plugin-fame-nav-ul', '2. Select time series'),
+							editTimeS = highed.dom.cr('ol', 'highed-plugin-fame-nav-ul', '3. Edit time series');
+							// Lag en json fil med API innhold for testing
+	
+						highed.dom.on(serieImport, 'click', function() {
+							highed.ajax({
+								headers: {  
+											'Access-Control-Allow-Origin': '*',
+											'Access-Control-Allow-Methods': 'GET',
+											"Content-Type": "application/json"
+										 },
+								url: url.value, 
+								type: 'get',
+								dataType: 'json',
+								success: function (val) {
+									console.log(val);
+								}
+							})
+						})
+					}
+					else {
+						highed.dom.style(parent, {
+							width: '600px',
+							height: '600px'
 						});
 					}
+						var options = webImports[name],
+							url = highed.dom.cr('input', 'highed-imp-input-stretch'),
+							urlTitle = highed.dom.cr('div', '', 'URL'),
+							importBtn = highed.dom.cr(
+								'button',
+								'highed-imp-button',
+								'Import ' + name + ' from URL'
+							),
+							dynamicOptionsContainer = highed.dom.cr(
+								'table',
+								'highed-customizer-table'
+							),
+							dynamicOptions = {};
 
-					url.placeholder = 'Enter URL';
+						url.value = options.defaultURL || '';
 
-					highed.dom.on(importBtn, 'click', function () {
-						highed.snackBar('Importing ' + name + ' data');
+						Object.keys(options.options || {}).forEach(function (name) {
+							dynamicOptions[name] = options.options[name].default;
 
-						if (highed.isFn(options.request)) {
-							return options.request(url.value, dynamicOptions, function (
-								err,
-								chartProperties
-							) {
-								if (err) return highed.snackBar('import error: ' + err);
-								events.emit(
-									'ImportChartSettings',
-									chartProperties,
-									options.newFormat
-								);
+							highed.dom.ap(
+								dynamicOptionsContainer,
+								highed.InspectorField(
+									options.options[name].type,
+									options.options[name].default,
+									{
+										title: options.options[name].label
+									},
+									function (nval) {
+										dynamicOptions[name] = nval;
+									},
+									true
+								)
+							);
+						});
+
+						if (options.surpressURL) {
+							highed.dom.style([url, urlTitle], {
+								display: 'none'
 							});
 						}
-						highed.ajax({
-							url: "https://cors-anywhere.herokuapp.com/" + url.value, //Temp CORS fix
-							type: 'get',
-							dataType: options.treatAs || 'text',
-							success: function (val) {
-								options.filter(val, highed.merge({}, dynamicOptions), function (
-									error,
-									val
+
+						url.placeholder = 'Enter URL';
+
+						highed.dom.on(importBtn, 'click', function () {
+							highed.snackBar('Importing ' + name + ' data');
+
+							if (highed.isFn(options.request)) {
+								return options.request(url.value, dynamicOptions, function (
+									err,
+									chartProperties
 								) {
+									if (err) return highed.snackBar('import error: ' + err);
+									events.emit(
+										'ImportChartSettings',
+										chartProperties,
+										options.newFormat
+									);
+								});
+							}
+							highed.ajax({
+								url: "https://cors-anywhere.herokuapp.com/" + url.value, //Temp CORS fix
+								type: 'get',
+								dataType: options.treatAs || 'text',
+								success: function (val) {
+									options.filter(val, highed.merge({}, dynamicOptions), function (
+										error,
+										val
+									) {
 
-									if (error) return highed.snackBar('import error: ' + error);
-									if (options.treatAs === 'csv') {
-										csvTab.focus();
-										csvPasteArea.value = val;
-										emitCSVImport(val);
-									}
-									else if (options.treatAs === 'csv-append') {
-										csvTab.focus();
+										if (error) return highed.snackBar('import error: ' + error);
+										if (options.treatAs === 'csv') {
+											csvTab.focus();
+											csvPasteArea.value = val;
+											emitCSVImport(val);
+										}
+										else if (options.treatAs === 'csv-append') {
+											csvTab.focus();
 
-										if (csvPasteArea.value != '') {
-											var existingDataArray = csvPasteArea.value.split('\n');
-											var appdendingDataArray = val.split('\n');
-											var newDataArray = [];
-											var matchColA = [];
-											var matchColAIndex = -1;
+											if (csvPasteArea.value != '') {
+												var existingDataArray = csvPasteArea.value.split('\n');
+												var appdendingDataArray = val.split('\n');
+												var newDataArray = [];
+												var matchColA = [];
+												var matchColAIndex = -1;
 
-											existingDataArray.forEach(element => {
-												var lineArr = [];
-												var arr1 = element.split(',')
+												existingDataArray.forEach(element => {
+													var lineArr = [];
+													var arr1 = element.split(',')
 
-												for (let i = 0; i < arr1.length; i++) {
-													if (i === 0) {
-														var colA = arr1[i];
-														matchColAIndex = appdendingDataArray.findIndex(element => element.includes(colA));
-														//matchColAIndex = appdendingDataArray.indexOf(colA);
-													}
-													lineArr.push(arr1[i])
-												}
-												if (matchColAIndex >= 0) {
-													var uu = appdendingDataArray[matchColAIndex];
-													var newVals = uu.split(',');
-													if (newVals != null) {
-														for (let j = 1; j < newVals.length; j++) {
-															lineArr.push(newVals[j]);
+													for (let i = 0; i < arr1.length; i++) {
+														if (i === 0) {
+															var colA = arr1[i];
+															matchColAIndex = appdendingDataArray.findIndex(element => element.includes(colA));
+															//matchColAIndex = appdendingDataArray.indexOf(colA);
 														}
+														lineArr.push(arr1[i])
 													}
-													//lineArr.push('\n');
-													newDataArray.push(lineArr.join(','));
+													if (matchColAIndex >= 0) {
+														var uu = appdendingDataArray[matchColAIndex];
+														var newVals = uu.split(',');
+														if (newVals != null) {
+															for (let j = 1; j < newVals.length; j++) {
+																lineArr.push(newVals[j]);
+															}
+														}
+														//lineArr.push('\n');
+														newDataArray.push(lineArr.join(','));
 
-												}
+													}
 
-											});
-											csvPasteArea.value = newDataArray.join('\n');
+												});
+												csvPasteArea.value = newDataArray.join('\n');
+											}
+											else {
+												csvPasteArea.value = val;
+											}
+											//csvPasteArea.value = val;
+											emitCSVImport(csvPasteArea.value);
 										}
 										else {
-											csvPasteArea.value = val;
+											processJSONImport(val);
 										}
-										//csvPasteArea.value = val;
-										emitCSVImport(csvPasteArea.value);
-									}
-									else {
-										processJSONImport(val);
-									}
-								});
-							},
-							error: function (err) {
-								highed.snackBar('import error: ' + err);
-							}
+									});
+								},
+								error: function (err) {
+									highed.snackBar('import error: ' + err);
+								}
+							});
 						});
-					});
 
-					webSplitter.right.innerHTML = '';
+						webSplitter.right.innerHTML = '';
 
-					highed.dom.ap(
-						webSplitter.right,
-						highed.dom.ap(
-							highed.dom.cr('div', 'highed-plugin-details'),
-							highed.dom.cr(
-								'div',
-								'highed-customizer-table-heading',
-								options.title || name
-							),
-							highed.dom.cr('div', 'highed-imp-help', options.description),
-							urlTitle,
-							url,
-							Object.keys(options.options || {}).length
-								? dynamicOptionsContainer
-								: false,
-							highed.dom.cr('br'),
-							importBtn
-						)
-					);
+						if(name === "FAME") {
+
+							highed.dom.ap(
+								webSplitter.right,
+								highed.dom.ap(
+									highed.dom.cr('div', 'highed-plugin-details'),
+									fameTitle,
+									selectCat,
+									selectTimeS,
+									editTimeS,
+									highed.dom.cr('br'),
+									serieImport
+								)
+							)
+						} 
+						else {
+							highed.dom.ap(
+								webSplitter.right,
+								highed.dom.ap(
+									highed.dom.cr('div', 'highed-plugin-details'),
+									highed.dom.cr(
+										'div',
+										'highed-customizer-table-heading',
+										options.title || name
+									),
+									highed.dom.cr('div', 'highed-imp-help', options.description),
+									urlTitle,
+									url,
+									Object.keys(options.options || {}).length
+										? dynamicOptionsContainer
+										: false,
+									highed.dom.cr('br'),
+									importBtn
+								)
+							);
+						}					
 				}
 
 				webList.addItem({

@@ -667,28 +667,17 @@ highed.DataTable = function(parent, attributes) {
         highed.dom.nodefault(e);
         return false;
       });
-     
-      if(valueHistory.length === 0 && value === null){
-        valueHistory.push([colNumber, row.number, null]);
+
+      if(valueHistory.length === 0 && getCellValue() === null){
+         valueHistory.push([colNumber, row.number, null]);
       }     
-      else if (valueHistory.length === 0 && value != null) {
-        valueHistory.push([colNumber, row.number, value]);
-      }
 
       var lastElm = valueHistory[valueHistory.length -1]; //Burde sjekke opp nest siste?
 
-      if(lastElm[lastElm.length - 1] != value) {
-        if(value === null){
-          console.log('Value of new item is null')
-        } else {
-          if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){ //Return -1 when item is not in array, otherwise return index pos
-            valueHistory.push([colNumber, row.number, value]);
-          } 
-        }
-      }
-      else {
-        console.log("duplicate", [lastElm[lastElm.length - 1 ], value])
-      }
+      if(searchForArray(valueHistory, [colNumber, row.number, value]) === -1){ //Return -1 when item is not in array, otherwise return index pos
+        valueHistory.push([colNumber, row.number, value]);
+      } 
+
       makeEditable(
         col,
         value,
@@ -1141,20 +1130,20 @@ highed.DataTable = function(parent, attributes) {
       rebuildRows();
     }
   }
- 
+  
   function UndoLastInput() {
-    if(valueHistory.length >= 1){
+    if(valueHistory.length >= 2){
       var lastElement = {};
-      if(valueHistory.length === 1){
-        lastElement = valueHistory[valueHistory.length - 1];
-      } 
-      else {
-        lastElement = valueHistory[valueHistory.length - 2];
+      lastElement = valueHistory[valueHistory.length - 2];
+
+      if(lastElement[2] === null) {
+
       }
 
       var elementPos = getInputPosition(lastElement[0],lastElement[1]);
       valueHistory.pop();
       elementPos.setValue(lastElement);
+      console.log('Set value', [lastElement,valueHistory]);
     } else {
       alert("There is nothing to undo!")
     }
