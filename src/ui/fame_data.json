@@ -1,0 +1,2289 @@
+{
+    "status":"OK",
+    "data":{
+       "FameCategories":[
+          {
+             "CategoryName":"National Accounts",
+             "CategorySearchCommand":null,
+             "Level":0,
+             "SubCategories":[
+                {
+                   "CategoryName":"Balance of payments",
+                   "CategorySearchCommand":"National Accounts|Balance of payments|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Balance of payments|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Capital, fixed",
+                   "CategorySearchCommand":"National Accounts|Capital, fixed|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Capital, fixed|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Changes in inventories",
+                   "CategorySearchCommand":"National Accounts|Changes in inventories|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Households",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Households||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining products",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Mining products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other transport",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Other transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Other||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum products",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Petroleum products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary products",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Primary products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Changes in inventories|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Consumption of fixed capital",
+                   "CategorySearchCommand":"National Accounts|Consumption of fixed capital|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Consumption of fixed capital|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Consumption",
+                   "CategorySearchCommand":"National Accounts|Consumption|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Households and npish",
+                         "CategorySearchCommand":"National Accounts|Consumption|Households and npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Households",
+                         "CategorySearchCommand":"National Accounts|Consumption|Households||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Consumption|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Consumption|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Consumption|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Consumption|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Employment",
+                   "CategorySearchCommand":"National Accounts|Employment|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Employment|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Employment|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Employment|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Employment|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Employment|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Employment|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Employment|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Employment|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Employment|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Employment|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Employment|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Employment|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Employment|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Exports",
+                   "CategorySearchCommand":"National Accounts|Exports|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Exports|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Exports|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Households",
+                         "CategorySearchCommand":"National Accounts|Exports|Households||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Exports|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Exports|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining products",
+                         "CategorySearchCommand":"National Accounts|Exports|Mining products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Exports|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Exports|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Exports|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other transport",
+                         "CategorySearchCommand":"National Accounts|Exports|Other transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other",
+                         "CategorySearchCommand":"National Accounts|Exports|Other||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum products",
+                         "CategorySearchCommand":"National Accounts|Exports|Petroleum products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Exports|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary products",
+                         "CategorySearchCommand":"National Accounts|Exports|Primary products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Exports|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Exports|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Exports|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Exports|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Exports|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Traditional goods",
+                         "CategorySearchCommand":"National Accounts|Exports|Traditional goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Factor income",
+                   "CategorySearchCommand":null,
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Factor income|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Factor income|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Factor income|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Factor income|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Factor income|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Factor income|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Factor income|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Factor income|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Factor income|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Factor income|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Factor income|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Gross domestic product",
+                   "CategorySearchCommand":"National Accounts|Gross domestic product|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Correction items",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Correction items||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Gross domestic product|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Gross national income",
+                   "CategorySearchCommand":null,
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Gross national income|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Gross output",
+                   "CategorySearchCommand":"National Accounts|Gross output|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Gross output|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Gross output|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Households",
+                         "CategorySearchCommand":"National Accounts|Gross output|Households||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Gross output|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Gross output|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Gross output|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining products",
+                         "CategorySearchCommand":"National Accounts|Gross output|Mining products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Gross output|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Gross output|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Gross output|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Gross output|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Gross output|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other transport",
+                         "CategorySearchCommand":"National Accounts|Gross output|Other transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other",
+                         "CategorySearchCommand":"National Accounts|Gross output|Other||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Gross output|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum products",
+                         "CategorySearchCommand":"National Accounts|Gross output|Petroleum products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Gross output|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary products",
+                         "CategorySearchCommand":"National Accounts|Gross output|Primary products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Gross output|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Gross output|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Gross output|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Gross output|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Gross output|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Gross saving",
+                   "CategorySearchCommand":null,
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Gross saving|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Imports",
+                   "CategorySearchCommand":"National Accounts|Imports|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Imports|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Imports|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Households",
+                         "CategorySearchCommand":"National Accounts|Imports|Households||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Imports|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Imports|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining products",
+                         "CategorySearchCommand":"National Accounts|Imports|Mining products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Imports|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Imports|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Imports|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other transport",
+                         "CategorySearchCommand":"National Accounts|Imports|Other transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other",
+                         "CategorySearchCommand":"National Accounts|Imports|Other||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum products",
+                         "CategorySearchCommand":"National Accounts|Imports|Petroleum products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Imports|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary products",
+                         "CategorySearchCommand":"National Accounts|Imports|Primary products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Imports|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Imports|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Imports|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Imports|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Imports|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Traditional goods",
+                         "CategorySearchCommand":"National Accounts|Imports|Traditional goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Intermediate consumption",
+                   "CategorySearchCommand":"National Accounts|Intermediate consumption|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Intermediate consumption|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Investments, fixed",
+                   "CategorySearchCommand":"National Accounts|Investments, fixed|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Investments, fixed|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Main items",
+                   "CategorySearchCommand":"National Accounts|Main items|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Main items|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Main items|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Households",
+                         "CategorySearchCommand":"National Accounts|Main items|Households||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Main items|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing products",
+                         "CategorySearchCommand":"National Accounts|Main items|Manufacturing products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Main items|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining products",
+                         "CategorySearchCommand":"National Accounts|Main items|Mining products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Main items|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil rigs",
+                         "CategorySearchCommand":"National Accounts|Main items|Oil rigs||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other goods",
+                         "CategorySearchCommand":"National Accounts|Main items|Other goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other transport",
+                         "CategorySearchCommand":"National Accounts|Main items|Other transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Other",
+                         "CategorySearchCommand":"National Accounts|Main items|Other||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum products",
+                         "CategorySearchCommand":"National Accounts|Main items|Petroleum products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Main items|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary products",
+                         "CategorySearchCommand":"National Accounts|Main items|Primary products||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Main items|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Main items|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Main items|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Ships and boats",
+                         "CategorySearchCommand":"National Accounts|Main items|Ships and boats||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Main items|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Traditional goods",
+                         "CategorySearchCommand":"National Accounts|Main items|Traditional goods||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Operating surplus",
+                   "CategorySearchCommand":"National Accounts|Operating surplus|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Operating surplus|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Subsidies",
+                   "CategorySearchCommand":"National Accounts|Subsidies|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Subsidies|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Taxes",
+                   "CategorySearchCommand":"National Accounts|Taxes|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Taxes|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Taxes|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Taxes|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Taxes|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Taxes|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Taxes|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Taxes|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Taxes|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Taxes|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Taxes|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Taxes|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Taxes|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Taxes|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                },
+                {
+                   "CategoryName":"Wages",
+                   "CategorySearchCommand":"National Accounts|Wages|||",
+                   "Level":1,
+                   "SubCategories":[
+                      {
+                         "CategoryName":"Construction",
+                         "CategorySearchCommand":"National Accounts|Wages|Construction||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Electricity, steam and gas supply",
+                         "CategorySearchCommand":"National Accounts|Wages|Electricity, steam and gas supply||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mainland norway",
+                         "CategorySearchCommand":"National Accounts|Wages|Mainland norway||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Manufacturing",
+                         "CategorySearchCommand":"National Accounts|Wages|Manufacturing||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Mining",
+                         "CategorySearchCommand":"National Accounts|Wages|Mining||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Npish",
+                         "CategorySearchCommand":"National Accounts|Wages|Npish||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Oil activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Wages|Oil activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Petroleum activities and sea transport",
+                         "CategorySearchCommand":"National Accounts|Wages|Petroleum activities and sea transport||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Pipelines",
+                         "CategorySearchCommand":"National Accounts|Wages|Pipelines||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Primary",
+                         "CategorySearchCommand":"National Accounts|Wages|Primary||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Public",
+                         "CategorySearchCommand":"National Accounts|Wages|Public||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Services",
+                         "CategorySearchCommand":"National Accounts|Wages|Services||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      },
+                      {
+                         "CategoryName":"Total aggregates",
+                         "CategorySearchCommand":"National Accounts|Wages|Total aggregates||",
+                         "Level":2,
+                         "SubCategories":[
+                            
+                         ]
+                      }
+                   ]
+                }
+             ]
+          },
+          {
+             "CategoryName":"Surveys",
+             "CategorySearchCommand":null,
+             "Level":0,
+             "SubCategories":[
+                {
+                   "CategoryName":"Norges Bank expectations survey",
+                   "CategorySearchCommand":"Surveys|Norges Bank expectations survey|||",
+                   "Level":1,
+                   "SubCategories":[
+                      
+                   ]
+                }
+             ]
+          }
+       ]
+    }
+ }

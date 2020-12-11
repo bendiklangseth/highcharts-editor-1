@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ******************************************************************************/
 
+
 // @format
 
 (function () {
@@ -207,6 +208,36 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			tabs.selectFirst();
 		}
 
+		function searchCategories(e) {
+			var input, filter, ul, li, i, txtValue;
+			input = document.getElementsByClassName('category_search')[0];
+			filter = input.value.toUpperCase();
+			ul = document.getElementsByClassName('category-ul ')[0];
+			li = ul.getElementsByTagName('li');
+
+			for (i = 0; i < li.length; i++) {
+				console.log(li[i]);
+			}
+
+			e.stopPropagation();
+		}
+
+		function fameApiGET(url_value, cb) {
+			highed.ajax({
+				url: url_value,
+				cors: true,
+				type: 'GET',
+				dataType: 'jsonp',
+				contentType: 'application/json',
+				success: function (val) {
+					cb(JSON.parse(val));
+				},
+				error: function(xhr, ajaxOptions, throwError) {
+					alert(xhr + " " + throwError);
+				}
+			});
+		}
+
 		function buildWebTab() {
 			Object.keys(webImports).forEach(function (name) {
 				if (!properties.plugins[name]) {
@@ -214,33 +245,363 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				}
 
 				function buildBody() {
-					if(name === "FAME"){ 
+					if(name === "FAME"){ // TODO: RYDDE OPP
 						highed.dom.style(parent, {
 							width: '1200px',
 							height: '800px'
 						});
 
-						var fameTitle = highed.dom.cr('div', 'highed-plugin-fame-title highed-customizer-table-heading', name + ' - Search for time series'),
-						    serieImport = highed.dom.cr('button', 'highed-imp-button','Import time series'),
-							selectCat = highed.dom.cr('ol', 'highed-plugin-fame-nav-ul', '1. Select category'),
-							selectTimeS = highed.dom.cr('ol', 'highed-plugin-fame-nav-ul', '2. Select time series'),
-							editTimeS = highed.dom.cr('ol', 'highed-plugin-fame-nav-ul', '3. Edit time series');
-							// Lag en json fil med API innhold for testing
+					var fameTitle = highed.dom.cr('div', 'highed-plugin-fame-title highed-customizer-table-heading', name + ' - Search for time series'),
+						serieImport = highed.dom.cr('button', 'highed-imp-button','Import time series'),
+						navigation_ul = highed.dom.cr('ol', 'highed-plugin-fame-nav-ol')
+						selectCat = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Select category'),
+						category_ul = highed.dom.cr('ul', 'category-ul'),
+						selectTimeS = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Select time series'),
+						editTimeS = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Edit time series'),
+						timeSeries_ul = highed.dom.cr('ul', 'timeSeries-ul'),
+						timeSeries_counter_li = highed.dom.cr('li', 'timeSeries-li'),
+						timeSeries_filter_li = highed.dom.cr('li', 'filter-li'),
+						selectTimeSeries_ul = highed.dom.cr('ul', 'selectTimeSeries-ul'),
+						filterTitle  = highed.dom.cr('p', 'timeS-filterTitle', 'Filter search:'),
+						filterType = ['Region: All', 'Frequency: All', 'Datasource: All', 'Measure: All', 'Seasonal: All'],
+						headerText_desc = highed.dom.cr('p', 'header-text  desc', 'Description'),
+						headerText_name = highed.dom.cr('p', 'header-text  name', 'Name'),
+						headerText_first_value = highed.dom.cr('p', 'header-text  first-value', 'First value'),
+						headerText_last_value = highed.dom.cr('p', 'header-text  last-value', 'Last value'),
+						selectTimeSeries_ul_header = highed.dom.cr('li', 'selectTimeSeries-ul-header');
+						subcat_0_elements = document.getElementsByClassName('sub_0_li-element'),
+						category_ul_elm = document.getElementsByClassName('category-ul'),
+						fame_json = {},
+						getCategoriesJson = {},
+						categoryCommand = "",
+						timeserie_id = "";
+
+						selectCat.appendChild(category_ul);
+
+						selectCat.setAttribute('data-before',  '⮟');
+						selectTimeS.setAttribute('data-before',  '⮟');
+						editTimeS.setAttribute('data-before',  '⮟');
+
+						fameApiGET(webImports[name].defaultURL, function (categories) { 
+							categories.data.FameCategories.forEach(function (cat) {
+								var sub_0_cat = highed.dom.cr('li', 'sub_0_li-element');
+								sub_0_cat.innerHTML = cat.CategoryName;
+								category_ul.appendChild(sub_0_cat);
 	
-						highed.dom.on(serieImport, 'click', function() {
-							highed.ajax({
-								headers: {  
-											'Access-Control-Allow-Origin': '*',
-											'Access-Control-Allow-Methods': 'GET',
-											"Content-Type": "application/json"
-										 },
-								url: url.value, 
-								type: 'get',
-								dataType: 'json',
-								success: function (val) {
-									console.log(val);
+								if (cat.SubCategories.length !== 0) {
+									var sub_1_cat = highed.dom.cr('ul', 'sub_1_menu_ul');
+	
+									cat.SubCategories.forEach(function (sub1_elm) {
+										var sub1_li = highed.dom.cr('li', 'sub_1_li_element');
+										sub1_li.innerHTML = sub1_elm.CategoryName;
+										sub1_li.setAttribute('data-command', sub1_elm.CategorySearchCommand)
+										sub_1_cat.appendChild(sub1_li);
+	
+										if (sub1_elm.SubCategories.length !== 0) {
+											var sub_2_menu = highed.dom.cr('ul', 'sub_1_menu_ul');
+	
+											sub1_elm.SubCategories.forEach(function (sub2_elm) {
+												var sub2_li = highed.dom.cr('li', 'sub_2_li_element');
+												sub2_li.innerHTML = sub2_elm.CategoryName;
+												sub2_li.setAttribute('data-command', sub2_elm.CategorySearchCommand)
+												sub_2_menu.appendChild(sub2_li);
+											})
+											sub1_li.appendChild(sub_2_menu);
+										}
+									})
+									sub_0_cat.appendChild(sub_1_cat);
 								}
 							})
+						});
+				
+							timeSeries_filter_li.appendChild(filterTitle)
+
+							filterType.forEach(function (filter) {
+								var p_filter = highed.dom.cr('p', 'timeS-filterType', filter); 
+								timeSeries_filter_li.appendChild(p_filter)
+							})
+
+							selectTimeSeries_ul_header.appendChild(headerText_desc);
+							selectTimeSeries_ul_header.appendChild(headerText_name);
+							selectTimeSeries_ul_header.appendChild(headerText_first_value);
+							selectTimeSeries_ul_header.appendChild(headerText_last_value);
+						
+							highed.dom.on(selectCat, 'click', function() {
+								category_ul_elm[0].classList.toggle("show");
+								selectCat.setAttribute('data-before',  '⮝');
+
+								Array.prototype.forEach.call(subcat_0_elements, function (subcat_0_elm) {
+									try {
+										var subcat_1_elements = subcat_0_elm.children[0].children;
+
+										subcat_0_elm.addEventListener('click', function (event_0) {
+
+											Array.prototype.forEach.call(subcat_1_elements, function (subcat_1_elm) {
+												
+												subcat_1_elm.classList.toggle("show");
+												var subcat_2_elements;
+
+												subcat_1_elm.addEventListener('click', function (event_1) {
+													if(subcat_1_elm.getElementsByTagName('ul') > 0) {
+														subcat_1_elm.setAttribute('data-before', '⮞');
+														subcat_2_elements = subcat_1_elm.children[0].children;
+													
+
+														Array.prototype.forEach.call(subcat_2_elements, function (subcat_2_elm) {
+															subcat_2_elm.classList.toggle("show");
+															subcat_2_elm.addEventListener('click', function (event_2) {
+																categoryCommand = subcat_2_elm.getAttribute('data-command');
+																event_2.stopPropagation();
+															})
+														})
+													}
+													else {
+														categoryCommand = subcat_1_elm.getAttribute('data-command');
+													}
+														category_ul_elm[0].classList.toggle("show");
+
+														Array.prototype.forEach.call(subcat_2_elements, function (subcat_2_elm) {
+																		subcat_2_elm.classList.toggle("show");
+																		subcat_2_elm.addEventListener('click', function (event_2) {
+			
+																			category_ul_elm[0].classList.toggle("show");
+			
+																			fameApiGET(webImports[name].timeSURL + categoryCommand, function(categoryTimeseries) {
+			
+																				timeSeries_counter_li.innerHTML = categoryTimeseries.data.length + ' time series';
+			
+																				categoryTimeseries.data.forEach(function (timeserie) {
+																					var timeserie_li = highed.dom.cr('li', 'timeserie-element');
+																					var variant_serie_ul = highed.dom.cr('ul', 'variant-serie-ul');
+			
+																					var timeserie_li_p = [
+																						highed.dom.cr('p', 'timeserie-li-text  desc', timeserie.Description),
+																						highed.dom.cr('p', 'timeserie-li-text  name', timeserie.Name),
+																						highed.dom.cr('p', 'timeserie-li-text  first-value', timeserie.Firstvalue),
+																						highed.dom.cr('p', 'timeserie-li-text  last-value', timeserie.Lastvalue)
+																					]
+																					 timeserie_li_p.forEach(function (p_tag) {
+																						timeserie_li.appendChild(p_tag);
+																					})
+			
+			
+																					highed.dom.on(timeserie_li, 'click', function(event_3) {
+			
+																						variant_serie_ul.classList.toggle("show");
+			
+																						if(!timeserie_li.classList.contains('select')) {
+																							timeserie_li.classList.toggle("select");
+																							timeserie_id = timeserie.Name;
+																						}
+			
+																						fameApiGET(webImports[name].timeSVintgs + timeserie.Name, function (timeserie_vintages) {
+																							timeserie_vintages.data.forEach(function (vintage) {
+																								var vintage_li = highed.dom.cr('li', 'vintage-element');
+																								var vintage_li_p = [
+																									highed.dom.cr('p', 'timeserie-li-text  desc', vintage.VintValue),
+																									highed.dom.cr('p', 'timeserie-li-text  name', vintage.Name),
+																									highed.dom.cr('p', 'timeserie-li-text  first-value', vintage.Firstvalue),
+																									highed.dom.cr('p', 'timeserie-li-text  last-value', vintage.Lastvalue)
+																								]
+			
+																								vintage_li_p.forEach(function (vin_p) {
+																									vintage_li.appendChild(vin_p);
+																								})
+			
+																								variant_serie_ul.appendChild(vintage_li);
+			
+																								highed.dom.on(vintage_li, 'click', function(event_4) {
+																									if(timeserie_li.classList.contains('select')) {
+																									   timeserie_li.classList.toggle("select");
+																									}
+			
+																									console.log(variant_serie_ul)
+																									Array.prototype.forEach.call(variant_serie_ul.getElementsByTagName('li'), function (variant_li) {
+																										
+																										if (variant_li === vintage_li) {
+																											vintage_li.classList.toggle("select");
+																											timeserie_id = vintage.Name;
+																										}
+																										else {
+																											if(variant_li.classList.contains('select')) {
+																												variant_li.classList.toggle("select");
+																											}
+																										}
+																									})
+																									event_4.stopPropagation();
+																								})
+																							})
+																						});
+																						
+																						event_3.stopPropagation();
+																					})
+			
+																					selectTimeSeries_ul.appendChild(timeserie_li);
+																					selectTimeSeries_ul.appendChild(variant_serie_ul);
+																				})
+																			})
+			
+																			timeSeries_ul.classList.toggle("show");
+			
+																			event_2.stopPropagation();
+																		})
+																	})
+
+												})
+												// try {
+
+												// 	subcat_1_elm.addEventListener('click', function (event_1) {
+												// 		Array.prototype.forEach.call(subcat_2_elements, function (subcat_2_elm) {
+												// 			subcat_2_elm.classList.toggle("show");
+												// 			subcat_2_elm.addEventListener('click', function (event_2) {
+												// 				categoryCommand = subcat_2_elm.getAttribute('data-command');
+
+												// 				category_ul_elm[0].classList.toggle("show");
+
+												// 				fameApiGET(webImports[name].timeSURL + categoryCommand, function(categoryTimeseries) {
+
+												// 					timeSeries_counter_li.innerHTML = categoryTimeseries.data.length + ' time series';
+
+												// 					categoryTimeseries.data.forEach(function (timeserie) {
+												// 						var timeserie_li = highed.dom.cr('li', 'timeserie-element');
+												// 						var variant_serie_ul = highed.dom.cr('ul', 'variant-serie-ul');
+
+												// 						var timeserie_li_p = [
+												// 							highed.dom.cr('p', 'timeserie-li-text  desc', timeserie.Description),
+												// 							highed.dom.cr('p', 'timeserie-li-text  name', timeserie.Name),
+												// 							highed.dom.cr('p', 'timeserie-li-text  first-value', timeserie.Firstvalue),
+												// 							highed.dom.cr('p', 'timeserie-li-text  last-value', timeserie.Lastvalue)
+												// 						]
+												// 						 timeserie_li_p.forEach(function (p_tag) {
+												// 							timeserie_li.appendChild(p_tag);
+												// 						})
+
+
+												// 						highed.dom.on(timeserie_li, 'click', function(event_3) {
+
+												// 							variant_serie_ul.classList.toggle("show");
+
+												// 							if(!timeserie_li.classList.contains('select')) {
+												// 								timeserie_li.classList.toggle("select");
+												// 								timeserie_id = timeserie.Name;
+												// 							}
+
+												// 							fameApiGET(webImports[name].timeSVintgs + timeserie.Name, function (timeserie_vintages) {
+												// 								timeserie_vintages.data.forEach(function (vintage) {
+												// 									var vintage_li = highed.dom.cr('li', 'vintage-element');
+												// 									var vintage_li_p = [
+												// 										highed.dom.cr('p', 'timeserie-li-text  desc', vintage.VintValue),
+												// 										highed.dom.cr('p', 'timeserie-li-text  name', vintage.Name),
+												// 										highed.dom.cr('p', 'timeserie-li-text  first-value', vintage.Firstvalue),
+												// 										highed.dom.cr('p', 'timeserie-li-text  last-value', vintage.Lastvalue)
+												// 									]
+
+												// 									vintage_li_p.forEach(function (vin_p) {
+												// 										vintage_li.appendChild(vin_p);
+												// 									})
+
+												// 									variant_serie_ul.appendChild(vintage_li);
+
+												// 									highed.dom.on(vintage_li, 'click', function(event_4) {
+												// 										if(timeserie_li.classList.contains('select')) {
+												// 										   timeserie_li.classList.toggle("select");
+												// 										}
+
+												// 										console.log(variant_serie_ul)
+												// 										Array.prototype.forEach.call(variant_serie_ul.getElementsByTagName('li'), function (variant_li) {
+																							
+												// 											if (variant_li === vintage_li) {
+												// 												vintage_li.classList.toggle("select");
+												// 												timeserie_id = vintage.Name;
+												// 											}
+												// 											else {
+												// 												if(variant_li.classList.contains('select')) {
+												// 													variant_li.classList.toggle("select");
+												// 												}
+												// 											}
+												// 										})
+												// 										event_4.stopPropagation();
+												// 									})
+												// 								})
+												// 							});
+																			
+												// 							event_3.stopPropagation();
+												// 						})
+
+												// 						selectTimeSeries_ul.appendChild(timeserie_li);
+												// 						selectTimeSeries_ul.appendChild(variant_serie_ul);
+												// 					})
+												// 				})
+
+												// 				timeSeries_ul.classList.toggle("show");
+
+												// 				event_2.stopPropagation();
+												// 			})
+												// 		})
+												// 		event_1.stopPropagation();
+												// 	})
+												// } 
+												// catch(e) {
+												// 	// subcat_1_elm.classList.toggle("select");
+												// 	subcat_1_elm.setAttribute('data-before', '');
+												// 	categoryCommand = subcat_1_elm.getAttribute('data-command');
+												// 	console.log("No children: ", e);
+												// }
+											})
+											event_0.stopPropagation();
+										})
+									}
+									catch(e) {
+										console.log(e);
+									}
+									
+								})						
+							})
+
+							highed.dom.on(selectTimeS, 'click', function() {
+								if(categoryCommand === "") {
+									alert("You must choose a category before selecting a time series!");
+								}
+								else {
+									timeSeries_ul.classList.toggle("show");
+								}
+							})
+
+							highed.dom.on(editTimeS, 'click', function() {
+								if(timeserie_id === "") {
+									alert("You must choose a timeseries before being able to edit it!")
+								} 
+								else {
+									if(selectTimeS.classList.contains("show")) {
+										selectTimeS.classList.toggle("show");
+									}
+
+									console.log(timeserie_id);
+								}
+							})
+
+							timeSeries_ul.appendChild(timeSeries_counter_li);
+							timeSeries_ul.appendChild(timeSeries_filter_li);
+							timeSeries_ul.appendChild(selectTimeSeries_ul_header);
+							timeSeries_ul.appendChild(selectTimeSeries_ul);
+							selectTimeS.appendChild(timeSeries_ul);
+							navigation_ul.appendChild(selectCat);
+							navigation_ul.appendChild(selectTimeS);
+							navigation_ul.appendChild(editTimeS);
+	
+						highed.dom.on(serieImport, 'click', function() {
+							// highed.ajax({
+							// 	url: url.value,
+							// 	cors: true,
+							// 	type: 'GET',
+							// 	dataType: 'jsonp',
+							// 	contentType: 'application/json',
+							// 	success: function (val) {
+							// 		console.log(val);
+							// 	}
+							// })
+							
+							
 						})
 					}
 					else {
@@ -388,9 +749,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 								highed.dom.ap(
 									highed.dom.cr('div', 'highed-plugin-details'),
 									fameTitle,
-									selectCat,
-									selectTimeS,
-									editTimeS,
+									navigation_ul,
 									highed.dom.cr('br'),
 									serieImport
 								)

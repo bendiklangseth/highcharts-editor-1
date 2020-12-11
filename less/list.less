@@ -146,16 +146,226 @@
     font-size: 16px !important;
   }
 
-  .highed-plugin-fame-nav-ul {
+  .highed-plugin-fame-nav-ol {
+    position: relative;
+    display: inline-block;
+    list-style-position: inside;
+    padding: 0;
+    width: 100%;
+  }
+
+  .highed-plugin-fame-nav-li {
     border-bottom: 1px solid rgba(140, 140, 140, 0.29);
     font-weight: 600;
     color: black;
     padding-bottom: 10px;
+    padding-top: 10px;
     font-size: 12px;
     cursor: pointer;
+    position: relative;
+    display: list-item;
+    width: 100%;
+    height: fit-content;
   }
 
-  .highed-plugin-fame-nav-ul::before {
-    content: '⮟';
+  .highed-plugin-fame-nav-li::before {
+    content: attr(data-before);
     float: right;
+    margin-right: 5%;
+  }
+
+  .category_search {
+    background-image: url('../thumbnails/icons8-search-50.png');
+    background-position: left;
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position-x: 5px;
+    border: 1px solid lightgray;
+    border-radius: 5%;
+    padding-left: 25px; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 1%;
+  }
+
+  .category-ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: none;
+  }
+
+  .sub_0_li-element {
+    width: 100%;
+    margin-left: 2%;
+    margin-top: 1%;
+    padding-top: 10px;
+    font-weight: lighter;
+  }
+
+  .sub_0_li-element::before {
+      content: '⮞';
+      float: left;
+      margin-right: 1%;
+  }
+
+  .sub_1_menu_ul {
+    list-style: none;
+  }
+
+  .sub_1_li_element {
+    display: none;
+    width: 100%;
+    margin-left: 1%;
+    margin-top: 1%;
+  }
+
+  .sub_1_li_element::before {
+    content: attr(data-before);
+    float: left;
+    margin-right: 1%;
+  }
+
+  .sub_2_li_element {
+    display: none;
+    width: 100%;
+    margin-left: 1%;
+    margin-top: 1%;
+  }
+
+  .timeSeries-ul {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .timeSeries-li {
+      font-weight: lighter;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+
+  .filter-li {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: lighter;
+  }
+
+  .timeS-filterTitle {
+      padding-right: 20px;
+      margin: 0;
+  }
+
+  .timeS-filterType {
+      padding-right: 20px;
+      margin: 0;
+  }
+
+  .timeS-filterType::after {
+    content: '⮟';
+  }
+
+  .selectTimeSeries-ul-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    background-color: #c5c4c4;
+    height: fit-content;
+    margin-top: 1%;
+    padding-right: 50px;
+    padding-left: 10px;
+  }
+
+  .selectTimeSeries-ul {
+    list-style: none;
+    padding-left: 0;
+    padding-bottom: 15px;
+    background-color: #f2f2f2;
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+
+  .header-text {
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+
+  .timeserie-element {
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+    padding-bottom: 5px;
+  }
+
+  .timeserie-element::before {
+    content: '⮞';
+    margin-top: 10px;
+  }
+
+  .timeserie-element::after, .vintage-element::after {
+    content: '🛈';
+    transform: scale(2);
+    margin-right: 2%;
+    margin-top: 6px;
+  }
+
+  .timeserie-li-text {
+    font-weight: lighter;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 13px;
+    z-index: 1;
+  }
+
+  .timeserie-li-text:hover {
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+    z-index: 2;
+  }
+
+  .variant-serie-ul {
+    list-style: none;
+    display: none;
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+
+  .vintage-element { 
+      border-bottom: 1px solid lightgray;
+      display: flex;
+      justify-content: space-between;
+      height: 25px;
+      padding-bottom: 5px;
+      padding-left: 10px;
+  }
+
+  .desc {
+    width: 400px;
+  }
+
+  .name {
+    width: 120px;
+    height: fit-content;
+    padding-left: 10px;
+  }
+
+  .first-value, .last-value {
+    width: 80px;
+  }
+
+  .first-value {
+    padding-left: 15px;
+  }
+
+  .show {
+      display: block;
+  }
+
+  .select {
+    background-color: #969696;
   }
