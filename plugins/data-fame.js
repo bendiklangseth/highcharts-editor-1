@@ -9,12 +9,12 @@ highed.plugins.import.install('FAME', {
         includeFields: {
 			type: 'string',
 			label: 'Fields to include, separate by semicolon',
-			default: 'FameCategories'
+			default: 'Date;Value'
 		}
     },
     filter: function (data, options, fn) {
 
-    //     var csv = [], header = [];
+        var csv = [], header = [];
 
 		try {
 			data = JSON.parse(data);
@@ -22,40 +22,39 @@ highed.plugins.import.install('FAME', {
 			fn(e);
 		}
 
-	// 	options.includeFields = highed.arrToObj(options.includeFields.split(';'));
+	 	options.includeFields = highed.arrToObj(options.includeFields.split(';'));
+		if (highed.isArr(data.data.Observationsens)) {
 
-	// 	if (highed.isArr(data.entries)) {
+			//Only include things we're interested in
+			data.data.Observationsens = data.data.Observationsens.map(function (d) {
+				var r = {};
+				Object.keys(options.includeFields).forEach(function (c) {
+					r[c] = d[c];
+				});
+				return r;
+			});
 
-	// 		//Only include things we're interested in
-	// 		data.entries = data.entries.map(function (d) {
-	// 			var r = {};
-	// 			Object.keys(options.includeFields).forEach(function (c) {
-	// 				r[c] = d[c];
-	// 			});
-	// 			return r;
-	// 		});
+			//Denne kan skilles ut og gjenbrukes
+			data.data.Observationsens.forEach(function (row, i) {
+				var rdata = [];
 
-	// 		//Denne kan skilles ut og gjenbrukes
-	// 		data.entries.forEach(function (row, i) {
-	// 			var rdata = [];
+				Object.keys(row).forEach(function (key) {
+					var col = row[key];
 
-	// 			Object.keys(row).forEach(function (key) {
-	// 				var col = row[key];
+					if (!options.includeFields[key]) {
+						return;
+					}
 
-	// 				if (!options.includeFields[key]) {
-	// 					return;
-	// 				}
+					if (i == 0) {
+						header.push(key);
+					}
+					rdata.push(col);
 
-	// 				if (i == 0) {
-	// 					header.push(key);
-	// 				}
-	// 				rdata.push(col);
-
-	// 			});
-	// 			csv.push(rdata.join(','));
-	// 		});
-	// 	}
-	// 	var tt = [header.join(',')].concat(csv).join('\n');
-	// 	fn(false, tt);
+				});
+				csv.push(rdata.join(','));
+			});
+		}
+		var tt = [header.join(',')].concat(csv).join('\n');
+		fn(false, tt);
      }
 });
