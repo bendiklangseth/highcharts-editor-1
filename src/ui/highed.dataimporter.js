@@ -570,6 +570,99 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							highed.dom.ap(select_timeserie_ul, select_timeserie_counter_li, select_timeserie_filter_li, select_timeserie_ul_header, parent);
 						}
 						
+						function addFilter(array) {
+							Array.prototype.forEach.call(select_timeserie_filter_li.getElementsByClassName('timeS-filterType'), function(filter) {
+								highed.dom.on(filter, 'click', function(filter_event) {
+									if(fame_timeserie_ul.hasChildNodes()) {
+										fame_timeserie_ul.querySelectorAll('*').forEach(n => n.remove());
+									}
+	
+									switch (filter.innerHTML) {
+											
+										case 'Region: All':
+											array = array.sort(function (a, b) {
+												var regionA = a.Region.toUpperCase();
+												var regionB = b.Region.toUpperCase();
+												if(regionA < regionB) {
+													return -1;
+												}
+												if(regionA > regionB) {
+													return 1;
+												}
+												return 0;
+											});
+											populateTimeSeries(array, fame_timeserie_ul);
+											break;
+										
+										case 'Frequency: All':
+											array = array.sort(function (a, b) {
+												var regionA = a.Frequency.toUpperCase();
+												var regionB = b.Frequency.toUpperCase();
+												if(regionA < regionB) {
+													return -1;
+												}
+												if(regionA > regionB) {
+													return 1;
+												}
+												return 0;
+											});
+											populateTimeSeries(array, fame_timeserie_ul);
+											break;
+										
+										case 'Datasource: All':
+											array = array.sort(function (a, b) {
+												var regionA = a.DataSource.toUpperCase();
+												var regionB = b.DataSource.toUpperCase();
+												if(regionA < regionB) {
+													return -1;
+												}
+												if(regionA > regionB) {
+													return 1;
+												}
+												return 0;
+											});
+											populateTimeSeries(array, fame_timeserie_ul);
+											break;
+										
+										case 'Measure: All':
+											array = array.sort(function (a, b) {
+												var regionA = a.Measure.toUpperCase();
+												var regionB = b.Measure.toUpperCase();
+												if(regionA < regionB) {
+													return -1;
+												}
+												if(regionA > regionB) {
+													return 1;
+												}
+												return 0;
+											});
+											populateTimeSeries(array, fame_timeserie_ul);
+											break;
+										
+										case 'Seasonal: All':
+											array = array.sort(function (a, b) {
+												var regionA = a.Seasonal.toUpperCase();
+												var regionB = b.Seasonal.toUpperCase();
+												if(regionA < regionB) {
+													return -1;
+												}
+												if(regionA > regionB) {
+													return 1;
+												}
+												return 0;
+											});
+											populateTimeSeries(array, fame_timeserie_ul);
+											break;
+	
+										default:
+											break;
+									}
+	
+									filter_event.stopPropagation();
+								})
+							});
+						}
+					
 						highed.dom.on(select_category_li, 'click', function() {
 							if(!fame_category_ul.classList.contains("show")) {
 								fame_category_ul.classList.toggle("show");
@@ -685,7 +778,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 						highed.dom.on(edit_timeserie_li, 'click', function() {
 							if(timeserie_name === "") {
 								alert("You must choose a timeseries before being able to edit it!")
-							} 
+							}
 							else {
 								if(select_timeserie_ul.classList.contains("show")) {
 									select_timeserie_ul.classList.toggle("show");
@@ -736,9 +829,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 										error,
 										val
 									) {
-	
+
 										if (error) return highed.snackBar('import error: ' + error);
-									
+
 										if (options.treatAs === 'csv') {
 
 											csvTab.focus();
@@ -754,11 +847,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 												var newDataArray = [];
 												var matchColA = [];
 												var matchColAIndex = -1;
-	
+
 												existingDataArray.forEach(element => {
 													var lineArr = [];
 													var arr1 = element.split(',')
-	
+
 													for (let i = 0; i < arr1.length; i++) {
 														if (i === 0) {
 															var colA = arr1[i];
@@ -776,9 +869,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 															}
 														}
 														newDataArray.push(lineArr.join(','));
-	
+
 													}
-	
+
 												});
 												csvPasteArea.value = newDataArray.join('\n');
 											}
@@ -793,124 +886,31 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 										}
 									});
 								},
-								error: function(xhr, ajaxOptions, throwError) {
+								error: function (xhr, ajaxOptions, throwError) {
 									alert("There was a problem retriving data from " + url_value);
 								}
 							});
-							
+
 						})
 
-						function addFilter(array) {
-							Array.prototype.forEach.call(select_timeserie_filter_li.getElementsByClassName('timeS-filterType'), function(filter) {
-								highed.dom.on(filter, 'click', function(filter_event) {
-									if(fame_timeserie_ul.hasChildNodes()) {
-										fame_timeserie_ul.querySelectorAll('*').forEach(n => n.remove());
-									}
-	
-									switch (filter.innerHTML) {
-											
-										case 'Region: All':
-											array = array.sort(function (a, b) {
-												var regionA = a.Region.toUpperCase();
-												var regionB = b.Region.toUpperCase();
-												if(regionA < regionB) {
-													return -1;
-												}
-												if(regionA > regionB) {
-													return 1;
-												}
-												return 0;
-											});
-											populateTimeSeries(array, fame_timeserie_ul);
-											break;
-										
-										case 'Frequency: All':
-											array = array.sort(function (a, b) {
-												var regionA = a.Frequency.toUpperCase();
-												var regionB = b.Frequency.toUpperCase();
-												if(regionA < regionB) {
-													return -1;
-												}
-												if(regionA > regionB) {
-													return 1;
-												}
-												return 0;
-											});
-											populateTimeSeries(array, fame_timeserie_ul);
-											break;
-										
-										case 'Datasource: All':
-											array = array.sort(function (a, b) {
-												var regionA = a.DataSource.toUpperCase();
-												var regionB = b.DataSource.toUpperCase();
-												if(regionA < regionB) {
-													return -1;
-												}
-												if(regionA > regionB) {
-													return 1;
-												}
-												return 0;
-											});
-											populateTimeSeries(array, fame_timeserie_ul);
-											break;
-										
-										case 'Measure: All':
-											array = array.sort(function (a, b) {
-												var regionA = a.Measure.toUpperCase();
-												var regionB = b.Measure.toUpperCase();
-												if(regionA < regionB) {
-													return -1;
-												}
-												if(regionA > regionB) {
-													return 1;
-												}
-												return 0;
-											});
-											populateTimeSeries(array, fame_timeserie_ul);
-											break;
-										
-										case 'Seasonal: All':
-											array = array.sort(function (a, b) {
-												var regionA = a.Seasonal.toUpperCase();
-												var regionB = b.Seasonal.toUpperCase();
-												if(regionA < regionB) {
-													return -1;
-												}
-												if(regionA > regionB) {
-													return 1;
-												}
-												return 0;
-											});
-											populateTimeSeries(array, fame_timeserie_ul);
-											break;
-	
-										default:
-											break;
-									}
-	
-									filter_event.stopPropagation();
-								})
+						
+
+					highed.dom.on(importBtn, 'click', function () {
+						highed.snackBar('Importing ' + name + ' data');
+
+						if (highed.isFn(options.request)) {
+							return options.request(url.value, dynamicOptions, function (
+								err,
+								chartProperties
+							) {
+								if (err) return highed.snackBar('import error: ' + err);
+								events.emit(
+									'ImportChartSettings',
+									chartProperties,
+									options.newFormat
+								);
 							});
 						}
-					}
-					
-			
-						highed.dom.on(importBtn, 'click', function () {
-							highed.snackBar('Importing ' + name + ' data');
-
-							if (highed.isFn(options.request)) {
-								return options.request(url.value, dynamicOptions, function (
-									err,
-									chartProperties
-								) {
-									if (err) return highed.snackBar('import error: ' + err);
-									events.emit(
-										'ImportChartSettings',
-										chartProperties,
-										options.newFormat
-									);
-								});
-							}
 							highed.ajax({
 								url: "https://cors-anywhere.herokuapp.com/" + url.value, //Temp CORS fix
 								type: 'get',
@@ -922,7 +922,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									) {
 
 										if (error) return highed.snackBar('import error: ' + error);
+
 										if (options.treatAs === 'csv') {
+
 											csvTab.focus();
 											csvPasteArea.value = val;
 											emitCSVImport(val);
@@ -930,12 +932,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 										else if (options.treatAs === 'csv-append') {
 											csvTab.focus();
 											if (csvPasteArea.value != '') {
+			
 												var existingDataArray = csvPasteArea.value.split('\n');
 												var appdendingDataArray = val.split('\n');
 												var newDataArray = [];
 												var matchColA = [];
 												var matchColAIndex = -1;
-		
+
 												existingDataArray.forEach(element => {
 													var lineArr = [];
 													var arr1 = element.split(',')
@@ -944,6 +947,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 														if (i === 0) {
 															var colA = arr1[i];
 															matchColAIndex = appdendingDataArray.findIndex(element => element.includes(colA));
+															//matchColAIndex = appdendingDataArray.indexOf(colA);
 														}
 														lineArr.push(arr1[i])
 													}
@@ -963,6 +967,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 												csvPasteArea.value = newDataArray.join('\n');
 											}
 											else {
+												// console.log(val)
 												csvPasteArea.value = val;
 											}
 											emitCSVImport(csvPasteArea.value);
@@ -971,17 +976,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 											processJSONImport(val);
 										}
 									});
-								},
-								error: function (err) {
-									highed.snackBar('import error: ' + err);
-								}
-							});
+							},
+							error: function (err) {
+								highed.snackBar('import error: ' + err);
+							}
 						});
+					});
 
-						webSplitter.right.innerHTML = '';
+					webSplitter.right.innerHTML = '';
 
-						if(name === "FAME") {
+					if (name === "FAME") {
 
+						highed.dom.ap(
+							webSplitter.right,
 							highed.dom.ap(
 								webSplitter.right,
 								highed.dom.ap(
@@ -992,28 +999,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									import_timeserie_btn
 								)
 							)
-						} 
-						else {
+						)
+					}
+					else {
+						highed.dom.ap(
+							webSplitter.right,
 							highed.dom.ap(
-								webSplitter.right,
-								highed.dom.ap(
-									highed.dom.cr('div', 'highed-plugin-details'),
-									highed.dom.cr(
-										'div',
-										'highed-customizer-table-heading',
-										options.title || name
-									),
-									highed.dom.cr('div', 'highed-imp-help', options.description),
-									urlTitle,
-									url,
-									Object.keys(options.options || {}).length
-										? dynamicOptionsContainer
-										: false,
-									highed.dom.cr('br'),
-									importBtn
-								)
-							);
-						}					
+								highed.dom.cr('div', 'highed-plugin-details'),
+								highed.dom.cr(
+									'div',
+									'highed-customizer-table-heading',
+									options.title || name
+								),
+								highed.dom.cr('div', 'highed-imp-help', options.description),
+								urlTitle,
+								url,
+								Object.keys(options.options || {}).length
+									? dynamicOptionsContainer
+									: false,
+								highed.dom.cr('br'),
+								importBtn
+							)
+						);
+					}
 				}
 
 				webList.addItem({
@@ -1021,10 +1029,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					title: webImports[name].title || name,
 					click: buildBody
 				});
-			});
+			}
+			
+		});
 
 			webList.selectFirst();
-		}
+	}
+	
 
 		function buildSampleTab() {
 			samplesTab.innerHTML = '';
@@ -1056,7 +1067,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}
 
 		function emitCSVImport(csv, cb) {
-			
+
 			var data = {
 				itemDelimiter: delimiter.value,
 				firstRowAsNames: firstAsNames.checked,
