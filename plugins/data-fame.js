@@ -1,20 +1,20 @@
 highed.plugins.import.install('FAME', {
-    description: 'Append data fra FAME',
-    treatAs: 'csv-append',
-    fetchAs: 'json',
-    defaultURL: 'https://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getcategories',
-    timeSURL: 'https://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getseriesbycategory?category=',
-    timeSVintgs: 'https://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getvintagesbyseriename?serie=',
-    options: {
-        includeFields: {
+	description: 'Append data fra FAME',
+	treatAs: 'csv-append',
+	fetchAs: 'json',
+	defaultURL: 'http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getcategories',
+	timeSURL: 'http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getseriesbycategory?category=',
+	timeSVintgs: 'http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getvintagesbyseriename?serie=',
+	options: {
+		includeFields: {
 			type: 'string',
 			label: 'Fields to include, separate by semicolon',
 			default: 'Date;Value'
 		}
-    },
-    filter: function (data, options, fn) {
+	},
+	filter: function (data, options, fn) {
 
-        var csv = [], header = [];
+		var csv = [], header = [];
 
 		try {
 			data = JSON.parse(data);
@@ -22,7 +22,7 @@ highed.plugins.import.install('FAME', {
 			fn(e);
 		}
 
-	 	options.includeFields = highed.arrToObj(options.includeFields.split(';'));
+		options.includeFields = highed.arrToObj(options.includeFields.split(';'));
 		if (highed.isArr(data.data.Observationsens)) {
 
 			//Only include things we're interested in
@@ -56,5 +56,5 @@ highed.plugins.import.install('FAME', {
 		}
 		var tt = [header.join(',')].concat(csv).join('\n');
 		fn(false, tt);
-     }
+	}
 });

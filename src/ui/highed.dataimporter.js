@@ -232,7 +232,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				success: function (val) {
 					cb(JSON.parse(val));
 				},
-				error: function(xhr, ajaxOptions, throwError) {
+				error: function (xhr, ajaxOptions, throwError) {
 					alert("There was a problem retriving data from " + url_value);
 				}
 			});
@@ -288,73 +288,73 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 					url.placeholder = 'Enter URL';
 
-					if(name === "FAME"){ // TODO: RYDDE OPP
+					if (name === "FAME") { // TODO: RYDDE OPP
 						highed.dom.style(parent, {
 							width: '1200px',
 							height: '800px'
 						});
 
-					var fameTitle = highed.dom.cr('div', 'highed-plugin-fame-title highed-customizer-table-heading', name + ' - Search for time series'),
-						serieImport = highed.dom.cr('button', 'highed-imp-button','Import time series'),
-						navigation_ul = highed.dom.cr('ol', 'highed-plugin-fame-nav-ol')
+						var fameTitle = highed.dom.cr('div', 'highed-plugin-fame-title highed-customizer-table-heading', name + ' - Search for time series'),
+							serieImport = highed.dom.cr('button', 'highed-imp-button', 'Import time series'),
+							navigation_ul = highed.dom.cr('ol', 'highed-plugin-fame-nav-ol')
 						selectCat = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Select category'),
-						category_ul = highed.dom.cr('ul', 'category-ul'),
-						selectTimeS = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Select time series'),
-						editTimeS = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Edit time series'),
-						timeSeries_ul = highed.dom.cr('ul', 'timeSeries-ul'),
-						timeSeries_counter_li = highed.dom.cr('li', 'timeSeries-li'),
-						timeSeries_filter_li = highed.dom.cr('li', 'filter-li'),
-						selectTimeSeries_ul = highed.dom.cr('ul', 'selectTimeSeries-ul'),
-						editTimeSeries_ul = highed.dom.cr('ul', 'edit-timeSeries-ul'),
-						timeSerieTitle = highed.dom.cr('li', 'timeserie-title-li'),
-						timeSerieExpression = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Expression'), highed.dom.cr('input', 'timeserie-info-li-input')),
-						timeSerieFrequency = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Frequency'), highed.dom.cr('input', 'timeserie-info-li-input')),
-						timeSerieRange = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Range'), highed.dom.cr('p', 'timeserie-range-from-p', 'From '), highed.dom.cr('input', 'timeserie-range-from-input'), highed.dom.cr('p', 'timeserie-range-to-p', 'To '), highed.dom.cr('input', 'timeserie-range-to-input')),
-						timeSerieOther = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Other'), highed.dom.cr('input', 'timeserie-info-li-input')),
-						filterTitle  = highed.dom.cr('p', 'timeS-filterTitle', 'Filter search:'),
-						filterType = ['Region: All', 'Frequency: All', 'Datasource: All', 'Measure: All', 'Seasonal: All'],
-						headerText_desc = highed.dom.cr('p', 'header-text  desc', 'Description'),
-						headerText_name = highed.dom.cr('p', 'header-text  h-name', 'Name'),
-						headerText_first_value = highed.dom.cr('p', 'header-text  first-value', 'First value'),
-						headerText_last_value = highed.dom.cr('p', 'header-text  last-value', 'Last value'),
-						selectTimeSeries_ul_header = highed.dom.cr('li', 'selectTimeSeries-ul-header'),
-						subcat_0_elements = document.getElementsByClassName('sub_0_li-element'),
-						category_ul_elm = document.getElementsByClassName('category-ul'),
-						fame_json = {},
-						getCategoriesJson = {},
-						categoryCommand = "",
-						timeserie_name = "",
-						timeserie_channel = "",
-						timeserie_frequency = "",
-						timeserie_rangefrom = "",
-						timeserie_rangeto = "",
-						timeserie_lastUpdate = "",
-						timeserie_other = "CONVERT ON";
+							category_ul = highed.dom.cr('ul', 'category-ul'),
+							selectTimeS = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Select time series'),
+							editTimeS = highed.dom.cr('li', 'highed-plugin-fame-nav-li', 'Edit time series'),
+							timeSeries_ul = highed.dom.cr('ul', 'timeSeries-ul'),
+							timeSeries_counter_li = highed.dom.cr('li', 'timeSeries-li'),
+							timeSeries_filter_li = highed.dom.cr('li', 'filter-li'),
+							selectTimeSeries_ul = highed.dom.cr('ul', 'selectTimeSeries-ul'),
+							editTimeSeries_ul = highed.dom.cr('ul', 'edit-timeSeries-ul'),
+							timeSerieTitle = highed.dom.cr('li', 'timeserie-title-li'),
+							timeSerieExpression = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Expression'), highed.dom.cr('input', 'timeserie-info-li-input')),
+							timeSerieFrequency = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Frequency'), highed.dom.cr('input', 'timeserie-info-li-input')),
+							timeSerieRange = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Range'), highed.dom.cr('p', 'timeserie-range-from-p', 'From '), highed.dom.cr('input', 'timeserie-range-from-input'), highed.dom.cr('p', 'timeserie-range-to-p', 'To '), highed.dom.cr('input', 'timeserie-range-to-input')),
+							timeSerieOther = highed.dom.ap(highed.dom.cr('li', 'timeserie-info-li'), highed.dom.cr('p', 'timeserie-info-li-p', 'Other'), highed.dom.cr('input', 'timeserie-info-li-input')),
+							filterTitle = highed.dom.cr('p', 'timeS-filterTitle', 'Filter search:'),
+							filterType = ['Region: All', 'Frequency: All', 'Datasource: All', 'Measure: All', 'Seasonal: All'],
+							headerText_desc = highed.dom.cr('p', 'header-text  desc', 'Description'),
+							headerText_name = highed.dom.cr('p', 'header-text  h-name', 'Name'),
+							headerText_first_value = highed.dom.cr('p', 'header-text  first-value', 'First value'),
+							headerText_last_value = highed.dom.cr('p', 'header-text  last-value', 'Last value'),
+							selectTimeSeries_ul_header = highed.dom.cr('li', 'selectTimeSeries-ul-header'),
+							subcat_0_elements = document.getElementsByClassName('sub_0_li-element'),
+							category_ul_elm = document.getElementsByClassName('category-ul'),
+							fame_json = {},
+							getCategoriesJson = {},
+							categoryCommand = "",
+							timeserie_name = "",
+							timeserie_channel = "",
+							timeserie_frequency = "",
+							timeserie_rangefrom = "",
+							timeserie_rangeto = "",
+							timeserie_lastUpdate = "",
+							timeserie_other = "CONVERT ON";
 
 						selectCat.appendChild(category_ul);
 
-						selectCat.setAttribute('data-before',  '⮟');
-						selectTimeS.setAttribute('data-before',  '⮟');
-						editTimeS.setAttribute('data-before',  '⮟');
+						selectCat.setAttribute('data-before', '⮟');
+						selectTimeS.setAttribute('data-before', '⮟');
+						editTimeS.setAttribute('data-before', '⮟');
 
-						fameApiGET(webImports[name].defaultURL, function (categories) { 
+						fameApiGET(webImports[name].defaultURL, function (categories) {
 							categories.data.FameCategories.forEach(function (cat) {
 								var sub_0_cat = highed.dom.cr('li', 'sub_0_li-element');
 								sub_0_cat.innerHTML = cat.CategoryName;
 								category_ul.appendChild(sub_0_cat);
-	
+
 								if (cat.SubCategories.length !== 0) {
 									var sub_1_cat = highed.dom.cr('ul', 'sub_1_menu_ul');
-	
+
 									cat.SubCategories.forEach(function (sub1_elm) {
 										var sub1_li = highed.dom.cr('li', 'sub_1_li_element');
 										sub1_li.innerHTML = sub1_elm.CategoryName;
 										sub1_li.setAttribute('data-command', sub1_elm.CategorySearchCommand)
 										sub_1_cat.appendChild(sub1_li);
-	
+
 										if (sub1_elm.SubCategories.length !== 0) {
 											var sub_2_menu = highed.dom.cr('ul', 'sub_1_menu_ul');
-	
+
 											sub1_elm.SubCategories.forEach(function (sub2_elm) {
 												var sub2_li = highed.dom.cr('li', 'sub_2_li_element');
 												sub2_li.innerHTML = sub2_elm.CategoryName;
@@ -368,33 +368,33 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 								}
 							})
 						});
-				
+
 						timeSeries_filter_li.appendChild(filterTitle)
 
 						filterType.forEach(function (filter) {
-							var p_filter = highed.dom.cr('p', 'timeS-filterType', filter); 
+							var p_filter = highed.dom.cr('p', 'timeS-filterType', filter);
 							timeSeries_filter_li.appendChild(p_filter);
 						})
 
 						highed.dom.ap(selectTimeSeries_ul_header, headerText_desc, headerText_name, headerText_first_value, headerText_last_value);
-					
-						highed.dom.on(selectCat, 'click', function() {
-							if(!category_ul_elm[0].classList.contains("show")) {
-							   category_ul_elm[0].classList.toggle("show");
-							   selectCat.setAttribute('data-before',  '⮝');
+
+						highed.dom.on(selectCat, 'click', function () {
+							if (!category_ul_elm[0].classList.contains("show")) {
+								category_ul_elm[0].classList.toggle("show");
+								selectCat.setAttribute('data-before', '⮝');
 							}
 							else {
 								category_ul_elm[0].classList.toggle("show");
-								selectCat.setAttribute('data-before',  '⮟');
+								selectCat.setAttribute('data-before', '⮟');
 							}
-							
+
 
 							Array.prototype.forEach.call(subcat_0_elements, function (subcat_0_elm) {
 								subcat_0_elm.setAttribute('data-before', '⮞');
 								var subcat_1_elements = subcat_0_elm.children[0].children;
 
 								subcat_0_elm.addEventListener('click', function (event_0) {
-									if(!subcat_0_elm.getElementsByTagName('ul')[0].classList.contains("show")){
+									if (!subcat_0_elm.getElementsByTagName('ul')[0].classList.contains("show")) {
 										subcat_0_elm.getElementsByTagName('ul')[0].classList.toggle("show");
 										subcat_0_elm.setAttribute('data-before', '⮟');
 									}
@@ -404,26 +404,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									}
 
 									Array.prototype.forEach.call(subcat_1_elements, function (subcat_1_elm) {
-											
+
 										var subcat_2_elements;
-										if(subcat_1_elm.getElementsByTagName('ul').length > 0) {
-										   subcat_1_elm.setAttribute('data-before', '⮞');
+										if (subcat_1_elm.getElementsByTagName('ul').length > 0) {
+											subcat_1_elm.setAttribute('data-before', '⮞');
 										}
 
 										subcat_1_elm.addEventListener('click', function (event_1) {
-											
-											if(subcat_1_elm.getElementsByTagName('ul').length > 0) {
-												if(!subcat_1_elm.getElementsByTagName('ul')[0].classList.contains("show")){
+
+											if (subcat_1_elm.getElementsByTagName('ul').length > 0) {
+												if (!subcat_1_elm.getElementsByTagName('ul')[0].classList.contains("show")) {
 													subcat_1_elm.getElementsByTagName('ul')[0].classList.toggle("show");
 													subcat_1_elm.setAttribute('data-before', '⮟');
 												}
-												else  {
+												else {
 													subcat_1_elm.getElementsByTagName('ul')[0].classList.toggle("show");
 													subcat_1_elm.setAttribute('data-before', '⮞');
 												}
 
 												subcat_2_elements = subcat_1_elm.children[0].children;
-											
+
 
 												Array.prototype.forEach.call(subcat_2_elements, function (subcat_2_elm) {
 													subcat_2_elm.classList.toggle("show");
@@ -434,15 +434,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 														selectTimeS.setAttribute('data-before', '⮝');
 
 														category_ul_elm[0].classList.toggle("show");
-			
-														fameApiGET(webImports[name].timeSURL + categoryCommand, function(categoryTimeseries) {
-						
+
+														fameApiGET(webImports[name].timeSURL + categoryCommand, function (categoryTimeseries) {
+
 															timeSeries_counter_li.innerHTML = categoryTimeseries.data.length + ' time series';
-						
+
 															categoryTimeseries.data.forEach(function (timeserie) {
 																var timeserie_li = highed.dom.cr('li', 'timeserie-element');
 																var variant_serie_ul = highed.dom.cr('ul', 'variant-serie-ul');
-																
+
 																timeserie_li.setAttribute('data-before', '⮞');
 
 																var timeserie_li_p = [
@@ -455,20 +455,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 																var time_info = highed.dom.cr('div', 'timeserie-information-div');
 																highed.dom.ap(time_info, highed.dom.cr('p', 'timeserie-information-title', timeserie.Description),
-																highed.dom.ap(highed.dom.cr('ul', 'timeserie-information-ul'), 
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Name:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Name)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Datasource:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.DataSource)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Region:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Region)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Frequency:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Frequency)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'First value:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Firstvalue)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Last value:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Lastvalue)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Updated:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.LastUpdated)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Measure:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Measure)),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage:'),  highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.HasVintage) ? "TRUE" : "FALSE")),
-																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage value:'),  highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.VintValue === "") ? "NaN" : timeserie.VintValue))
-																));
+																	highed.dom.ap(highed.dom.cr('ul', 'timeserie-information-ul'),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Name:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Name)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Datasource:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.DataSource)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Region:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Region)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Frequency:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Frequency)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'First value:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Firstvalue)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Last value:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Lastvalue)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Updated:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.LastUpdated)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Measure:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Measure)),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage:'), highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.HasVintage) ? "TRUE" : "FALSE")),
+																		highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage value:'), highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.VintValue === "") ? "NaN" : timeserie.VintValue))
+																	));
 																highed.dom.ap(timeserie_li, time_info)
-																
+
 																highed.dom.on(timeserie_li_p[4], 'mouseover', function (event_icon) {
 																	time_info.classList.toggle("show");
 																	event_icon.stopPropagation();
@@ -480,10 +480,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																timeserie_li_p.forEach(function (p_tag) {
 																	timeserie_li.appendChild(p_tag);
 																})
-						
-						
-																highed.dom.on(timeserie_li, 'click', function(event_3) {
-																	if(!variant_serie_ul.classList.contains("show")) {
+
+
+																highed.dom.on(timeserie_li, 'click', function (event_3) {
+																	if (!variant_serie_ul.classList.contains("show")) {
 																		variant_serie_ul.classList.toggle("show");
 																		timeserie_li.setAttribute('data-before', '⮟');
 																	}
@@ -491,13 +491,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																		variant_serie_ul.classList.toggle("show");
 																		timeserie_li.setAttribute('data-before', '⮞');
 																	}
-																	
+
 																	console.log(timeserie)
-																	if(!timeserie_li.classList.contains('select')) {
+																	if (!timeserie_li.classList.contains('select')) {
 																		timeserie_li.classList.toggle("select");
 																		timeserie_name = timeserie.Name;
 																		timeSerieTitle.innerHTML = timeserie.Description + " " + timeserie.DataSource + "."
-															
+
 																		timeSerieExpression.getElementsByTagName('input')[0].value = timeserie.Name;
 																		timeSerieFrequency.getElementsByTagName('input')[0].value = timeserie.Frequency;
 																		timeSerieRange.getElementsByTagName('input')[0].value = timeserie.Firstvalue;
@@ -512,7 +512,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																		var newFormat = temp[2] + "." + temp[1] + "." + temp[0];
 																		timeserie_lastUpdate = newFormat;
 																	}
-						
+
 																	fameApiGET(webImports[name].timeSVintgs + timeserie.Name, function (timeserie_vintages) {
 																		timeserie_vintages.data.forEach(function (vintage) {
 																			var vintage_li = highed.dom.cr('li', 'vintage-element');
@@ -523,23 +523,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																				highed.dom.cr('p', 'timeserie-li-text  last-value', vintage.Lastvalue),
 																				highed.dom.cr('i', 'timeserie-li-text  ts-info-icon', '🛈')
 																			]
-																			
+
 																			var time_info = highed.dom.cr('div', 'timeserie-information-div');
 																			highed.dom.ap(time_info, highed.dom.cr('p', 'timeserie-information-title', vintage.Description),
-																			highed.dom.ap(highed.dom.cr('ul', 'timeserie-information-ul'), 
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Name:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.Name)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Datasource:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.DataSource)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Region:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.Region)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Frequency:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.Frequency)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'First value:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.Firstvalue)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Last value:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.Lastvalue)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Updated:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.LastUpdated)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Measure:'),  highed.dom.cr('p', 'timeserie-information-li-p', vintage.Measure)),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage:'),  highed.dom.cr('p', 'timeserie-information-li-p', (vintage.HasVintage) ? "TRUE" : "FALSE")),
-																			highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage value:'),  highed.dom.cr('p', 'timeserie-information-li-p', (vintage.VintValue === "") ? "NaN" : vintage.VintValue))
-																			));
+																				highed.dom.ap(highed.dom.cr('ul', 'timeserie-information-ul'),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Name:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.Name)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Datasource:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.DataSource)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Region:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.Region)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Frequency:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.Frequency)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'First value:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.Firstvalue)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Last value:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.Lastvalue)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Updated:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.LastUpdated)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Measure:'), highed.dom.cr('p', 'timeserie-information-li-p', vintage.Measure)),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage:'), highed.dom.cr('p', 'timeserie-information-li-p', (vintage.HasVintage) ? "TRUE" : "FALSE")),
+																					highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage value:'), highed.dom.cr('p', 'timeserie-information-li-p', (vintage.VintValue === "") ? "NaN" : vintage.VintValue))
+																				));
 																			highed.dom.ap(vintage_li, time_info)
-			
+
 																			highed.dom.on(vintage_li_p[4], 'mouseover', function (event_icon) {
 																				time_info.classList.toggle("show");
 																				event_icon.stopPropagation();
@@ -552,22 +552,22 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																			vintage_li_p.forEach(function (vin_p) {
 																				vintage_li.appendChild(vin_p);
 																			})
-						
+
 																			variant_serie_ul.appendChild(vintage_li);
-						
-																			highed.dom.on(vintage_li, 'click', function(event_4) {
-																				if(timeserie_li.classList.contains('select')) {
-																				timeserie_li.classList.toggle("select");
+
+																			highed.dom.on(vintage_li, 'click', function (event_4) {
+																				if (timeserie_li.classList.contains('select')) {
+																					timeserie_li.classList.toggle("select");
 																				}
-						
+
 																				console.log(variant_serie_ul)
 																				Array.prototype.forEach.call(variant_serie_ul.getElementsByTagName('li'), function (variant_li) {
-																					
+
 																					if (variant_li === vintage_li) {
 																						vintage_li.classList.toggle("select");
 																						timeserie_name = vintage.Name;
 																						timeSerieTitle.innerHTML = vintage.Description + " " + vintage.DataSource + "."
-																			
+
 																						timeSerieExpression.getElementsByTagName('input')[0].value = vintage.Name;
 																						timeSerieFrequency.getElementsByTagName('input')[0].value = vintage.Frequency;
 																						timeSerieRange.getElementsByTagName('input')[0].value = vintage.Firstvalue;
@@ -582,28 +582,28 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																						var temp = lastUpdated.split('.');
 																						var newFormat = temp[2] + "." + temp[1] + "." + temp[0];
 																						timeserie_lastUpdate = newFormat;
-																				
+
 																					}
 																					else {
-																						if(variant_li.classList.contains('select')) {
+																						if (variant_li.classList.contains('select')) {
 																							variant_li.classList.toggle("select");
 																						}
 																					}
-																
+
 																				});
 																				event_4.stopPropagation();
 																			});
 																		});
 																	});
-																	
+
 																	event_3.stopPropagation();
 																})
-						
+
 																selectTimeSeries_ul.appendChild(timeserie_li);
 																selectTimeSeries_ul.appendChild(variant_serie_ul);
 															})
 														})
-														
+
 														event_2.stopPropagation();
 													})
 												})
@@ -611,14 +611,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 											else {
 												categoryCommand = subcat_1_elm.getAttribute('data-command');
 
-												fameApiGET(webImports[name].timeSURL + categoryCommand, function(categoryTimeseries) {
-			
+												fameApiGET(webImports[name].timeSURL + categoryCommand, function (categoryTimeseries) {
+
 													timeSeries_counter_li.innerHTML = categoryTimeseries.data.length + ' time series';
-				
+
 													categoryTimeseries.data.forEach(function (timeserie) {
 														var timeserie_li = highed.dom.cr('li', 'timeserie-element');
 														var variant_serie_ul = highed.dom.cr('ul', 'variant-serie-ul');
-				
+
 														var timeserie_li_p = [
 															highed.dom.cr('p', 'timeserie-li-text  desc', timeserie.Description),
 															highed.dom.cr('p', 'timeserie-li-text  name', timeserie.Name),
@@ -629,18 +629,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 														var time_info = highed.dom.cr('div', 'timeserie-information-div');
 														highed.dom.ap(time_info, highed.dom.cr('p', 'timeserie-information-title', timeserie.Description),
-														highed.dom.ap(highed.dom.cr('ul', 'timeserie-information-ul'), 
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Name:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Name)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Datasource:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.DataSource)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Region:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Region)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Frequency:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Frequency)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'First value:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Firstvalue)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Last value:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Lastvalue)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Updated:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.LastUpdated)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Measure:'),  highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Measure)),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage:'),  highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.HasVintage) ? "TRUE" : "FALSE")),
-														highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage value:'),  highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.VintValue === "") ? "NaN" : timeserie.VintValue))
-														));
+															highed.dom.ap(highed.dom.cr('ul', 'timeserie-information-ul'),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Name:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Name)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Datasource:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.DataSource)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Region:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Region)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Frequency:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Frequency)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'First value:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Firstvalue)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Last value:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Lastvalue)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Updated:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.LastUpdated)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Measure:'), highed.dom.cr('p', 'timeserie-information-li-p', timeserie.Measure)),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage:'), highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.HasVintage) ? "TRUE" : "FALSE")),
+																highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage value:'), highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.VintValue === "") ? "NaN" : timeserie.VintValue))
+															));
 														highed.dom.ap(timeserie_li, time_info)
 
 														highed.dom.on(timeserie_li_p[4], 'mouseover', function (event_icon) {
@@ -652,21 +652,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 															event_icon.stopPropagation();
 														})
 
-														 timeserie_li_p.forEach(function (p_tag) {
+														timeserie_li_p.forEach(function (p_tag) {
 															timeserie_li.appendChild(p_tag);
 														})
-				
-				
-														highed.dom.on(timeserie_li, 'click', function(event_3) {
-				
+
+
+														highed.dom.on(timeserie_li, 'click', function (event_3) {
+
 															variant_serie_ul.classList.toggle("show");
-				
-															if(!timeserie_li.classList.contains('select')) {
+
+															if (!timeserie_li.classList.contains('select')) {
 																console.log(timeserie)
 																timeserie_li.classList.toggle("select");
 																timeserie_name = timeserie.Name;
 																timeSerieTitle.innerHTML = timeserie.Description + " " + timeserie.DataSource + "."
-																
+
 																timeSerieExpression.getElementsByTagName('input')[0].value = timeserie.Name;
 																timeSerieFrequency.getElementsByTagName('input')[0].value = timeserie.Frequency;
 																timeSerieRange.getElementsByTagName('input')[0].value = timeserie.Firstvalue;
@@ -681,7 +681,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																var newFormat = temp[2] + "." + temp[1] + "." + temp[0];
 																timeserie_lastUpdate = newFormat;
 															}
-				
+
 															fameApiGET(webImports[name].timeSVintgs + timeserie.Name, function (timeserie_vintages) {
 																timeserie_vintages.data.forEach(function (vintage) {
 																	console.log(vintage)
@@ -692,25 +692,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																		highed.dom.cr('p', 'timeserie-li-text  first-value', vintage.Firstvalue),
 																		highed.dom.cr('p', 'timeserie-li-text  last-value', vintage.Lastvalue)
 																	]
-				
+
 																	vintage_li_p.forEach(function (vin_p) {
 																		vintage_li.appendChild(vin_p);
 																	})
-				
+
 																	variant_serie_ul.appendChild(vintage_li);
-				
-																	highed.dom.on(vintage_li, 'click', function(event_4) {
-																		if(timeserie_li.classList.contains('select')) {
-																		   timeserie_li.classList.toggle("select");
+
+																	highed.dom.on(vintage_li, 'click', function (event_4) {
+																		if (timeserie_li.classList.contains('select')) {
+																			timeserie_li.classList.toggle("select");
 																		}
-				
+
 																		console.log(variant_serie_ul)
 																		Array.prototype.forEach.call(variant_serie_ul.getElementsByTagName('li'), function (variant_li) {
-																			
+
 																			if (variant_li === vintage_li) {
 																				vintage_li.classList.toggle("select");
 																				timeSerieTitle.innerHTML = vintage.Description + " " + vintage.DataSource + "."
-																			
+
 																				timeSerieExpression.getElementsByTagName('input')[0].value = vintage.Name;
 																				timeSerieFrequency.getElementsByTagName('input')[0].value = vintage.Frequency;
 																				timeSerieRange.getElementsByTagName('input')[0].value = vintage.Firstvalue;
@@ -727,7 +727,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																				timeserie_lastUpdate = newFormat;
 																			}
 																			else {
-																				if(variant_li.classList.contains('select')) {
+																				if (variant_li.classList.contains('select')) {
 																					variant_li.classList.toggle("select");
 																				}
 																			}
@@ -736,59 +736,59 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 																	})
 																})
 															});
-															
+
 															event_3.stopPropagation();
 														})
-				
+
 														selectTimeSeries_ul.appendChild(timeserie_li);
 														selectTimeSeries_ul.appendChild(variant_serie_ul);
 													})
-												})	
+												})
 											}
-			
+
 											timeSeries_ul.classList.toggle("show");
-			
+
 											event_1.stopPropagation();
 
 										})
 									})
-											event_0.stopPropagation();
+									event_0.stopPropagation();
 								})
-									
-							})						
+
+							})
 						})
 
-						highed.dom.on(selectTimeS, 'click', function() {
-							if(categoryCommand === "") {
+						highed.dom.on(selectTimeS, 'click', function () {
+							if (categoryCommand === "") {
 								alert("You must choose a category before selecting a time series!");
 							}
 							else {
-								if(!timeSeries_ul.classList.contains("show")){
+								if (!timeSeries_ul.classList.contains("show")) {
 									timeSeries_ul.classList.toggle("show");
-									selectTimeS.setAttribute('data-before',  '⮝');
+									selectTimeS.setAttribute('data-before', '⮝');
 								}
 								else {
 									timeSeries_ul.classList.toggle("show");
-									selectTimeS.setAttribute('data-before',  '⮟');
+									selectTimeS.setAttribute('data-before', '⮟');
 								}
 							}
 						})
 
-						highed.dom.on(editTimeS, 'click', function() {
-							if(timeserie_name === "") {
+						highed.dom.on(editTimeS, 'click', function () {
+							if (timeserie_name === "") {
 								alert("You must choose a timeseries before being able to edit it!")
-							} 
+							}
 							else {
-								if(timeSeries_ul.classList.contains("show")) {
+								if (timeSeries_ul.classList.contains("show")) {
 									timeSeries_ul.classList.toggle("show");
 								}
-								if(!editTimeSeries_ul.classList.contains("show")){
+								if (!editTimeSeries_ul.classList.contains("show")) {
 									editTimeSeries_ul.classList.toggle("show");
-									editTimeS.setAttribute('data-before',  '⮝');
+									editTimeS.setAttribute('data-before', '⮝');
 								}
 								else {
 									editTimeSeries_ul.classList.toggle("show");
-									editTimeS.setAttribute('data-before',  '⮟');
+									editTimeS.setAttribute('data-before', '⮟');
 								}
 
 								Array.prototype.forEach.call(editTimeS.getElementsByTagName('ul')[0].getElementsByTagName('li'), function (item) {
@@ -798,14 +798,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 								})
 							}
 						})
-						
+
 						highed.dom.ap(editTimeSeries_ul, timeSerieTitle, timeSerieExpression, timeSerieFrequency, timeSerieRange, timeSerieOther)
 						highed.dom.ap(editTimeS, editTimeSeries_ul);
 						highed.dom.ap(timeSeries_ul, timeSeries_counter_li, timeSeries_filter_li, selectTimeSeries_ul_header, selectTimeSeries_ul);
 						highed.dom.ap(selectTimeS, timeSeries_ul);
 						highed.dom.ap(navigation_ul, selectCat, selectTimeS, editTimeS);
-	
-						highed.dom.on(serieImport, 'click', function() {
+
+						highed.dom.on(serieImport, 'click', function () {
 							highed.snackBar('Importing ' + name + ' data');
 							timeserie_name = timeSerieExpression.getElementsByTagName('input')[0].value;
 							timeserie_frequency = timeSerieFrequency.getElementsByTagName('input')[0].value;
@@ -813,7 +813,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							timeserie_rangeto = timeSerieRange.getElementsByTagName('input')[1].value;
 
 							highed.ajax({
-								url: "https://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getobservations?channelname=" + timeserie_channel + "&expression="+ timeserie_name + "&frequency=" + timeserie_frequency +"&rangefrom=" + timeserie_rangefrom + "&rangeto="+ timeserie_rangeto + "&timeSerieLastUpdated=" + timeserie_lastUpdate + "&other=" + "",
+								url: "http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getobservations?channelname=" + timeserie_channel + "&expression=" + timeserie_name + "&frequency=" + timeserie_frequency + "&rangefrom=" + timeserie_rangefrom + "&rangeto=" + timeserie_rangeto + "&timeSerieLastUpdated=" + timeserie_lastUpdate + "&other=" + "",
 								cors: true,
 								type: 'GET',
 								dataType: 'jsonp',
@@ -823,9 +823,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 										error,
 										val
 									) {
-	
+
 										if (error) return highed.snackBar('import error: ' + error);
-									
+
 										if (options.treatAs === 'csv') {
 											csvTab.focus();
 											csvPasteArea.value = val;
@@ -833,18 +833,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 										}
 										else if (options.treatAs === 'csv-append') {
 											csvTab.focus();
-	
+
 											if (csvPasteArea.value != '') {
 												var existingDataArray = csvPasteArea.value.split('\n');
 												var appdendingDataArray = val.split('\n');
 												var newDataArray = [];
 												var matchColA = [];
 												var matchColAIndex = -1;
-	
+
 												existingDataArray.forEach(element => {
 													var lineArr = [];
 													var arr1 = element.split(',')
-	
+
 													for (let i = 0; i < arr1.length; i++) {
 														if (i === 0) {
 															var colA = arr1[i];
@@ -863,9 +863,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 														}
 														//lineArr.push('\n');
 														newDataArray.push(lineArr.join(','));
-	
+
 													}
-	
+
 												});
 												csvPasteArea.value = newDataArray.join('\n');
 											}
@@ -880,11 +880,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 										}
 									});
 								},
-								error: function(xhr, ajaxOptions, throwError) {
+								error: function (xhr, ajaxOptions, throwError) {
 									alert("There was a problem retriving data from " + url_value);
 								}
 							});
-							
+
 						})
 					}
 					else {
@@ -893,130 +893,130 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							height: '600px'
 						});
 					}
-			
-						highed.dom.on(importBtn, 'click', function () {
-							highed.snackBar('Importing ' + name + ' data');
 
-							if (highed.isFn(options.request)) {
-								return options.request(url.value, dynamicOptions, function (
-									err,
-									chartProperties
+					highed.dom.on(importBtn, 'click', function () {
+						highed.snackBar('Importing ' + name + ' data');
+
+						if (highed.isFn(options.request)) {
+							return options.request(url.value, dynamicOptions, function (
+								err,
+								chartProperties
+							) {
+								if (err) return highed.snackBar('import error: ' + err);
+								events.emit(
+									'ImportChartSettings',
+									chartProperties,
+									options.newFormat
+								);
+							});
+						}
+						highed.ajax({
+							url: "https://cors-anywhere.herokuapp.com/" + url.value, //Temp CORS fix
+							type: 'get',
+							dataType: options.treatAs || 'text',
+							success: function (val) {
+								options.filter(val, highed.merge({}, dynamicOptions), function (
+									error,
+									val
 								) {
-									if (err) return highed.snackBar('import error: ' + err);
-									events.emit(
-										'ImportChartSettings',
-										chartProperties,
-										options.newFormat
-									);
-								});
-							}
-							highed.ajax({
-								url: "https://cors-anywhere.herokuapp.com/" + url.value, //Temp CORS fix
-								type: 'get',
-								dataType: options.treatAs || 'text',
-								success: function (val) {
-									options.filter(val, highed.merge({}, dynamicOptions), function (
-										error,
-										val
-									) {
 
-										if (error) return highed.snackBar('import error: ' + error);
-										if (options.treatAs === 'csv') {
-											csvTab.focus();
-											csvPasteArea.value = val;
-											emitCSVImport(val);
-										}
-										else if (options.treatAs === 'csv-append') {
-											csvTab.focus();
+									if (error) return highed.snackBar('import error: ' + error);
+									if (options.treatAs === 'csv') {
+										csvTab.focus();
+										csvPasteArea.value = val;
+										emitCSVImport(val);
+									}
+									else if (options.treatAs === 'csv-append') {
+										csvTab.focus();
 
-											if (csvPasteArea.value != '') {
-												var existingDataArray = csvPasteArea.value.split('\n');
-												var appdendingDataArray = val.split('\n');
-												var newDataArray = [];
-												var matchColA = [];
-												var matchColAIndex = -1;
+										if (csvPasteArea.value != '') {
+											var existingDataArray = csvPasteArea.value.split('\n');
+											var appdendingDataArray = val.split('\n');
+											var newDataArray = [];
+											var matchColA = [];
+											var matchColAIndex = -1;
 
-												existingDataArray.forEach(element => {
-													var lineArr = [];
-													var arr1 = element.split(',')
+											existingDataArray.forEach(element => {
+												var lineArr = [];
+												var arr1 = element.split(',')
 
-													for (let i = 0; i < arr1.length; i++) {
-														if (i === 0) {
-															var colA = arr1[i];
-															matchColAIndex = appdendingDataArray.findIndex(element => element.includes(colA));
-															//matchColAIndex = appdendingDataArray.indexOf(colA);
-														}
-														lineArr.push(arr1[i])
+												for (let i = 0; i < arr1.length; i++) {
+													if (i === 0) {
+														var colA = arr1[i];
+														matchColAIndex = appdendingDataArray.findIndex(element => element.includes(colA));
+														//matchColAIndex = appdendingDataArray.indexOf(colA);
 													}
-													if (matchColAIndex >= 0) {
-														var uu = appdendingDataArray[matchColAIndex];
-														var newVals = uu.split(',');
-														if (newVals != null) {
-															for (let j = 1; j < newVals.length; j++) {
-																lineArr.push(newVals[j]);
-															}
+													lineArr.push(arr1[i])
+												}
+												if (matchColAIndex >= 0) {
+													var uu = appdendingDataArray[matchColAIndex];
+													var newVals = uu.split(',');
+													if (newVals != null) {
+														for (let j = 1; j < newVals.length; j++) {
+															lineArr.push(newVals[j]);
 														}
-														//lineArr.push('\n');
-														newDataArray.push(lineArr.join(','));
-
 													}
+													//lineArr.push('\n');
+													newDataArray.push(lineArr.join(','));
 
-												});
-												csvPasteArea.value = newDataArray.join('\n');
-											}
-											else {
-												csvPasteArea.value = val;
-											}
-											//csvPasteArea.value = val;
-											emitCSVImport(csvPasteArea.value);
+												}
+
+											});
+											csvPasteArea.value = newDataArray.join('\n');
 										}
 										else {
-											processJSONImport(val);
+											csvPasteArea.value = val;
 										}
-									});
-								},
-								error: function (err) {
-									highed.snackBar('import error: ' + err);
-								}
-							});
+										//csvPasteArea.value = val;
+										emitCSVImport(csvPasteArea.value);
+									}
+									else {
+										processJSONImport(val);
+									}
+								});
+							},
+							error: function (err) {
+								highed.snackBar('import error: ' + err);
+							}
 						});
+					});
 
-						webSplitter.right.innerHTML = '';
+					webSplitter.right.innerHTML = '';
 
-						if(name === "FAME") {
+					if (name === "FAME") {
 
+						highed.dom.ap(
+							webSplitter.right,
 							highed.dom.ap(
-								webSplitter.right,
-								highed.dom.ap(
-									highed.dom.cr('div', 'highed-plugin-details'),
-									fameTitle,
-									navigation_ul,
-									highed.dom.cr('br'),
-									serieImport
-								)
+								highed.dom.cr('div', 'highed-plugin-details'),
+								fameTitle,
+								navigation_ul,
+								highed.dom.cr('br'),
+								serieImport
 							)
-						} 
-						else {
+						)
+					}
+					else {
+						highed.dom.ap(
+							webSplitter.right,
 							highed.dom.ap(
-								webSplitter.right,
-								highed.dom.ap(
-									highed.dom.cr('div', 'highed-plugin-details'),
-									highed.dom.cr(
-										'div',
-										'highed-customizer-table-heading',
-										options.title || name
-									),
-									highed.dom.cr('div', 'highed-imp-help', options.description),
-									urlTitle,
-									url,
-									Object.keys(options.options || {}).length
-										? dynamicOptionsContainer
-										: false,
-									highed.dom.cr('br'),
-									importBtn
-								)
-							);
-						}					
+								highed.dom.cr('div', 'highed-plugin-details'),
+								highed.dom.cr(
+									'div',
+									'highed-customizer-table-heading',
+									options.title || name
+								),
+								highed.dom.cr('div', 'highed-imp-help', options.description),
+								urlTitle,
+								url,
+								Object.keys(options.options || {}).length
+									? dynamicOptionsContainer
+									: false,
+								highed.dom.cr('br'),
+								importBtn
+							)
+						);
+					}
 				}
 
 				webList.addItem({
@@ -1059,7 +1059,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		}
 
 		function emitCSVImport(csv, cb) {
-			
+
 			var data = {
 				itemDelimiter: delimiter.value,
 				firstRowAsNames: firstAsNames.checked,
