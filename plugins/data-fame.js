@@ -14,7 +14,7 @@ highed.plugins.import.install('FAME', {
 	},
 	filter: function (data, options, fn) {
 
-		
+
 		var csv = [], header = [];
 
 		try {
@@ -24,7 +24,6 @@ highed.plugins.import.install('FAME', {
 		}
 
 		 options.includeFields = highed.arrToObj(options.includeFields.split(';'));
-		 console.log(data.data)
 		if (highed.isArr(data.data.Observationsens)) {
 
 			//Only include things we're interested in

@@ -388,7 +388,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 								var timeserie_li = highed.dom.cr('li', 'timeserie-element');
 								var variant_serie_ul = highed.dom.cr('ul', 'variant-serie-ul');
 								
-								timeserie_li.setAttribute('data-before', '⮞');
+								if(timeserie.HasVintage === true) {
+									timeserie_li.setAttribute('data-before', '⮞');
+								}
 
 								var timeserie_li_p = [
 									highed.dom.cr('p', 'timeserie-li-text  desc', timeserie.Description),
@@ -432,11 +434,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 									if(!variant_serie_ul.classList.contains("show")) {
 										variant_serie_ul.classList.toggle("show");
-										timeserie_li.setAttribute('data-before', '⮟');
+										if(timeserie.HasVintage === true) timeserie_li.setAttribute('data-before', '⮟');
 									}
 									else {
 										variant_serie_ul.classList.toggle("show");
-										timeserie_li.setAttribute('data-before', '⮞');
+										if(timeserie.HasVintage === true) timeserie_li.setAttribute('data-before', '⮞');
 									}
 									
 									Array.prototype.forEach.call(fame_timeserie_ul.getElementsByClassName('timeserie-element'), function (timeserie_elm) {
@@ -893,7 +895,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 						})
 
-						
+					}	
 
 					highed.dom.on(importBtn, 'click', function () {
 						highed.snackBar('Importing ' + name + ' data');
@@ -989,8 +991,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 						highed.dom.ap(
 							webSplitter.right,
-							highed.dom.ap(
-								webSplitter.right,
 								highed.dom.ap(
 									highed.dom.cr('div', 'highed-plugin-details'),
 									highed.dom.cr('div', 'highed-plugin-fame-title highed-customizer-table-heading', name + ' - Search for time series'),
@@ -998,7 +998,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									highed.dom.cr('br'),
 									import_timeserie_btn
 								)
-							)
 						)
 					}
 					else {
@@ -1029,7 +1028,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					title: webImports[name].title || name,
 					click: buildBody
 				});
-			}
 			
 		});
 
