@@ -2,9 +2,9 @@ highed.plugins.import.install('FAME', {
     description: 'Append data fra FAME',
     treatAs: 'csv-append',
     fetchAs: 'json',
-    defaultURL: 'https://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getcategories',
-    timeSURL: 'https://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getseriesbycategory?category=',
-    timeSVintgs: 'https://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getvintagesbyseriename?serie=',
+    defaultURL: 'http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getcategories',
+    timeSURL: 'http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getseriesbycategory?category=',
+    timeSVintgs: 'http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getvintagesbyseriename?serie=',
     options: {
         includeFields: {
 			type: 'string',
@@ -22,7 +22,8 @@ highed.plugins.import.install('FAME', {
 			fn(e);
 		}
 
-	 	options.includeFields = highed.arrToObj(options.includeFields.split(';'));
+		 options.includeFields = highed.arrToObj(options.includeFields.split(';'));
+		 console.log(data.data)
 		if (highed.isArr(data.data.Observationsens)) {
 
 			//Only include things we're interested in
@@ -46,10 +47,18 @@ highed.plugins.import.install('FAME', {
 					}
 
 					if (i == 0) {
-						header.push(key);
+						if(key === "Value") {
+							header.push(JSON.stringify(data.data.Series[0].Description));
+						} else {
+							header.push(key);
+						}
 					}
-					rdata.push(col);
-
+					if(col === "NaN") {
+						rdata.push("");
+					}
+					else {
+						rdata.push(col);
+					}
 				});
 				csv.push(rdata.join(','));
 			});

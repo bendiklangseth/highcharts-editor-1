@@ -84,6 +84,7 @@ highed.OverlayModal = function(contents, attributes) {
      *  @memberof highed.OverlayModal
      */
   function show() {
+ 
     if (visible) return;
     highed.dom.style(container, {
       width:
