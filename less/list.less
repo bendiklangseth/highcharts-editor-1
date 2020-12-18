@@ -250,21 +250,21 @@
     font-weight: lighter;
   }
 
-  .timeS-filterTitle {
+  .timeserie-filter-title {
       padding-right: 20px;
       margin: 0;
   }
 
-  .timeS-filterType {
+  .timeserie-filter-variant {
       padding-right: 20px;
       margin: 0;
   }
 
-  .timeS-filterType::after {
+  .timeserie-filter-variant::after {
     content: '⮟';
   }
 
-  .selectTimeSeries-ul-header {
+  .select-timeserie-ul-header {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
@@ -297,18 +297,6 @@
     padding-bottom: 5px;
     background-color: #f2f2f2;
   }
-
-  .timeserie-element::before {
-    content: attr(data-before);
-    margin-top: 10px;
-  }
-
-  // .timeserie-element::after, .vintage-element::after {
-  //   content: '🛈';
-  //   transform: scale(2);
-  //   margin-right: 2%;
-  //   margin-top: 6px;
-  // }
 
   .timeserie-li-text {
     position: relative;
@@ -391,6 +379,7 @@
 
   .desc {
     width: 400px;
+    margin-left: 5px;
   }
 
   .name, .h-name {
@@ -447,10 +436,22 @@
     padding-left: 15px;
   }
 
+  .last-value:hover {
+    background-color: transparent;
+  }
+
+  .menu-icon {
+    margin-top: 10px;
+    margin-left: 2px;
+    font-style: normal;
+  }
+
   .ts-info-icon {
     transform: scale(2);
     margin-right: 10px;
+    margin-top: 5px;
     padding-right: 5px;
+    font-style: normal;
   }
 
   .show {

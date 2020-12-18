@@ -295,13 +295,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 						select_category_li = highed.dom.ap(highed.dom.cr('li', 'fame-main-nav-li', 'Select category'), fame_category_ul),
 						select_timeserie_counter_li = highed.dom.cr('li', 'select-timeserie-counter-li'),
 						select_timeserie_filter_li = highed.dom.ap(highed.dom.cr('li', 'select-timeserie-filter-li'), 
-															highed.dom.cr('p', 'timeS-filterTitle', 'Filter search:'), 
-															highed.dom.cr('p', 'timeS-filterType', 'Region: All'),
-															highed.dom.cr('p', 'timeS-filterType', 'Frequency: All'),
-															highed.dom.cr('p', 'timeS-filterType', 'Datasource: All'),
-															highed.dom.cr('p', 'timeS-filterType', 'Measure: All'),
-															highed.dom.cr('p', 'timeS-filterType', 'Seasonal: All')),
-						select_timeserie_ul_header = highed.dom.ap(highed.dom.cr('li', 'selectTimeSeries-ul-header'), 
+															highed.dom.cr('p', 'timeserie-filter-title', 'Filter search:'), 
+															highed.dom.cr('p', 'timeserie-filter-variant', 'Region: All'),
+															highed.dom.cr('p', 'timeserie-filter-variant', 'Frequency: All'),
+															highed.dom.cr('p', 'timeserie-filter-variant', 'Datasource: All'),
+															highed.dom.cr('p', 'timeserie-filter-variant', 'Measure: All'),
+															highed.dom.cr('p', 'timeserie-filter-variant', 'Seasonal: All')),
+						select_timeserie_ul_header = highed.dom.ap(highed.dom.cr('li', 'select-timeserie-ul-header'), 
 																highed.dom.cr('p', 'header-text  desc', 'Description'),
 																highed.dom.cr('p', 'header-text  h-name', 'Name'),
 																highed.dom.cr('p', 'header-text  first-value', 'First value'),
@@ -387,10 +387,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							Array.prototype.forEach.call(array, function (timeserie) {
 								var timeserie_li = highed.dom.cr('li', 'timeserie-element');
 								var variant_serie_ul = highed.dom.cr('ul', 'variant-serie-ul');
-								
-								if(timeserie.HasVintage === true) {
-									timeserie_li.setAttribute('data-before', '⮞');
-								}
 
 								var timeserie_li_p = [
 									highed.dom.cr('p', 'timeserie-li-text  desc', timeserie.Description),
@@ -414,6 +410,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 								highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage:'),  highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.HasVintage) ? "TRUE" : "FALSE")),
 								highed.dom.ap(highed.dom.cr('li', 'timeserie-information-li'), highed.dom.cr('p', 'timeserie-information-li-p', 'Vintage value:'),  highed.dom.cr('p', 'timeserie-information-li-p', (timeserie.VintValue === "") ? "NaN" : timeserie.VintValue))
 								));
+								var sub_menu = highed.dom.cr('i', 'timeserie-li-text  menu-icon', '⮞');
+
 								highed.dom.ap(timeserie_li, time_info)
 
 								highed.dom.on(timeserie_li_p[4], 'mouseover', function (event_icon) {
@@ -424,23 +422,30 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									time_info.classList.toggle("show");
 									event_icon.stopPropagation();
 								})
+
+								if(timeserie.HasVintage === true) {
+									timeserie_li.appendChild(sub_menu);
+								}
 								timeserie_li_p.forEach(function (p_tag) {
 									timeserie_li.appendChild(p_tag);
 								})
 
 
-								highed.dom.on(timeserie_li, 'click', async function(event) {
-									event.stopPropagation();
-
+								highed.dom.on(sub_menu, 'click', function() {
 									if(!variant_serie_ul.classList.contains("show")) {
 										variant_serie_ul.classList.toggle("show");
-										if(timeserie.HasVintage === true) timeserie_li.setAttribute('data-before', '⮟');
+										sub_menu.innerHTML = '⮟'
+									
 									}
 									else {
 										variant_serie_ul.classList.toggle("show");
-										if(timeserie.HasVintage === true) timeserie_li.setAttribute('data-before', '⮞');
+										sub_menu.innerHTML = '⮞'
+										
 									}
-									
+								});
+
+								highed.dom.on(timeserie_li, 'click', async function(event) {
+									event.stopPropagation();
 									Array.prototype.forEach.call(fame_timeserie_ul.getElementsByClassName('timeserie-element'), function (timeserie_elm) {
 
 										if(timeserie_li === timeserie_elm) {
@@ -573,7 +578,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 						}
 						
 						function addFilter(array) {
-							Array.prototype.forEach.call(select_timeserie_filter_li.getElementsByClassName('timeS-filterType'), function(filter) {
+							Array.prototype.forEach.call(select_timeserie_filter_li.getElementsByClassName('timeserie-filter-variant'), function(filter) {
 								highed.dom.on(filter, 'click', function(filter_event) {
 									if(fame_timeserie_ul.hasChildNodes()) {
 										fame_timeserie_ul.querySelectorAll('*').forEach(n => n.remove());
@@ -819,9 +824,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 								timeserie_rangeto = timeserie_rangeto.split(".");
 								timeserie_rangeto = timeserie_rangeto[2] + "-" + timeserie_rangeto[0] + "-" + timeserie_rangeto[1]
 							}
-							
+							console.log([timeserie_rangeto, timeserie_rangefrom])
+							var url_val = "http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getobservations?channelname=" + timeserie_channel + "&expression="+ timeserie_name + "&frequency=" + timeserie_frequency +"&rangefrom=" + timeserie_rangefrom + "&rangeto="+ timeserie_rangeto + "&timeSerieLastUpdated=" + timeserie_lastUpdate + "&other=" + timeserie_other;
 							highed.ajax({
-								url: "http://epiwithfame.norwayeast.cloudapp.azure.com/api/fameintegration/getobservations?channelname=" + timeserie_channel + "&expression="+ timeserie_name + "&frequency=" + timeserie_frequency +"&rangefrom=" + timeserie_rangefrom + "&rangeto="+ timeserie_rangeto + "&timeSerieLastUpdated=" + timeserie_lastUpdate + "&other=" + timeserie_other,
+								url: url_val,
 								cors: true,
 								type: 'GET',
 								dataType: 'jsonp',
@@ -889,7 +895,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 									});
 								},
 								error: function (xhr, ajaxOptions, throwError) {
-									alert("There was a problem retriving data from " + url_value);
+									alert("There was a problem retriving data from " + url_val);
 								}
 							});
 
